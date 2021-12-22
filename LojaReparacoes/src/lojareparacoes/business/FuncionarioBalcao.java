@@ -7,4 +7,12 @@ public class FuncionarioBalcao extends Utilizador{
         super(username, password);
         this.id = id;
     }
+
+    public int getId () {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
