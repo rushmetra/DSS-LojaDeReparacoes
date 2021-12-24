@@ -1,5 +1,7 @@
 package lojareparacoes;
 
+import lojareparacoes.ui.TextUI;
+
 /**
  * @author DSS
  * @version 20201206
