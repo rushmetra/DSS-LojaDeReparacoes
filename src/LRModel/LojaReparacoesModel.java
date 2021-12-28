@@ -182,7 +182,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         loadPedidosExpresso(pasta);
     }
 
-    public void saveGestores(String pasta) throws java.io.IOException {
+    public void saveGestores(String pasta) throws IOException {
 
         File file = new File(pasta + "/gestores.txt");
         if (!file.exists()) file.createNewFile();
@@ -210,7 +210,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     }
 
-    public void saveTecnicos(String pasta) throws java.io.IOException {
+    public void saveTecnicos(String pasta) throws IOException {
 
         File file = new File(pasta + "/tecnicos.txt");
         if (!file.exists()) file.createNewFile();
@@ -225,7 +225,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
     }
 
 
-    public void savePedidos(String pasta) throws java.io.IOException {
+    public void savePedidos(String pasta) throws IOException {
 
         File file = new File(pasta + "/pedidos.txt");
         if (!file.exists()) file.createNewFile();
@@ -239,7 +239,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     }
 
-    public void savePedidosExpresso(String pasta) throws java.io.IOException {
+    public void savePedidosExpresso(String pasta) throws IOException {
 
         File file = new File(pasta + "/pedidos-expresso.txt");
         if (!file.exists()) file.createNewFile();

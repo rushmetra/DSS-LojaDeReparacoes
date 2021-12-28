@@ -47,27 +47,27 @@ public interface ILojaReparacoesModel {
 
     //Funções para persisntência dos dados
 
-    public void loadGestores(String pasta) ;
-    public void loadFuncionarios(String pasta) ;
+    public void loadGestores(String pasta) throws IOException, ClassNotFoundException;
+    public void loadFuncionarios(String pasta) throws IOException, ClassNotFoundException;
 
-    public void loadTecnicos(String pasta) ;
+    public void loadTecnicos(String pasta) throws IOException, ClassNotFoundException ;
 
-    public void loadPedidos(String pasta) ;
+    public void loadPedidos(String pasta)  throws IOException, ClassNotFoundException;
 
-    public void loadPedidosExpresso(String pasta) ;
+    public void loadPedidosExpresso(String pasta) throws IOException, ClassNotFoundException ;
 
 
-    public void loadData(String pasta) ;
+    public void loadData(String pasta) throws IOException, ClassNotFoundException;
 
-    public void saveGestores(String pasta) ;
+    public void saveGestores(String pasta) throws IOException ;
 
-    public void saveFuncionarios(String pasta) ;
+    public void saveFuncionarios(String pasta) throws IOException ;
 
-    public void saveTecnicos(String pasta) ;
+    public void saveTecnicos(String pasta) throws IOException;
 
-    public void savePedidos(String pasta) ;
+    public void savePedidos(String pasta) throws IOException;
 
-    public void savePedidosExpresso(String pasta) ;
+    public void savePedidosExpresso(String pasta) throws IOException ;
 
 
 
