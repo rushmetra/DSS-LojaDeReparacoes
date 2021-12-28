@@ -58,7 +58,6 @@ public class UserInterface {
                 "Operações sobre Gestor",
                 "Operações sobre Tecnicos de Reparação",
                 "Operações sobre Funcionário de Balcão",
-                "Autenticação de Utilizadores"
         });
 
 
@@ -216,10 +215,13 @@ public class UserInterface {
      *       Registar plano de trabalho reparação
      *       Assinalar execução de passo
      *       Determina equipamento mais urgente
+     *       Registar plano de trabalho para a reparação
+     *       Assinalar a execução de um passo
+     *       Determina equipamento mais urgente
      *
      */
     private void gestaoTecnicoReparacao() {
-        Menu menu = new Menu(new String[]{
+        Menu menuTecnico = new Menu(new String[]{
                 "Adicionar Técnico de Reparação",
                 "Remover Técnico de Reparação"
                 "Listar Técnicos de Reparação",
@@ -228,29 +230,64 @@ public class UserInterface {
                 "Determina equipamento mais urgente"
         });
 
-        menu.setHandler(1, () -> adicionarTecnico());
-        menu.setHandler(2, () -> removerTecnico());
-        menu.setHandler(3, () -> listarTecnico());
-        menu.setHandler(4, () -> ());
+        menuTecnico.setHandler(1, () -> adicionarTecnico());
+        menuTecnico.setHandler(2, () -> removerTecnico());
+        menuTecnico.setHandler(3, () -> listarTecnicos());
+        menuTecnico.setHandler(4, () -> registaPlanoTrabRep());
+        menuTecnico.setHandler(5, () -> assinalaExecucaoPasso());
+        menuTecnico.setHandler(6, () -> determinaEquipamentoMaisUrgente());
 
-        //Executar o menu
-        menu.run();
-
-
+        menuTecnico.run();
     }
 
-
-    private void
-
-
+    private void adicionarTecnico() {}
+    private void removerTecnico() {}
+    private void listarTecnicos() {}
+    private void registaPlanoTrabRep() {}
+    private void assinalaExecucaoPasso() {}
+    private void determinaEquipamentoMaisUrgente() {}
 
     /**
      *  Estado - Operações sobre o Funcionario de Balcao
+     *
+     *  Transições possíveis:
+     *      Adicionar Funcionário de Balcão
+     *      Remover Funcionário de Balcão
+     *      Listar Funcionários de Balcão
+     *      Registar pedido
+     *      Registar serviço expresso
+     *      Registar conclusão de um pedido
+     *      Registar confirmação da reparação
+     *
      */
     private void gestaoFuncionarioBalcao() {
+        Menu menuFuncionario = new Menu(new String[]{
+                "Adicionar Funcionário de Balcão",
+                "Remover Funcionário de Balcão",
+                "Listar Funcionários de Balcão",
+                "Registar pedido",
+                "Registar serviço expresso",
+                "Registar conclusão de um pedido",
+                "Registar confirmação da reparação"
+        });
 
+        menuFuncionario.setHandler(1, () -> adicionarFuncionario());
+        menuFuncionario.setHandler(2, () -> removerFuncionario());
+        menuFuncionario.setHandler(3, () -> listarFuncionarios());
+        menuFuncionario.setHandler(4, () -> registarPedido());
+        menuFuncionario.setHandler(5, () -> registaServicoExpresso());
+        menuFuncionario.setHandler(6, () -> registarConclusaoPedido());
+        menuFuncionario.setHandler(7, () -> registarConfirmacaoDaReparacao());
+
+        menuFuncionario.run();
     }
 
-
+    private void adicionarFuncionario() {}
+    private void removerFuncionario() {}
+    private void listarFuncionarios() {}
+    private void registarPedido() {}
+    private void registaServicoExpresso() {}
+    private void registarConclusaoPedido() {}
+    private void registarConfirmacaoDaReparacao() {}
 
 }
