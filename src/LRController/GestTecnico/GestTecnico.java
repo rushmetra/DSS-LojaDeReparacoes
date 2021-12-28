@@ -11,8 +11,11 @@ import java.util.List;
 public class GestTecnico implements IGestTecnico{
     LojaReparacoesModel model;
 
-    public void registarPlanoTrabRep(String nif){}
-
+    // Registar Passo no Plano de Trabalhos
+    public void registarPasso(String nif, float custo, LocalTime tempoPrevisto, String descricao, boolean concluido) {
+        Passo p = new Passo(custo, tempoPrevisto, descricao, concluido);
+        model.getPedidoOrcamento(nif).getPlanoTrabalho().add(p);
+    }
 
     public void assinalarExecucaoPasso(String nif, LocalTime tempo, float custo){
         PedidoOrcamento p = model.getPedidoOrcamento(nif);
