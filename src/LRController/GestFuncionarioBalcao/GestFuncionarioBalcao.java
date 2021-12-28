@@ -1,11 +1,9 @@
 package LRController.GestFuncionarioBalcao;
 
-import LRModel.LojaReparacoesModel;
-import LRModel.PedidoExpresso;
-import LRModel.PedidoOrcamento;
+import LRModel.*;
 
 public class GestFuncionarioBalcao {
-    LojaReparacoesModel model;
+    ILojaReparacoesModel model;
 
     public void registarPedido(String nomeCliente, String contacto, String nif, String email){
         PedidoOrcamento po = new PedidoOrcamento(nomeCliente,contacto,email,nif);
@@ -27,9 +25,17 @@ public class GestFuncionarioBalcao {
         po.setConfirmacaoReparacao(true);
     }
 
-    // falta pensar o que vai ter as entregas
-    public void registarEntregaEquipamento(String nif){
-
+    public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao){
+        Entrega e = new Entrega(nif,idFuncionarioBalcao,false,false);
+        model.adicionaEntregaPeloCliente(e);
     }
+
+    public void registarEntregaEquipamentoePagamento(String nif){
+        Entrega e = this.model.getEntrega(nif);
+        e.setEntregue(true);
+        e.setPago(true);
+    }
+
+
 
 }

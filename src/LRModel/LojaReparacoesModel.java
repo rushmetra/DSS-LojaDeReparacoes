@@ -11,6 +11,7 @@ public class LojaReparacoesModel {
     Map<String, Tecnico> tecnicos;
     Map<String, PedidoOrcamento> pedidos;
     Map<String, PedidoExpresso> pedidosExpressos;
+    Map<String, Entrega> entregas;
 
 
 
@@ -18,6 +19,9 @@ public class LojaReparacoesModel {
         this.gestores = new HashMap<>();
         this.funcionariosDoBalcao = new HashMap<>();
         this.tecnicos = new HashMap<>();
+        this.pedidos = new HashMap<>();
+        this.pedidosExpressos = new HashMap<>();
+        this.entregas = new HashMap<>();
     }
 
 
@@ -263,5 +267,13 @@ public class LojaReparacoesModel {
 
     public void adicionaPedidoExpresso(PedidoExpresso pe) {
         this.pedidosExpressos.put(pe.getNif(),pe);
+    }
+
+    public void adicionaEntregaPeloCliente(Entrega e) {
+        this.entregas.put(e.getNif(),e);
+    }
+
+    public Entrega getEntrega(String nif) {
+        return this.entregas.get(nif);
     }
 }
