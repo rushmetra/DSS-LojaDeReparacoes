@@ -1,16 +1,41 @@
 package LRModel;
 
 public class FuncionarioBalcao {
+    private String username;
+    private String password;
+    private int rececoesEq;
+    private int entregasEq;
 
-    String username;
-    String password;
-
+    // getters e setters
     public String getUsername() {
-        return username;
+        return this.username;
+    }
+    public String getPassword() {
+        return this.password;
     }
 
-    public String getPassword() {
-        return password;
+    public int getRececoesEq() {
+        return this.rececoesEq;
+    }
+
+    public int getEntregasEq() {
+        return this.entregasEq;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRececoesEq(int rececoesEq) {
+        this.rececoesEq = rececoesEq;
+    }
+
+    public void setEntregasEq(int entregasEq) {
+        this.entregasEq = entregasEq;
     }
 }
 

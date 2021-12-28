@@ -265,11 +265,12 @@ public class LojaReparacoesModel {
 
 
 
+    public void adicionaPedidoOrcamento(PedidoOrcamento po){
+        this.pedidos.put(po.getId(),po);
+    }
 
 
-
-
-
-
-
+    public void adicionaPedidoExpresso(PedidoExpresso pe) {
+        this.pedidosExpressos.put(pe.getNif(),pe);
+    }
 }
