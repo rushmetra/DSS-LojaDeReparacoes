@@ -3,7 +3,7 @@ package LRController.GestGestor;
 import LRModel.Gestor;
 import LRModel.LojaReparacoesModel;
 
-public class GestGestor {
+public class GestGestor implements IGestGestor {
     LojaReparacoesModel model;
 
 

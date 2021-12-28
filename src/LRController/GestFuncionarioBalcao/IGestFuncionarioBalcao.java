@@ -5,7 +5,9 @@ import LRModel.PedidoExpresso;
 import LRModel.PedidoOrcamento;
 
 public interface IGestFuncionarioBalcao {
-    public void registarPedido(String nomeCliente, String contacto, String nif, String email);
+    public boolean loginFuncionarioBalcao(String username, String password);
+
+    public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email);
 
     public void registarServicoExpresso(String nif,String contacto);
 

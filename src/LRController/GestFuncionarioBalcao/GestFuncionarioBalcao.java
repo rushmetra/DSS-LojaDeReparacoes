@@ -4,21 +4,19 @@ import LRModel.*;
 
 
 
-public class GestFuncionarioBalcao {
+public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     ILojaReparacoesModel model;
 
 
     public boolean loginFuncionarioBalcao(String username, String password) {
-
         if (!this.model.containsFuncionario(username)) return false;
 
         FuncionarioBalcao f = this.model.getFuncionarioBalcao(username);
         String fPass = f.getPassword();
-
         return password.equals(fPass);
     }
 
-    public void registarPedido(String nomeCliente, String contacto, String nif, String email){
+    public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email){
         PedidoOrcamento po = new PedidoOrcamento(nomeCliente,contacto,email,nif);
         model.adicionaPedidoOrcamento(po);
     }

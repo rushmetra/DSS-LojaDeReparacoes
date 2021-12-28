@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class LojaReparacoesModel {
+public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     Map<String, Gestor> gestores;
     Map<String, FuncionarioBalcao> funcionariosDoBalcao;
