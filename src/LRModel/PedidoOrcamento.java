@@ -59,7 +59,19 @@ public class PedidoOrcamento {
 
     public String getId() { return this.id;}
 
-    public List<Passo> getPlanoTrabalho() { return this.planoTrabalho;}
+    public List<Passo> getPlanoTrabalho() {
+        List<Passo> res = new ArrayList<>();
+        for(Passo p : this.planoTrabalho) {
+            res.add(p);
+        }
+        return res;
+    }
+
+    public void setPlanoTrabalho(List<Passo> planoTrabalho) {
+        for(Passo p : planoTrabalho) {
+            this.planoTrabalho.add(p);
+        }
+    }
 
     public boolean isConfirmacaoReparacao() {
         return confirmacaoReparacao;
@@ -105,9 +117,8 @@ public class PedidoOrcamento {
         this.idTecnico = idTecnico;
     }
 
-
-    public void adicionaPasso(String nif, float custo, LocalTime tempoPrevisto, String descricao, boolean concluido){
-        Passo p = new Passo(custo,tempoPrevisto,descricao,concluido);
+    public void adicionaPasso(float custoPrevisto, LocalTime tempoPrevisto, String descricao, boolean concluido){
+        Passo p = new Passo(custoPrevisto,tempoPrevisto,descricao,concluido);
         this.planoTrabalho.add(p);
     }
 

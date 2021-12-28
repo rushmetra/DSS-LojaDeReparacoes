@@ -1,6 +1,8 @@
 package LRView;
 
-import LRController.*;
+import LRController.GestFuncionarioBalcao.IGestFuncionarioBalcao;
+import LRController.GestGestor.IGestGestor;
+import LRController.GestTecnico.IGestTecnico;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,22 +16,20 @@ import static java.awt.SystemColor.menu;
  * Interface do projeto.
  */
 public class UserInterface {
+    private IGestFuncionarioBalcao gestFuncionarioBalcao;
+    private IGestGestor gestGestor;
+    private IGestTecnico gestTecnico;
 
-    // O model tem a 'lógica de negócio'
-    private LojaReparacoesFacade model;
+    private String username;
 
     // Scanner para leitura
     private Scanner scin;
 
-    /*
-    private IGestFuncionarioBalcao funcBalc;
-    private IGestGestor gest;
-    private IGestAutenticacao aut;
-    private IGestTecnico tec;
-     */
-
-    public UserInterface() {
-        this.model = new LojaReparacoesFacade();
+    public UserInterface(IGestFuncionarioBalcao f, IGestGestor g, IGestTecnico t, String u) {
+        this.gestFuncionarioBalcao = f;
+        this.gestGestor = g;
+        this.gestTecnico = t;
+        this.username = u;
         scin = new Scanner(System.in);
     }
 
@@ -37,70 +37,52 @@ public class UserInterface {
      * Executa o menu principal e invoca o método correspondente à opção seleccionada.
      */
     public void run() {
-        System.out.println("Bem vindo ao Sistema de Gestão de Turmas!");
-        int user_type = efetuarLogin();
-        this.menuPrincipal();
+        System.out.println("Bem vindo ao Sistema de Gestão de Reparações!");
+        efetuarLogin();
         System.out.println("Até breve...");
     }
 
-    // Métodos auxiliares - Estados da UI
-
     /**
-     * Estado - Menu Principal
-     * <p>
-     * Transições para:
-     * Operações sobre Gestor
-     * Operações sobre Tecnicos de Reparação
-     * Operações sobre Funcionario de Balcao
-     */
-    private void menuPrincipal() {
-        Menu menu = new Menu(new String[]{
-                "Operações sobre Gestor",
-                "Operações sobre Tecnicos de Reparação",
-                "Operações sobre Funcionário de Balcão",
-        });
-
-
-        // Registar pré-condições das transições
-        //menu.setPreCondition()
-        // mais pré-condições?
-        // Registar os handlers das transições
-        menu.setHandler(1, () -> gestaoAutenticacao());
-
-        // Executar o menu
-        menu.run();
-    }
-
-    /**
-     *  Estado - Operações sobre Autenticação
+     * Menu Principal - Efetuar login
      *
-     *  Transições possíveis:
-     *      Efetuar login
+     * Transições possíveis:
+     *      Operações sobre Gestor
+     *      Operações sobre Técnicos de Reparação
+     *      Operações sobre Funcionário de Balcão
+     *
      */
-    private void gestaoAutenticacao() {
-        Menu menuAutenticacao = new Menu(new String[]{
-                "Efetuar Login"
-        });
-
-        menuAutenticacao.setHandler(1, () -> efetuarLogin());
-
-        menuAutenticacao.run();
-    }
-
-    /**
-     * Estado - Efetuar login
-     */
-    private int efetuarLogin() {
+    private void efetuarLogin() {
         System.out.println("Prima 1 para Gestor. Prima 2 para Funcionário de Balcão. Prima 3 para Técnico de Reparação");
         String num = scin.nextLine();
         int user_type = Integer.parseInt(num);
-        if(user_type == 1) {
-            
-        } else if(user_type == 2) {
-
-        } else if(user_type == 3) {
+        boolean correct_password = false;
+        while(!correct_password) {
+            if (user_type == 1) {
+                System.out.println("Insira o seu username: ");
+                username = scin.nextLine();
+                System.out.println("Insira a sua password: ");
+                String password = scin.nextLine();
+                correct_password = this.gestGestor.loginGestor(username, password);
+                gestaoGestor();
+            } else if (user_type == 2) {
+                System.out.println("Insira o seu username: ");
+                username = scin.nextLine();
+                System.out.println("Insira a sua password: ");
+                String password = scin.nextLine();
+                correct_password = this.gestFuncionarioBalcao.loginFuncionarioBalcao(username, password);
+                gestaoFuncionarioBalcao();
+            } else if (user_type == 3) {
+                System.out.println("Insira o seu username: ");
+                username = scin.nextLine();
+                System.out.println("Insira a sua password: ");
+                String password = scin.nextLine();
+                correct_password = this.gestTecnico.loginTecnico(username, password);
+                gestaoTecnicoReparacao();
+            }
         }
     }
+
+    // Métodos auxiliares - Estados da UI
 
     /**
      * Estado - Operações sobre Gestor
@@ -108,36 +90,41 @@ public class UserInterface {
      * Transições possíveis:
      *       Adicionar Gestor
      *       Remover Gestor
+     *       Adicionar Funcionário de Balcão
+     *       Remover Funcionário de Balcão
+     *       Adicionar Técnico de Reparação
+     *       Remover Técnico de Reparação
      *       Listar Gestores
+     *       Listar Funcionários de Balcão
+     *       Listar Técnicos de Reparação
      *       Consultar Listagem
      */
     private void gestaoGestor() {
         Menu menuGestor = new Menu(new String[]{
                 "Adicionar Gestor",
                 "Remover Gestor",
+                "Adicionar Funcionário de Balcão",
+                "Remover Funcionário de Balcão",
+                "Adicionar Técnico de Reparação",
+                "Remover Técnico de Reparação",
                 "Listar Gestores",
-                "Get Gestor",
+                "Listar Funcionários de Balcão",
+                "Listar Técnicos de Reparação",
                 "Consultar Listagem"
         });
 
         menuGestor.setHandler(1, () -> adicionarGestor());
         menuGestor.setHandler(2, () -> removerGestor());
-        menuGestor.setHandler(3, () -> listarGestores());
-        menuGestor.setHandler(4, () -> getGestor();
-        menuGestor.setHandler(5, () -> consultarListagem());
+        menuGestor.setHandler(3, () -> adicionarFuncionario());
+        menuGestor.setHandler(4, () -> removerFuncionario());
+        menuGestor.setHandler(5, () -> adicionarTecnico());
+        menuGestor.setHandler(6, () -> removerTecnico());
+        menuGestor.setHandler(7, () -> listarGestores());
+        menuGestor.setHandler(8, ()-> listarFuncionarios());
+        menuGestor.setHandler(9, ()-> listarTecnicos());
+        menuGestor.setHandler(10, () -> consultarListagem());
 
         menuGestor.run();
-    }
-
-    /**
-     *
-     */
-    private void getGestor() {
-        System.out.println("Id do Gestor: ");
-        String idGestor = scin.nextLine();
-        if(this.model.existeGestor(idGestor)) {
-            System.out.println(this.model.getGestor(idGestor).toString());
-        }
     }
 
     /**
@@ -147,8 +134,10 @@ public class UserInterface {
     try {
         System.out.println("Id do novo Gestor: ");
         String idGestor = scin.nextLine();
-        if (!this.model.existeGestor(idGestor)) { // Função booleana pra averiguar se o Gestor com este ID exist
-          this.model.adicionaGestor(new Gestor(idGestor));
+        System.out.println("Passaword do novo Gestor: ");
+        String pw = scin.nextLine();
+        if (!this.gestGestor.existeGestor(idGestor)) { // Função booleana pra averiguar se o Gestor com este ID exist
+          this.gestGestor.adicionaGestor(idGestor, pw);
           System.out.println("Gestor adicionado.");
         } else {
           System.out.println("Gestor já existe!");
@@ -165,8 +154,8 @@ public class UserInterface {
     try{
         System.out.println("Id do Gestor: ");
         String idGestor = scin.nextLine();
-        if(this.model.existeGestor(idGestor)) {
-            this.model.removeGestor(idGestor);
+        if(this.gestGestor.existeGestor(idGestor)) {
+            this.gestGestor.removeGestor(idGestor);
             System.out.println("Gestor removido!");
         } else {
             System.out.println("Gestor não existe!");
@@ -177,16 +166,117 @@ public class UserInterface {
     }
 
     /**
+     *  Estado - Adicionar Funcionário de Balcõa
+     */
+    private void adicionarFuncionario() {
+        try {
+            System.out.println("Id do novo Funcionário de Balcão: ");
+            String idFuncionario = scin.nextLine();
+            System.out.println("Passaword do novo Funcionario de Balcão: ");
+            String pw = scin.nextLine();
+            if (!this.gestFuncionarioBalcao.existeFuncionario(idFuncionario)) { // Função booleana pra averiguar se este ID existe
+                this.gestFuncionarioBalcao.adicionaFuncionario(idFuncionario, pw);
+                System.out.println("Funcionário de Balcão adicionado.");
+            } else {
+                System.out.println("Funcionário de Balcão já existe!");
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     *  Estado - Remover Funcionário de Balcão
+     */
+    private void removerFuncionario() {
+        try{
+            System.out.println("Id do Funcionário de Balcão: ");
+            String idFuncionario = scin.nextLine();
+            if(this.gestFuncionarioBalcao.existeFuncionario(idFuncionario)) {
+                this.gestFuncionarioBalcao.removeFuncionario(idFuncionario);
+                System.out.println("Funcionário de Balcão removido!");
+            } else {
+                System.out.println("Funcionário de Balcão não existe!");
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     *  Estado - Adicionar Técnico de Reparação
+     */
+    private void adicionarTecnico() {
+        try {
+            System.out.println("Id do novo Técnico de Reparações: ");
+            String idTecnico = scin.nextLine();
+            System.out.println("Passaword do novo Técnico de Reparações: ");
+            String pw = scin.nextLine();
+            if (!this.gestTecnico.existeTecnico(idTecnico)) { // Função booleana pra averiguar se este ID existe
+                this.gestTecnico.adicionaTecnico(idTecnico, pw);
+                System.out.println("Técnico de Reparações adicionado.");
+            } else {
+                System.out.println("Técnico de Reparações já existe!");
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     *  Estado - Remover Técnico de Reparação
+     */
+    private void removerTecnico() {
+        try{
+            System.out.println("Id do Técnico de Reparações: ");
+            String idTecnico = scin.nextLine();
+            if(this.gestTecnico.existeTecnico(idTecnico)) {
+                this.gestTecnico.removeTecnico(idTecnico);
+                System.out.println("Funcionário de Balcão removido!");
+            } else {
+                System.out.println("Funcionário de Balcão não existe!");
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
      *  Estado - Listar Gestores
      */
     private void listarGestores() {
         try {
-            System.out.println(this.model.getGestores().toString());
+            System.out.println(this.gestGestor.getGestores().toString()); // Função que lista os Gestores
         }
         catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     *  Estado - Listar Funcionários de Balcão
+     */
+    private void listarFuncionarios() {
+        try {
+            System.out.println(this.gestFuncionarioBalcao.getFuncionarios().toString()); // Função que lista os Funcionarios
+        }
+        catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     *  Estado - Listar Técnicos de Reparação
+     */
+    private void listarTecnicos() {
+        try {
+            System.out.println(this.gestTecnico.getTecnicos().toString()); // Função que lista os Tecnicos
+        }
+        catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     /**
      * Estado - Consultar Listagem
@@ -197,12 +287,97 @@ public class UserInterface {
             String num = scin.nextLine();
             int listNumber = Integer.parseInt(num);
             if(listNumber == 1) {
-                System.out.println(this.model.getListagem1().toString());
+                System.out.println(gestGestor.getListagem1().toString());
             } else if (listNumber == 2) {
-                System.out.println(this.model.getListagem2().toString());
-            } else {
-                System.out.println(this.model.getListagem3().toString());
+                System.out.println(gestGestor.getListagem2().toString());
+            } else if (listNumber == 3){
+                System.out.println(gestGestor.getListagem3().toString());
             }
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     *  Estado - Operações sobre o Funcionario de Balcao
+     *
+     *  Transições possíveis:
+     *      Registar pedido orçamento
+     *      Registar entrega do equipamento pelo cliente
+     *      Registar serviço expresso
+     *      Registar conclusão de um pedido
+     *      Registar confirmação da reparação
+     *
+     */
+    private void gestaoFuncionarioBalcao() {
+        Menu menuFuncionario = new Menu(new String[]{
+                "Registar pedido orçamento",
+                "Registar entrega do equipamento pelo cliente",
+                "Registar serviço expresso",
+                "Registar conclusão de um pedido",
+                "Registar confirmação da reparação"
+        });
+
+        menuFuncionario.setHandler(1, () -> registarPedidoOrcamento());
+        menuFuncionario.setHandler(2, () -> registarEntregaEquipamentoPeloCliente());
+        menuFuncionario.setHandler(3, () -> registaServicoExpresso());
+        menuFuncionario.setHandler(4, () -> registarConclusaoPedido());
+        menuFuncionario.setHandler(5, () -> registarConfirmacaoDaReparacao());
+
+        menuFuncionario.run();
+    }
+
+    private void registarPedidoOrcamento() {
+        try {
+            System.out.println("Insira nome do Cliente: ");
+            String nomeCliente = scin.nextLine();
+            System.out.println("Insira o contacto: ");
+            String contacto = scin.nextLine();
+            System.out.println("Insira o NIF: ");
+            String nif = scin.nextLine();
+            System.out.println("Insira o email: ");
+            String email = scin.nextLine();
+            this.gestFuncionarioBalcao.registarPedidoOrcamento(nomeCliente, contacto, nif, email);
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void registarEntregaEquipamentoPeloCliente() {
+        try {
+            System.out.println("Insira o NIF: ");
+            String nif = scin.nextLine();
+            this.gestFuncionarioBalcao.registarEntregaEquipamentoPeloCliente(nif, username);
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void registaServicoExpresso() {
+        try {
+            System.out.println("Insira o NIF:");
+            String nif = scin.nextLine();
+            System.out.println("Insira o contacto: ");
+            String contacto = scin.nextLine();
+            this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto);
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void registarConclusaoPedido() {
+        try {
+            System.out.println("Insira o NIF:");
+            String nif = scin.nextLine();
+            this.gestFuncionarioBalcao.registarConclusaoPedido(nif);
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void registarConfirmacaoDaReparacao() {
+        try {
+
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -222,72 +397,39 @@ public class UserInterface {
      */
     private void gestaoTecnicoReparacao() {
         Menu menuTecnico = new Menu(new String[]{
-                "Adicionar Técnico de Reparação",
-                "Remover Técnico de Reparação"
-                "Listar Técnicos de Reparação",
                 "Registar plano de trabalho reparação",
                 "Assinalar execução de passo",
                 "Determina equipamento mais urgente"
         });
 
-        menuTecnico.setHandler(1, () -> adicionarTecnico());
-        menuTecnico.setHandler(2, () -> removerTecnico());
-        menuTecnico.setHandler(3, () -> listarTecnicos());
-        menuTecnico.setHandler(4, () -> registaPlanoTrabRep());
-        menuTecnico.setHandler(5, () -> assinalaExecucaoPasso());
-        menuTecnico.setHandler(6, () -> determinaEquipamentoMaisUrgente());
+        menuTecnico.setHandler(1, () -> registaPlanoTrabRep());
+        menuTecnico.setHandler(2, () -> assinalaExecucaoPasso());
+        menuTecnico.setHandler(3, () -> determinaEquipamentoMaisUrgente());
 
         menuTecnico.run();
     }
 
-    private void adicionarTecnico() {}
-    private void removerTecnico() {}
-    private void listarTecnicos() {}
-    private void registaPlanoTrabRep() {}
-    private void assinalaExecucaoPasso() {}
-    private void determinaEquipamentoMaisUrgente() {}
+    private void registaPlanoTrabRep() {
+        try {
 
-    /**
-     *  Estado - Operações sobre o Funcionario de Balcao
-     *
-     *  Transições possíveis:
-     *      Adicionar Funcionário de Balcão
-     *      Remover Funcionário de Balcão
-     *      Listar Funcionários de Balcão
-     *      Registar pedido
-     *      Registar serviço expresso
-     *      Registar conclusão de um pedido
-     *      Registar confirmação da reparação
-     *
-     */
-    private void gestaoFuncionarioBalcao() {
-        Menu menuFuncionario = new Menu(new String[]{
-                "Adicionar Funcionário de Balcão",
-                "Remover Funcionário de Balcão",
-                "Listar Funcionários de Balcão",
-                "Registar pedido",
-                "Registar serviço expresso",
-                "Registar conclusão de um pedido",
-                "Registar confirmação da reparação"
-        });
-
-        menuFuncionario.setHandler(1, () -> adicionarFuncionario());
-        menuFuncionario.setHandler(2, () -> removerFuncionario());
-        menuFuncionario.setHandler(3, () -> listarFuncionarios());
-        menuFuncionario.setHandler(4, () -> registarPedido());
-        menuFuncionario.setHandler(5, () -> registaServicoExpresso());
-        menuFuncionario.setHandler(6, () -> registarConclusaoPedido());
-        menuFuncionario.setHandler(7, () -> registarConfirmacaoDaReparacao());
-
-        menuFuncionario.run();
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private void adicionarFuncionario() {}
-    private void removerFuncionario() {}
-    private void listarFuncionarios() {}
-    private void registarPedido() {}
-    private void registaServicoExpresso() {}
-    private void registarConclusaoPedido() {}
-    private void registarConfirmacaoDaReparacao() {}
+    private void assinalaExecucaoPasso() {
+        try {
+
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    private void determinaEquipamentoMaisUrgente() {
+        try {
+
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }

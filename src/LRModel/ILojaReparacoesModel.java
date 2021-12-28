@@ -21,6 +21,8 @@ public interface ILojaReparacoesModel {
 
     public FuncionarioBalcao getFuncionarioBalcao(String username);
 
+    public List<FuncionarioBalcao> getListaDeFuncionarios();
+
 
     //tecnicos
 

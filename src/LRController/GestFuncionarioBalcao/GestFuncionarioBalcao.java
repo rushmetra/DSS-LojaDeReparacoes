@@ -9,6 +9,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     ILojaReparacoesModel model;
 
 
+
     public boolean loginFuncionarioBalcao(String username, String password) {
         if (!this.model.containsFuncionario(username)) return false;
 
@@ -26,7 +27,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     //Caso não exista disponiblidade devolve null, Caso exista devolve o username do tecnico que realizará o serviço
 
 
-    public String registarServicoExpresso(String nif,String contacto){
+    public String registarServicoExpresso(String nif,String contacto) {
 
 
         List<Tecnico> tecnicos = this.model.getTecnicos();
@@ -34,17 +35,18 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         String username = null;
 
 
-        for(Tecnico t : tecnicos){
-            if(t.getOcupado() == false){
+        for (Tecnico t : tecnicos) {
+            if (t.getOcupado() == false) {
                 username = t.getUsername();
                 t.setOcupado(true);
                 break;
             }
         }
 
-        PedidoExpresso pe = new PedidoExpresso(nif,contacto);
-        model.adicionaPedidoExpresso(pe);
-
+        if(username != null){
+            PedidoExpresso pe = new PedidoExpresso(nif, contacto);
+            model.adicionaPedidoExpresso(pe);
+        }
 
         return username;
     }
@@ -60,14 +62,19 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     }
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao){
-        Entrega e = new Entrega(nif,idFuncionarioBalcao,false,false);
+        Entrega e = new Entrega(nif,idFuncionarioBalcao);
         model.adicionaEntregaPeloCliente(e);
+        FuncionarioBalcao fb = model.getFuncionarioBalcao(idFuncionarioBalcao);
+        fb.incrementaRececao();
     }
 
-    public void registarEntregaEquipamentoePagamento(String nif){
+
+    public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao){
         Entrega e = this.model.getEntrega(nif);
         e.setEntregue(true);
         e.setPago(true);
+        FuncionarioBalcao fb = model.getFuncionarioBalcao(idFuncionarioBalcao);
+        fb.setEntregasEq(fb.getEntregasEq()+1);
     }
 
 
