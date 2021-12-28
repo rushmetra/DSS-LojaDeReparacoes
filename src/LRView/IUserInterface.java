@@ -1,6 +1,7 @@
-package view;
+package LRView;
 
-import business.*;
+import LRController.*;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;

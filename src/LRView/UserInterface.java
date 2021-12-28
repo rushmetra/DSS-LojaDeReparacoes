@@ -1,10 +1,6 @@
-package view;
+package LRView;
 
-import business.LojaReparacoesFacade;
-import business.Autenticacao.IGestAutenticacao;
-import business.GestFuncionarioBalcao.*;
-import business.GestGestor.*;
-import business.GestTecnico.*;
+import LRController.*;
 
 import java.util.Collection;
 import java.util.List;
