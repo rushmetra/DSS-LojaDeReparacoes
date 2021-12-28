@@ -17,6 +17,6 @@ public interface IGestFuncionarioBalcao {
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao);
 
-    public void registarEntregaEquipamentoePagamento(String nif);
+    public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao);
 
 }

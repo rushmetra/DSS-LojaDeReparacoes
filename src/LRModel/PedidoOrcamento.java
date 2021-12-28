@@ -1,6 +1,7 @@
 package LRModel;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,8 +104,8 @@ public class PedidoOrcamento {
     }
 
 
-    public void adicionaPasso(String nif,float custo,float tempoPrevisto,String descricao, float tempo,boolean concluido){
-        Passo p = new Passo(custo,tempo,tempoPrevisto,descricao,concluido);
+    public void adicionaPasso(float custoPrevisto, LocalTime tempoPrevisto, String descricao, boolean concluido){
+        Passo p = new Passo(custoPrevisto,tempoPrevisto,descricao,concluido);
         this.planoTrabalho.add(p);
     }
 

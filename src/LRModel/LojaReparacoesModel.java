@@ -273,6 +273,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
 
 
+
     public void adicionaPedidoOrcamento(PedidoOrcamento po){
         this.pedidos.put(po.getId(),po);
     }
