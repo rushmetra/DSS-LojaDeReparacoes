@@ -27,13 +27,12 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     //Caso não exista disponiblidade devolve null, Caso exista devolve o username do tecnico que realizará o serviço
 
 
-    public String registarServicoExpresso(String nif,String contacto) {
 
+    public String verificaDisponiblidadeExpresso(){
 
         List<Tecnico> tecnicos = this.model.getTecnicos();
 
         String username = null;
-
 
         for (Tecnico t : tecnicos) {
             if (t.getOcupado() == false) {
@@ -42,6 +41,15 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
                 break;
             }
         }
+
+        return username;
+    }
+
+
+
+    public String registarServicoExpresso(String nif,String contacto) {
+
+        String username = verificaDisponiblidadeExpresso();
 
         if(username != null){
             PedidoExpresso pe = new PedidoExpresso(nif, contacto);
