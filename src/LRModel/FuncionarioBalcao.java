@@ -1,4 +1,4 @@
-package LRController.GestTecnico;
+package LRModel;
 
 public class FuncionarioBalcao {
 

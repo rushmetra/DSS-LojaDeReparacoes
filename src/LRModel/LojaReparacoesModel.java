@@ -1,14 +1,8 @@
 package LRModel;
 
-import LRController.GestTecnico.FuncionarioBalcao;
-import LRController.Gestor;
-import LRController.PedidoExpresso;
-import LRController.PedidoOrcamento;
-import LRController.Tecnico;
-
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LojaReparacoesModel {
 
@@ -61,6 +55,31 @@ public class LojaReparacoesModel {
 
     public Tecnico getTecnico(String username){
         return this.tecnicos.get(username);
+    }
+
+    //pedidos
+
+    public Boolean containsPedido(String id) { return this.pedidos.containsKey(id); }
+
+    public PedidoOrcamento getPedidoOrcamento(String id) { return this.pedidos.get(id); }
+
+    public List<PedidoOrcamento> getListaPedidosOrcamento() { // mais recente fica à cabeça
+        List<PedidoOrcamento> pedidos = new ArrayList<>();
+        for (PedidoOrcamento p : this.pedidos.values()) {
+            pedidos.add(p);
+        }
+        return pedidos.stream().sorted(Comparator.comparing(PedidoOrcamento::getDataPedido).reversed())
+                .collect(Collectors.toList());
+    }
+
+    //pedidos-expresso
+
+    public Boolean containsPedidoExpresso(String nif) {
+        return this.pedidosExpressos.containsKey(nif);
+    }
+
+    public PedidoExpresso getPedidoExpresso(String nif) {
+        return this.pedidosExpressos.get(nif);
     }
 
 

@@ -1,10 +1,9 @@
-package LRController;
+package LRModel;
 
-public class Tecnico {
+public class Gestor {
 
     String username;
     String password;
-
 
     public String getUsername() {
         return username;
@@ -14,3 +13,4 @@ public class Tecnico {
         return password;
     }
 }
+

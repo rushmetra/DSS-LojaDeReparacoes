@@ -1,8 +1,8 @@
 package LRController.Autenticacao;
 
 
-import LRController.GestTecnico.FuncionarioBalcao;
-import LRController.Gestor;
+import LRModel.FuncionarioBalcao;
+import LRModel.Gestor;
 import LRModel.LojaReparacoesModel;
 
 
