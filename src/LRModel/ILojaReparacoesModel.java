@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface ILojaReparacoesModel {
-    public Boolean containsGestor(String username);
 
+    public Boolean containsGestor(String username);
 
     public Gestor getGestor(String username);
 
@@ -18,7 +18,6 @@ public interface ILojaReparacoesModel {
     //funcionariosBalcao
 
     public Boolean containsFuncionario(String username);
-
 
     public FuncionarioBalcao getFuncionarioBalcao(String username);
 
@@ -29,6 +28,9 @@ public interface ILojaReparacoesModel {
     public Boolean containsTecnico(String username);
 
     public Tecnico getTecnico(String username);
+
+    public List<Tecnico> getTecnicos();
+
 
     //pedidos
 
@@ -48,6 +50,7 @@ public interface ILojaReparacoesModel {
     //Funções para persisntência dos dados
 
     public void loadGestores(String pasta) throws IOException, ClassNotFoundException;
+
     public void loadFuncionarios(String pasta) throws IOException, ClassNotFoundException;
 
     public void loadTecnicos(String pasta) throws IOException, ClassNotFoundException ;
@@ -55,7 +58,6 @@ public interface ILojaReparacoesModel {
     public void loadPedidos(String pasta)  throws IOException, ClassNotFoundException;
 
     public void loadPedidosExpresso(String pasta) throws IOException, ClassNotFoundException ;
-
 
     public void loadData(String pasta) throws IOException, ClassNotFoundException;
 
@@ -69,12 +71,7 @@ public interface ILojaReparacoesModel {
 
     public void savePedidosExpresso(String pasta) throws IOException ;
 
-
-
-
-
     public void adicionaPedidoOrcamento(PedidoOrcamento po);
-
 
     public void adicionaPedidoExpresso(PedidoExpresso pe) ;
 

@@ -9,7 +9,7 @@ public interface IGestFuncionarioBalcao {
 
     public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email);
 
-    public void registarServicoExpresso(String nif,String contacto);
+    public String registarServicoExpresso(String nif,String contacto);
 
     public void registarConclusaoPedido(String nif);
 

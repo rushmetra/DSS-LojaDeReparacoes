@@ -74,6 +74,10 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         return this.tecnicos.get(username);
     }
 
+    public List<Tecnico> getTecnicos(){
+        return  this.tecnicos.values().stream().collect(Collectors.toList());
+    }
+
     //pedidos
 
     public Boolean containsPedido(String id) { return this.pedidos.containsKey(id); }
