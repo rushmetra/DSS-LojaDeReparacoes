@@ -1,8 +1,14 @@
 package business.Autenticacao;
 
+import business.GestFuncionarioBalcao.FuncionarioBalcao;
+import business.GestTecnico.Tecnico;
+import data.GestorDAO;
+import data.TecnicoDAO;
+
 public class GestAutenticacao {
 
-    public boolean loginGestor(String username, String password){
+
+    public boolean loginGestor(String username, String password, GestorDAO gestores){
         return false;
     }
 
