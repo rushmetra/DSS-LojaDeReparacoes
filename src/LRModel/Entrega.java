@@ -6,11 +6,11 @@ public class Entrega {
     private boolean entregue;
     private boolean pago;
 
-    public Entrega (String nif, String idfuncionarioBalcao,boolean entregue,boolean pago){
+    public Entrega (String nif, String idfuncionarioBalcao){
         this.nif = nif;
         this.idfuncionarioBalcao = idfuncionarioBalcao;
-        this.entregue = entregue;
-        this.pago = pago;
+        this.entregue = false;
+        this.pago = false;
     }
 
     public String getNif() {

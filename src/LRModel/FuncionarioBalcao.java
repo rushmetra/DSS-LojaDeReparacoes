@@ -37,5 +37,13 @@ public class FuncionarioBalcao {
     public void setEntregasEq(int entregasEq) {
         this.entregasEq = entregasEq;
     }
+
+    public void incrementaRececao() {
+        setRececoesEq(this.rececoesEq + 1);
+    }
+
+    public void incrementaEntregas(){
+        setEntregasEq(this.entregasEq+1);
+    }
 }
 

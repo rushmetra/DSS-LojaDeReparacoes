@@ -117,9 +117,8 @@ public class PedidoOrcamento {
         this.idTecnico = idTecnico;
     }
 
-
-    public void adicionaPasso(String nif, float custo, LocalTime tempoPrevisto, String descricao, boolean concluido){
-        Passo p = new Passo(custo,tempoPrevisto,descricao,concluido);
+    public void adicionaPasso(float custoPrevisto, LocalTime tempoPrevisto, String descricao, boolean concluido){
+        Passo p = new Passo(custoPrevisto,tempoPrevisto,descricao,concluido);
         this.planoTrabalho.add(p);
     }
 
