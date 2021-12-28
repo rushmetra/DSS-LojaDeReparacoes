@@ -23,18 +23,10 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         model.adicionaPedidoOrcamento(po);
     }
 
-
     //Caso não exista disponiblidade devolve null, Caso exista devolve o username do tecnico que realizará o serviço
-
-
     public String registarServicoExpresso(String nif,String contacto) {
-
-
         List<Tecnico> tecnicos = this.model.getTecnicos();
-
         String username = null;
-
-
         for (Tecnico t : tecnicos) {
             if (t.getOcupado() == false) {
                 username = t.getUsername();
@@ -42,12 +34,10 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
                 break;
             }
         }
-
         if(username != null){
             PedidoExpresso pe = new PedidoExpresso(nif, contacto);
             model.adicionaPedidoExpresso(pe);
         }
-
         return username;
     }
 
