@@ -1,4 +1,4 @@
-package business.GestGestor;
+package LRController.GestGestor;
 
 public interface IGestGestor {
 }

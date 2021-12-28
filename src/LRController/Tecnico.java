@@ -1,9 +1,10 @@
-package business;
+package LRController;
 
-public class Gestor {
+public class Tecnico {
 
     String username;
     String password;
+
 
     public String getUsername() {
         return username;
@@ -13,4 +14,3 @@ public class Gestor {
         return password;
     }
 }
-

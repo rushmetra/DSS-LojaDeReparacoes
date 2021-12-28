@@ -1,6 +1,6 @@
-package business.GestTecnico;
+package LRController;
 
-public class FuncionarioBalcao {
+public class Gestor {
 
     String username;
     String password;

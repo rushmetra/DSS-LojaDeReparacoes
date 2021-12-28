@@ -1,4 +1,4 @@
-package business.Autenticacao;
+package LRController.Autenticacao;
 
 public interface IGestAutenticacao {
 }

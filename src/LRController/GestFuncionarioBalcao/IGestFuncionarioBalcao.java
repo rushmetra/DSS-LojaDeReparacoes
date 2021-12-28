@@ -1,4 +1,4 @@
-package business.GestFuncionarioBalcao;
+package LRController.GestFuncionarioBalcao;
 
 public interface IGestFuncionarioBalcao {
 }

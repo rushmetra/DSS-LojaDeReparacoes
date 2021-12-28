@@ -1,10 +1,9 @@
-package business;
+package LRController.GestTecnico;
 
-public class Tecnico {
+public class FuncionarioBalcao {
 
     String username;
     String password;
-
 
     public String getUsername() {
         return username;
@@ -14,3 +13,4 @@ public class Tecnico {
         return password;
     }
 }
+

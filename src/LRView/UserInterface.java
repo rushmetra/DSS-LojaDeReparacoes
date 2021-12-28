@@ -1,4 +1,4 @@
-package view;
+package LRView;
 
 public class UserInterface {
 }
