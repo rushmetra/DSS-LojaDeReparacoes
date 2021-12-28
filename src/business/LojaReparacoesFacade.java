@@ -2,8 +2,8 @@ package business;
 
 import business.GestTecnico.FuncionarioBalcao;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LojaReparacoesFacade {
 
@@ -11,7 +11,7 @@ public class LojaReparacoesFacade {
     Map<String, FuncionarioBalcao> funcionariosDoBalcao;
     Map<String, Tecnico> tecnicos;
     Map<String,PedidoOrcamento> pedidos;
-    Map<String,PedidoExpresso> pedidosExpressos;
+    Map<String,PedidoExpresso> pedidosExpresso;
 
 
 
@@ -53,21 +53,29 @@ public class LojaReparacoesFacade {
         return this.tecnicos.containsKey(username);
     }
 
-    public Tecnico getTecnicos(String username){
+    public Tecnico getTecnico(String username){
         return this.tecnicos.get(username);
     }
 
 
+    //pedidos
 
+    public Boolean containsPedido(String id) { return this.pedidos.containsKey(id); }
 
+    public PedidoOrcamento getPedidoOrcamento(String id) { return this.pedidos.get(id); }
 
+    public List<PedidoOrcamento> getListaPedidosOrcamento() { // mais recente fica à cabeça
+        List<PedidoOrcamento> pedidos = new ArrayList<>();
+        for (PedidoOrcamento p : this.pedidos.values()) {
+            pedidos.add(p);
+        }
+        return pedidos.stream().sorted(Comparator.comparing(PedidoOrcamento::getDataPedido).reversed())
+                .collect(Collectors.toList());
+    }
 
+    //pedidos-expresso
 
+    public Boolean containsPedidoExpresso(String id) { return this.pedidosExpresso.containsKey(id); }
 
-
-
-
-
-
-
+    public PedidoExpresso getPedidoExpresso(String id) { return this.pedidosExpresso.get(id); }
 }

@@ -1,16 +1,24 @@
 package business;
 
 public class Tecnico {
+    private String username;
+    private String password;
 
-    String username;
-    String password;
-
-
-    public String getUsername() {
-        return username;
+    /* Construtores */
+    public Tecnico(String username, String password){
+        this.username = username;
+        this.password = password;
     }
 
-    public String getPassword() {
-        return password;
+    public Tecnico(Tecnico t){
+        this.username = t.getUsername();
+        this.password = t.getPassword();
     }
+
+    /* Getters e Setters */
+    public String getUsername() { return this.username;}
+    public String getPassword() { return this.password;}
+
+    public void setUsername(String username) { this.username = username;}
+    public void setPassword(String password) { this.password = password;}
 }
