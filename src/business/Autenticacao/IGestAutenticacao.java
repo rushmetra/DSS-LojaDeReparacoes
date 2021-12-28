@@ -1,4 +1,4 @@
-package Autenticacao;
+package business.Autenticacao;
 
 public interface IGestAutenticacao {
 }

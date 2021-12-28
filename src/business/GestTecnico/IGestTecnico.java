@@ -1,4 +1,4 @@
-package GestTecnico;
+package business.GestTecnico;
 
 public interface IGestTecnico {
 }

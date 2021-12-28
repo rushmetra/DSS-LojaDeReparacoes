@@ -1,4 +1,4 @@
-package GestFuncionarioBalcao;
+package business.GestFuncionarioBalcao;
 
 public class GestFuncionarioBalcao {
 }

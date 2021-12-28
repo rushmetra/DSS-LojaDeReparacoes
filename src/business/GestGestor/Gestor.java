@@ -1,4 +1,4 @@
-package GestGestor;
+package business.GestGestor;
 
 public class Gestor {
 

@@ -1,4 +1,4 @@
-package DataBase;
+package data;
 
 public class GestorDAO {
 }
