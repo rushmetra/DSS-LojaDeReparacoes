@@ -63,6 +63,10 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         return this.funcionariosDoBalcao.get(username);
     }
 
+    public List<FuncionarioBalcao> getListaDeFuncionarios() {
+        return this.funcionariosDoBalcao.values().stream().collect(Collectors.toList());
+    }
+
     //tecnicos
 
 
@@ -99,6 +103,13 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         return this.pedidosExpressos.get(nif);
     }
 
+    public List<PedidoExpresso> getListaPedidosExpresso() {
+        List<PedidoExpresso> pedidosExpresso = new ArrayList<>();
+        for(PedidoExpresso pe : this.pedidosExpressos.values()) {
+            pedidosExpresso.add(pe);
+        }
+        return pedidosExpresso;
+    }
 
     //Funções para persisntência dos dados
 
