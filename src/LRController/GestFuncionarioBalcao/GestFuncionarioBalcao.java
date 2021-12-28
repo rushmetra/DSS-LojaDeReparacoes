@@ -2,8 +2,21 @@ package LRController.GestFuncionarioBalcao;
 
 import LRModel.*;
 
+
+
 public class GestFuncionarioBalcao {
     ILojaReparacoesModel model;
+
+
+    public boolean loginFuncionarioBalcao(String username, String password) {
+
+        if (!this.model.containsFuncionario(username)) return false;
+
+        FuncionarioBalcao f = this.model.getFuncionarioBalcao(username);
+        String fPass = f.getPassword();
+
+        return password.equals(fPass);
+    }
 
     public void registarPedido(String nomeCliente, String contacto, String nif, String email){
         PedidoOrcamento po = new PedidoOrcamento(nomeCliente,contacto,email,nif);

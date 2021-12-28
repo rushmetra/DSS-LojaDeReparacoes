@@ -15,15 +15,30 @@ public class LojaReparacoesModel {
 
 
 
-    public LojaReparacoesModel(){
+    public LojaReparacoesModel() {
+
         this.gestores = new HashMap<>();
         this.funcionariosDoBalcao = new HashMap<>();
         this.tecnicos = new HashMap<>();
         this.pedidos = new HashMap<>();
         this.pedidosExpressos = new HashMap<>();
         this.entregas = new HashMap<>();
-    }
 
+        File file = new File("saves"); //alterar pasta possivelmente
+        if (!file.exists()) {
+            this.gestores = new HashMap<>();
+            this.funcionariosDoBalcao = new HashMap<>();
+            this.tecnicos = new HashMap<>();
+        } else {
+
+            try {
+                loadData("saves");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     //gestores
 
@@ -37,7 +52,6 @@ public class LojaReparacoesModel {
     }
 
 
-
     //funcionariosBalcao
 
     public Boolean containsFuncionario(String username){
@@ -48,7 +62,6 @@ public class LojaReparacoesModel {
     public FuncionarioBalcao getFuncionarioBalcao(String username){
         return this.funcionariosDoBalcao.get(username);
     }
-
 
     //tecnicos
 
