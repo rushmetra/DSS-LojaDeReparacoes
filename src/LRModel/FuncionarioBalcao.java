@@ -6,12 +6,10 @@ public class FuncionarioBalcao {
     private int rececoesEq;
     private int entregasEq;
 
-
     // getters e setters
     public String getUsername() {
         return this.username;
     }
-
     public String getPassword() {
         return this.password;
     }
