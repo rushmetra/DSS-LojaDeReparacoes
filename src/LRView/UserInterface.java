@@ -278,8 +278,12 @@ public class UserInterface {
 
             System.out.println("2 - Recepções e entregas de equipamentos realizadas por funcionário balcão\n");
             System.out.println("3 - Todas as intervenções (passos de reparação e reparações expresso) realizadas por técnico.\n");
-            String num = scin.nextLine();
-            int listNumber = Integer.parseInt(num);
+
+            int listNumber = -1;
+            while(listNumber == -1) {
+                listNumber = readOptionInt(3);
+            }
+
             if(listNumber == 1) {
                 System.out.println(gestGestor.getListagem1().toString());
             } else if (listNumber == 2) {
@@ -391,11 +395,13 @@ public class UserInterface {
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
             System.out.println("Insira '1' se aceitou ou '2' se rejeitou "); // ver no fim se isto de ler o boolean funciona
-            String confirmacao = scin.nextLine();
-            int confirmacaonum = Integer.parseInt(confirmacao);
+            int op = -1;
+            while(op == -1) {
+                op = readOptionInt(2);
+            }
 
             boolean b ;
-            b = confirmacaonum == 1;
+            b = op == 1;
             this.gestFuncionarioBalcao.registarConfirmacaoOrcamento(nif,b);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
