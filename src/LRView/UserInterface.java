@@ -253,7 +253,7 @@ public class UserInterface {
             System.out.println(e.getMessage());
         }
     }
-
+    
     /**
      *  Estado - Listar Técnicos de Reparação
      */
@@ -265,7 +265,6 @@ public class UserInterface {
             System.out.println(e.getMessage());
         }
     }
-
 
     /**
      * Estado - Consultar Listagem
@@ -281,10 +280,7 @@ public class UserInterface {
             System.out.println("2 - Recepções e entregas de equipamentos realizadas por funcionário balcão\n");
             System.out.println("3 - Todas as intervenções (passos de reparação e reparações expresso) realizadas por técnico.\n");
 
-            int listNumber = -1;
-            while(listNumber == -1) {
-                listNumber = readOptionInt(3);
-            }
+            int listNumber = readOptionInt(3);
 
             if(listNumber == 1) {
                 System.out.println(gestGestor.getListagem1().toString());
@@ -410,10 +406,7 @@ public class UserInterface {
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
             System.out.println("Insira '1' se aceitou ou '2' se rejeitou "); // ver no fim se isto de ler o boolean funciona
-            int op = -1;
-            while(op == -1) {
-                op = readOptionInt(2);
-            }
+            int op = readOptionInt(2);
 
             boolean b ;
             b = op == 1;
@@ -475,18 +468,14 @@ public class UserInterface {
                 System.out.println("Insira o NIF:");
                 String nif = line;
                 System.out.println("Insira o custo: ");
-                String custo_string = scin.nextLine();
-                float custo = Float.parseFloat(custo_string);
+                float custo = readOptionFloat(1000);
                 System.out.println("Agora insira o tempo previsto ->");
                 System.out.println("Insira a hora: ");
-                String hora_string = scin.nextLine();
-                int hora = Integer.parseInt(hora_string);
+                int hora= readOptionInt(168);
                 System.out.println("Insira o minuto: ");
-                String min_string = scin.nextLine();
-                int min = Integer.parseInt(min_string);
+                int min = readOptionInt(59);
                 System.out.println("Insira os segundos: ");
-                String seg_string = scin.nextLine();
-                int seg = Integer.parseInt(seg_string);
+                int seg = readOptionInt(59);
                 LocalTime lt = LocalTime.of(hora, min, seg, 0);
                 System.out.println("Insira a descrição do passo: ");
                 String descricao = scin.nextLine();
