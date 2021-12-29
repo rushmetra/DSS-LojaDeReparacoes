@@ -107,4 +107,17 @@ public class GestTecnico implements IGestTecnico{
         return this.model.getTempoPrevisto(nif);
     }
 
+    public LocalTime getPrazoMaximo(String nif){
+
+        LocalTime previsto = getTempoPrevistoOrcamento(nif);
+
+        int segundos = (int) (previsto.getHour()*3600 + previsto.getMinute()*60 + previsto.getSecond()*60 * 1.20);
+
+        LocalTime prazo = LocalTime.of(0,0,0);
+
+        prazo.plusSeconds(segundos);
+
+        return prazo;
+    }
+
 }

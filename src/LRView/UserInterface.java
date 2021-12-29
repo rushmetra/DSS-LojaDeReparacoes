@@ -483,11 +483,13 @@ public class UserInterface {
             String email = this.gestTecnico.getEmailOrcamento(nif);
             String nome = this.gestTecnico.getNomeOrcamento(nif);
             LocalTime tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
+            LocalTime prazoMaximo = this.gestTecnico.getPrazoMaximo(nif);
             Float custo = this.gestTecnico.getCustoTotalPrevisto(nif);
 
 
 
             System.out.println("Tempo previsto : " + tempoPrevisto.toString());
+            System.out.println("Prazo máximo : " + prazoMaximo.toString());
             System.out.println("Custo total : " + custo);
             System.out.println("O seguinte orçamento deve ser enviado ao cliente: ");
             System.out.println("\tNome -> "+ nome);

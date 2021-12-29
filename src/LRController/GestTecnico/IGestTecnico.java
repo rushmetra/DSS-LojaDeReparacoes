@@ -34,6 +34,7 @@ public interface IGestTecnico {
 
     public LocalTime getTempoPrevistoOrcamento(String nif);
 
+    public LocalTime getPrazoMaximo(String nif);
 
 
 }
