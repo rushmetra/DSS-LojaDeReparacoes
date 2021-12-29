@@ -91,6 +91,7 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestGestor.loginGestor(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
 
         }
                 Menu menuGestor = new Menu(new String[]{
@@ -252,7 +253,7 @@ public class UserInterface {
             System.out.println(e.getMessage());
         }
     }
-
+    
     /**
      *  Estado - Listar Técnicos de Reparação
      */
@@ -264,7 +265,6 @@ public class UserInterface {
             System.out.println(e.getMessage());
         }
     }
-
 
     /**
      * Estado - Consultar Listagem
@@ -279,8 +279,9 @@ public class UserInterface {
 
             System.out.println("2 - Recepções e entregas de equipamentos realizadas por funcionário balcão\n");
             System.out.println("3 - Todas as intervenções (passos de reparação e reparações expresso) realizadas por técnico.\n");
-            String num = scin.nextLine();
-            int listNumber = Integer.parseInt(num);
+
+            int listNumber = readOptionInt(3);
+
             if(listNumber == 1) {
                 System.out.println(gestGestor.getListagem1().toString());
             } else if (listNumber == 2) {
@@ -312,6 +313,8 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestFuncionarioBalcao.loginFuncionarioBalcao(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
+
         }
             Menu menuFuncionario = new Menu(new String[]{
                     "Registar pedido de orçamento",
@@ -373,7 +376,7 @@ public class UserInterface {
             System.out.println("Insira o contacto: ");
             String contacto = scin.nextLine();
             String descricao = scin.nextLine();
-            
+
             String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto,descricao);
 
             if(tecnico == null) System.out.println("Não existe disponibilidade para realizar o serviço expresso");
@@ -396,11 +399,10 @@ public class UserInterface {
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
             System.out.println("Insira '1' se aceitou ou '2' se rejeitou "); // ver no fim se isto de ler o boolean funciona
-            String confirmacao = scin.nextLine();
-            int confirmacaonum = Integer.parseInt(confirmacao);
+            int op = readOptionInt(2);
 
             boolean b ;
-            b = confirmacaonum == 1;
+            b = op == 1;
             this.gestFuncionarioBalcao.registarConfirmacaoOrcamento(nif,b);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -427,6 +429,8 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestTecnico.loginTecnico(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
+
         }
 
             Menu menuTecnico = new Menu(new String[]{
@@ -458,18 +462,14 @@ public class UserInterface {
             String line = "";
             while( !line.equals("quit")) {
                 System.out.println("Insira o custo: ");
-                String custo_string = scin.nextLine();
-                float custo = Float.parseFloat(custo_string);
+                float custo = readOptionFloat(1000);
                 System.out.println("Agora insira o tempo previsto ->");
                 System.out.println("Insira a hora: ");
-                String hora_string = scin.nextLine();
-                int hora = Integer.parseInt(hora_string);
+                int hora= readOptionInt(168);
                 System.out.println("Insira o minuto: ");
-                String min_string = scin.nextLine();
-                int min = Integer.parseInt(min_string);
+                int min = readOptionInt(59);
                 System.out.println("Insira os segundos: ");
-                String seg_string = scin.nextLine();
-                int seg = Integer.parseInt(seg_string);
+                int seg = readOptionInt(59);
                 LocalTime lt = LocalTime.of(hora, min, seg, 0);
                 System.out.println("Insira a descrição do passo: ");
                 String descricao = scin.nextLine();
