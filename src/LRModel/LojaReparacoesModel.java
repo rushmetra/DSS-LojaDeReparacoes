@@ -51,6 +51,28 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         return this.gestores.get(username);
     }
 
+    public boolean adicionarGestor(Gestor g){
+
+        if(this.gestores.containsKey(g.getUsername())) return false;
+
+        this.gestores.put(g.getUsername(),g);
+
+        return true;
+    }
+
+    public boolean removeGestor(String username){
+
+        if(!this.gestores.containsKey(username)) return false;
+
+        this.gestores.remove(username);
+
+        return true;
+
+    }
+
+    public List<Gestor> getListaDeGestores() {
+        return this.gestores.values().stream().collect(Collectors.toList());
+    }
 
     //funcionariosBalcao
 
@@ -67,6 +89,25 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         return this.funcionariosDoBalcao.values().stream().collect(Collectors.toList());
     }
 
+    public boolean adicionarFuncionario(FuncionarioBalcao f){
+
+        if(this.funcionariosDoBalcao.containsKey(f.getUsername())) return false;
+
+        this.funcionariosDoBalcao.put(f.getUsername(),f);
+
+        return true;
+    }
+
+    public boolean removeFuncionario(String username){
+
+        if(!this.funcionariosDoBalcao.containsKey(username)) return false;
+
+        this.funcionariosDoBalcao.remove(username);
+
+        return true;
+
+    }
+
     //tecnicos
 
 
@@ -80,6 +121,25 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     public List<Tecnico> getTecnicos(){
         return  this.tecnicos.values().stream().collect(Collectors.toList());
+    }
+
+    public boolean adicionarTecnico(Tecnico t){
+
+        if(this.tecnicos.containsKey(t.getUsername())) return false;
+
+        this.tecnicos.put(t.getUsername(),t);
+
+        return true;
+    }
+
+    public boolean removeTecnico(String username){
+
+        if(!this.tecnicos.containsKey(username)) return false;
+
+        this.tecnicos.remove(username);
+
+        return true;
+
     }
 
     //pedidos
@@ -286,13 +346,9 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
 
 
-
-
-
     public void adicionaPedidoOrcamento(PedidoOrcamento po){
         this.pedidos.put(po.getId(),po);
     }
-
 
     public void adicionaPedidoExpresso(PedidoExpresso pe) {
         this.pedidosExpressos.put(pe.getNif(),pe);

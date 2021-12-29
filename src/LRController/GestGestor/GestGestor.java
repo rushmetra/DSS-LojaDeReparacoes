@@ -7,7 +7,13 @@ import java.util.*;
 import static java.time.temporal.ChronoUnit.SECONDS;
 
 public class GestGestor implements IGestGestor {
-    LojaReparacoesModel model;
+    ILojaReparacoesModel model;
+
+
+
+    public GestGestor(ILojaReparacoesModel model){
+        this.model = model;
+    }
 
 
     public boolean loginGestor(String username, String password) {
@@ -27,6 +33,45 @@ public class GestGestor implements IGestGestor {
         if (this.model.containsGestor(idGestor)) return true;
         else return false;
     }
+
+
+
+    public boolean adicionarGestor(String username, String password){
+
+        Gestor g = new Gestor(username,password);
+        return this.model.adicionarGestor(g);
+    }
+
+    public List<Gestor> getGestores() {
+        return this.model.getListaDeGestores();
+    }
+
+    public boolean adicionarFuncionarioBalcao(String username, String password){
+
+        FuncionarioBalcao fb = new FuncionarioBalcao(username,password, 0,0);
+        return this.model.adicionarFuncionario(fb);
+    }
+
+
+    public boolean adicionarTecnico(String username, String password){
+
+        Tecnico t = new Tecnico(username,password,false);
+        return this.model.adicionarTecnico(t);
+    }
+
+    public boolean removerGestor(String username){
+        return this.model.removeGestor(username);
+    }
+
+    public boolean removerFuncionarioBalcao(String username){
+        return this.model.removeFuncionario(username);
+    }
+
+    public boolean removerTecnico(String username){
+        return this.model.removeTecnico(username);
+    }
+
+
 
     /*
     Para cada técnico devolver:

@@ -4,6 +4,7 @@ import LRController.GestFuncionarioBalcao.IGestFuncionarioBalcao;
 import LRController.GestGestor.IGestGestor;
 import LRController.GestTecnico.IGestTecnico;
 
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
@@ -25,11 +26,10 @@ public class UserInterface {
     // Scanner para leitura
     private Scanner scin;
 
-    public UserInterface(IGestFuncionarioBalcao f, IGestGestor g, IGestTecnico t, String u) {
+    public UserInterface(IGestFuncionarioBalcao f, IGestGestor g, IGestTecnico t) {
         this.gestFuncionarioBalcao = f;
         this.gestGestor = g;
         this.gestTecnico = t;
-        this.username = u;
         scin = new Scanner(System.in);
     }
 
@@ -136,8 +136,7 @@ public class UserInterface {
         String idGestor = scin.nextLine();
         System.out.println("Passaword do novo Gestor: ");
         String pw = scin.nextLine();
-        if (!this.gestGestor.existeGestor(idGestor)) { // Função booleana pra averiguar se o Gestor com este ID exist
-          this.gestGestor.adicionaGestor(idGestor, pw);
+        if ((this.gestGestor.adicionarGestor(idGestor, pw))) { // Função booleana pra averiguar se o Gestor com este ID exist
           System.out.println("Gestor adicionado.");
         } else {
           System.out.println("Gestor já existe!");
@@ -154,8 +153,7 @@ public class UserInterface {
     try{
         System.out.println("Id do Gestor: ");
         String idGestor = scin.nextLine();
-        if(this.gestGestor.existeGestor(idGestor)) {
-            this.gestGestor.removeGestor(idGestor);
+        if((this.gestGestor.removerGestor(idGestor))) {
             System.out.println("Gestor removido!");
         } else {
             System.out.println("Gestor não existe!");
@@ -174,8 +172,7 @@ public class UserInterface {
             String idFuncionario = scin.nextLine();
             System.out.println("Passaword do novo Funcionario de Balcão: ");
             String pw = scin.nextLine();
-            if (!this.gestFuncionarioBalcao.existeFuncionario(idFuncionario)) { // Função booleana pra averiguar se este ID existe
-                this.gestFuncionarioBalcao.adicionaFuncionario(idFuncionario, pw);
+            if ((this.gestGestor.adicionarFuncionarioBalcao(idFuncionario, pw))) {
                 System.out.println("Funcionário de Balcão adicionado.");
             } else {
                 System.out.println("Funcionário de Balcão já existe!");
@@ -192,8 +189,7 @@ public class UserInterface {
         try{
             System.out.println("Id do Funcionário de Balcão: ");
             String idFuncionario = scin.nextLine();
-            if(this.gestFuncionarioBalcao.existeFuncionario(idFuncionario)) {
-                this.gestFuncionarioBalcao.removeFuncionario(idFuncionario);
+            if((this.gestGestor.removerFuncionarioBalcao(idFuncionario))) {
                 System.out.println("Funcionário de Balcão removido!");
             } else {
                 System.out.println("Funcionário de Balcão não existe!");
@@ -212,8 +208,7 @@ public class UserInterface {
             String idTecnico = scin.nextLine();
             System.out.println("Passaword do novo Técnico de Reparações: ");
             String pw = scin.nextLine();
-            if (!this.gestTecnico.existeTecnico(idTecnico)) { // Função booleana pra averiguar se este ID existe
-                this.gestTecnico.adicionaTecnico(idTecnico, pw);
+            if (this.gestGestor.adicionarTecnico(idTecnico, pw)) {
                 System.out.println("Técnico de Reparações adicionado.");
             } else {
                 System.out.println("Técnico de Reparações já existe!");
@@ -230,8 +225,7 @@ public class UserInterface {
         try{
             System.out.println("Id do Técnico de Reparações: ");
             String idTecnico = scin.nextLine();
-            if(this.gestTecnico.existeTecnico(idTecnico)) {
-                this.gestTecnico.removeTecnico(idTecnico);
+            if((this.gestGestor.removerTecnico(idTecnico))) {
                 System.out.println("Funcionário de Balcão removido!");
             } else {
                 System.out.println("Funcionário de Balcão não existe!");
@@ -302,7 +296,7 @@ public class UserInterface {
      *  Estado - Operações sobre o Funcionario de Balcao
      *
      *  Transições possíveis:
-     *      Registar pedido orçamento
+     *      Registar pedido de orçamento
      *      Registar entrega do equipamento pelo cliente
      *      Registar serviço expresso
      *      Registar conclusão de um pedido
@@ -311,7 +305,7 @@ public class UserInterface {
      */
     private void gestaoFuncionarioBalcao() {
         Menu menuFuncionario = new Menu(new String[]{
-                "Registar pedido orçamento",
+                "Registar pedido de orçamento",
                 "Registar entrega do equipamento pelo cliente",
                 "Registar serviço expresso",
                 "Registar conclusão de um pedido",
@@ -327,6 +321,9 @@ public class UserInterface {
         menuFuncionario.run();
     }
 
+    /**
+     *  Estado - Registar pedido de orçamento
+     */
     private void registarPedidoOrcamento() {
         try {
             System.out.println("Insira nome do Cliente: ");
@@ -343,6 +340,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Estado - Registar entrega do equipamento pelo cliente
+     */
     private void registarEntregaEquipamentoPeloCliente() {
         try {
             System.out.println("Insira o NIF: ");
@@ -353,6 +353,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     *  Estado - Registar serviço expresso
+     */
     private void registaServicoExpresso() {
         try {
             System.out.println("Insira o NIF:");
@@ -365,6 +368,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     *  Estado - Registar conclusão dum pedido
+     */
     private void registarConclusaoPedido() {
         try {
             System.out.println("Insira o NIF:");
@@ -375,9 +381,14 @@ public class UserInterface {
         }
     }
 
+    /**
+     *  Estado - Registar confirmação da reparação
+     */
     private void registarConfirmacaoDaReparacao() {
         try {
-
+            System.out.println("Insira o NIF:");
+            String nif = scin.nextLine();
+            this.gestFuncionarioBalcao.registarConfirmacaoReparacao(nif);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -409,27 +420,78 @@ public class UserInterface {
         menuTecnico.run();
     }
 
+    /**
+     *  Estado - Registar de trabalho reparação
+     */
     private void registaPlanoTrabRep() {
         try {
-
+            System.out.println("Registe os passos de trabalho: ");
+            System.out.println("Para sair escreva quit.");
+            String line;
+            while(scin.hasNextLine() && !( line = scin.nextLine() ).equals("quit")) {
+                System.out.println("Insira o NIF:");
+                String nif = line;
+                System.out.println("Insira o custo: ");
+                String custo_string = scin.nextLine();
+                float custo = Float.parseFloat(custo_string);
+                System.out.println("Agora insira o tempo previsto ->");
+                System.out.println("Insira a hora: ");
+                String hora_string = scin.nextLine();
+                int hora = Integer.parseInt(hora_string);
+                System.out.println("Insira o minuto: ");
+                String min_string = scin.nextLine();
+                int min = Integer.parseInt(min_string);
+                System.out.println("Insira os segundos: ");
+                String seg_string = scin.nextLine();
+                int seg = Integer.parseInt(seg_string);
+                LocalTime lt = LocalTime.of(hora, min, seg, 0);
+                System.out.println("Insira a descrição do passo: ");
+                String descricao = scin.nextLine();
+                System.out.println("Insira o estado de conclusão (V ou F): ");
+                String conclusao_string = scin.nextLine();
+                boolean conclusao = Boolean.parseBoolean(conclusao_string);
+                this.gestTecnico.registarPasso(nif, custo, lt, descricao, conclusao);
+            }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    /**
+     *  Estado - Assinalar execução de passo
+     */
     private void assinalaExecucaoPasso() {
         try {
-
+            System.out.println("Insira o NIF:");
+            String nif = scin.nextLine();
+            System.out.println("Agora insira o tempo previsto ->");
+            System.out.println("Insira a hora: ");
+            String hora_string = scin.nextLine();
+            int hora = Integer.parseInt(hora_string);
+            System.out.println("Insira o minuto: ");
+            String min_string = scin.nextLine();
+            int min = Integer.parseInt(min_string);
+            System.out.println("Insira os segundos: ");
+            String seg_string = scin.nextLine();
+            int seg = Integer.parseInt(seg_string);
+            LocalTime lt = LocalTime.of(hora, min, seg, 0);
+            System.out.println("Insira o custo: ");
+            String custo_string = scin.nextLine();
+            float custo = Float.parseFloat(custo_string);
+            this.gestTecnico.assinalarExecucaoPasso(nif, lt, custo);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     *  Estado - Determina equipamento mais urgente
+     */
     private void determinaEquipamentoMaisUrgente() {
         try {
-
+            this.gestTecnico.determinaEquipamentoMaisUrgente();
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }
-
 }

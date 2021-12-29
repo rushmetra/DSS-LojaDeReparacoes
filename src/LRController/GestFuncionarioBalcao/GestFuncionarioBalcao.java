@@ -10,6 +10,10 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
 
 
 
+    public GestFuncionarioBalcao(ILojaReparacoesModel model){
+        this.model = model;
+    }
+
     public boolean loginFuncionarioBalcao(String username, String password) {
         if (!this.model.containsFuncionario(username)) return false;
 
@@ -18,23 +22,21 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return password.equals(fPass);
     }
 
+
+
+
+
     public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email){
         PedidoOrcamento po = new PedidoOrcamento(nomeCliente,contacto,email,nif);
         model.adicionaPedidoOrcamento(po);
     }
 
-
     //Caso não exista disponiblidade devolve null, Caso exista devolve o username do tecnico que realizará o serviço
 
-
-    public String registarServicoExpresso(String nif,String contacto) {
-
+    public String verificaDisponiblidadeExpresso(){
 
         List<Tecnico> tecnicos = this.model.getTecnicos();
-
         String username = null;
-
-
         for (Tecnico t : tecnicos) {
             if (t.getOcupado() == false) {
                 username = t.getUsername();
@@ -42,12 +44,21 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
                 break;
             }
         }
+        return username;
+    }
+
+    public List<FuncionarioBalcao> getFuncionarios() {
+        return this.model.getListaDeFuncionarios();
+    }
+
+    public String registarServicoExpresso(String nif,String contacto) {
+
+        String username = verificaDisponiblidadeExpresso();
 
         if(username != null){
             PedidoExpresso pe = new PedidoExpresso(nif, contacto);
             model.adicionaPedidoExpresso(pe);
         }
-
         return username;
     }
 

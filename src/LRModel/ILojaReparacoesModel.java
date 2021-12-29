@@ -9,9 +9,18 @@ import java.util.stream.Collectors;
 
 public interface ILojaReparacoesModel {
 
+
+    //gestor
+
     public Boolean containsGestor(String username);
 
     public Gestor getGestor(String username);
+
+    public boolean adicionarGestor(Gestor g);
+
+    public boolean removeGestor(String username);
+
+    public List<Gestor> getListaDeGestores();
 
 
 
@@ -23,6 +32,9 @@ public interface ILojaReparacoesModel {
 
     public List<FuncionarioBalcao> getListaDeFuncionarios();
 
+    public boolean adicionarFuncionario(FuncionarioBalcao f);
+    public boolean removeFuncionario(String username);
+
 
     //tecnicos
 
@@ -33,6 +45,9 @@ public interface ILojaReparacoesModel {
 
     public List<Tecnico> getTecnicos();
 
+    public boolean adicionarTecnico(Tecnico t);
+
+    public boolean removeTecnico(String username);
 
     //pedidos
 
@@ -42,11 +57,16 @@ public interface ILojaReparacoesModel {
 
     public List<PedidoOrcamento> getListaPedidosOrcamento() ;
 
+
+
+
     //pedidos-expresso
 
     public Boolean containsPedidoExpresso(String nif);
 
     public PedidoExpresso getPedidoExpresso(String nif);
+
+    public List<PedidoExpresso> getListaPedidosExpresso();
 
 
     //Funções para persisntência dos dados
