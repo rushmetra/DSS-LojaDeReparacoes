@@ -1,6 +1,7 @@
 package LRModel;
 
 import java.io.*;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -368,6 +369,23 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
             e.printStackTrace();
         }
 
+    }
+
+
+    public String getEmailOrcamento(String nif){
+        return this.pedidos.get(nif).getEmail();
+    }
+
+    public String getNomeOrcamento(String nif){
+        return this.pedidos.get(nif).getNomeCliente();
+    }
+
+    public float getCustoTotalPrevisto(String nif){
+        return this.pedidos.get(nif).getCustoTotalPrevisto();
+    }
+
+    public LocalTime getTempoPrevisto(String nif){
+        return this.pedidos.get(nif).getTempoTotalPrevisto();
     }
 
 

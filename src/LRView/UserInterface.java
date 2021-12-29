@@ -486,6 +486,21 @@ public class UserInterface {
                 }
             }
 
+            String email = this.gestTecnico.getEmailOrcamento(nif);
+            String nome = this.gestTecnico.getNomeOrcamento(nif);
+            LocalTime tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
+            Float custo = this.gestTecnico.getCustoTotalPrevisto(nif);
+
+
+
+            System.out.println("Tempo previsto : " + tempoPrevisto.toString());
+            System.out.println("Custo total : " + custo);
+            System.out.println("O seguinte orçamento deve ser enviado ao cliente: ");
+            System.out.println("\tNome -> "+ nome);
+            System.out.println("\tEmail -> "+ email);
+
+
+
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }

@@ -111,4 +111,21 @@ public class GestTecnico implements IGestTecnico{
         this.model.saveData("saves");
     }
 
+
+    public String getEmailOrcamento(String nif){
+        return this.model.getEmailOrcamento(nif);
+    }
+
+    public String getNomeOrcamento(String nif){
+        return this.model.getNomeOrcamento(nif);
+    }
+
+    public Float getCustoTotalPrevisto(String nif){
+        return  this.model.getCustoTotalPrevisto(nif);
+    }
+
+    public LocalTime getTempoPrevistoOrcamento(String nif){
+        return this.model.getTempoPrevisto(nif);
+    }
+
 }

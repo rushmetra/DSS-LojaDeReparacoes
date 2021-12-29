@@ -142,4 +142,19 @@ public class PedidoOrcamento implements Serializable {
         return total;
     }
 
+    public  float getCustoTotalPrevisto(){
+        float custo = 0;
+        for(Passo p : this.getPlanoTrabalho()){
+            custo = custo + p.getCustoPrevisto();
+        }
+        return custo;
+    }
+
+    public  float getCustoTotalGasto(){
+        float custo = 0;
+        for(Passo p : this.getPlanoTrabalho()){
+            custo = custo + p.getCustoFinal();
+        }
+        return custo;
+    }
 }
