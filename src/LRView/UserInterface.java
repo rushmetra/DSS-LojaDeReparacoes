@@ -375,6 +375,7 @@ public class UserInterface {
             String nif = scin.nextLine();
             System.out.println("Insira o contacto: ");
             String contacto = scin.nextLine();
+            System.out.println("Insira a descricao");
             String descricao = scin.nextLine();
 
             String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto,descricao);
@@ -478,9 +479,7 @@ public class UserInterface {
                 line = scin.nextLine();
 
             }
-            String email = this.gestTecnico.getEmailOrcamento(nif);
-            System.out.println("O seguinte orçamento foi enviado ao cliente: ");
-            System.out.println("\tNome: "+ nome);
+
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -493,20 +492,16 @@ public class UserInterface {
         try {
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
-            System.out.println("Agora insira o tempo gastso ->");
-            System.out.println("Insira a hora: ");
-            String hora_string = scin.nextLine();
-            int hora = Integer.parseInt(hora_string);
-            System.out.println("Insira o minuto: ");
-            String min_string = scin.nextLine();
-            int min = Integer.parseInt(min_string);
-            System.out.println("Insira os segundos: ");
-            String seg_string = scin.nextLine();
-            int seg = Integer.parseInt(seg_string);
-            LocalTime lt = LocalTime.of(hora, min, seg, 0);
             System.out.println("Insira o custo: ");
-            String custo_string = scin.nextLine();
-            float custo = Float.parseFloat(custo_string);
+            float custo = readOptionFloat(1000);
+            System.out.println("Agora insira o tempo gasto ->");
+            System.out.println("Insira a hora: ");
+            int hora= readOptionInt(168);
+            System.out.println("Insira o minuto: ");
+            int min = readOptionInt(59);
+            System.out.println("Insira os segundos: ");
+            int seg = readOptionInt(59);
+            LocalTime lt = LocalTime.of(hora, min, seg, 0);
             this.gestTecnico.assinalarExecucaoPasso(nif, lt, custo);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -518,7 +513,7 @@ public class UserInterface {
      */
     private void determinaEquipamentoMaisUrgente() {
         try {
-            this.gestTecnico.determinaEquipamentoMaisUrgente();
+            System.out.println(this.gestTecnico.determinaEquipamentoMaisUrgente());
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }

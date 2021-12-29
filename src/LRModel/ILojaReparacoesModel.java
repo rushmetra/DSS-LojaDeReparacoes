@@ -64,10 +64,12 @@ public interface ILojaReparacoesModel {
 
     public List<PedidoOrcamento> getListaPedidosOrcamento() ;
 
+    public List<PedidoOrcamento> getListaPedidosAceites() ;
 
 
 
-    //pedidos-expresso
+
+        //pedidos-expresso
 
     public Boolean containsPedidoExpresso(String nif);
 

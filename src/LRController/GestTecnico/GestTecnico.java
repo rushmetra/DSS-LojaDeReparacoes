@@ -44,11 +44,18 @@ public class GestTecnico implements IGestTecnico{
     }
 
 
-    public PedidoOrcamento determinaEquipamentoMaisUrgente(){
+    public String determinaEquipamentoMaisUrgente(){
+        String r;
         // lista ordenada de pedidos (mais antigo no fim da lista)
-        List<PedidoOrcamento> pedidoOrcamentoList = model.getListaPedidosOrcamento();
-        PedidoOrcamento p = pedidoOrcamentoList.get(pedidoOrcamentoList.size() - 1);
-        return p;
+        List<PedidoOrcamento> pedidoOrcamentoConfirmadosList = model.getListaPedidosAceites();
+        if (pedidoOrcamentoConfirmadosList.size() == 0){
+            r = "Não existem pedidos para serem reparados";
+        } else {
+            PedidoOrcamento p = pedidoOrcamentoConfirmadosList.get(pedidoOrcamentoConfirmadosList.size() - 1);
+            r = "O Id do pedido mais urgente é: " + p.getId();
+        }
+
+        return r;
     }
 
     public void registarConclusaoReparacao(String nif){
