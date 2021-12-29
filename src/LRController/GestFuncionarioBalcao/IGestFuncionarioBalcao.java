@@ -7,6 +7,8 @@ import LRModel.PedidoOrcamento;
 public interface IGestFuncionarioBalcao {
     public boolean loginFuncionarioBalcao(String username, String password);
 
+
+
     public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email);
 
     public String registarServicoExpresso(String nif,String contacto);
@@ -20,5 +22,7 @@ public interface IGestFuncionarioBalcao {
     public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao);
 
     public String verificaDisponiblidadeExpresso();
+
+
 
 }
