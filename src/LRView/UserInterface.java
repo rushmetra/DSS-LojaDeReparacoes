@@ -390,8 +390,10 @@ public class UserInterface {
             String nif = scin.nextLine();
             System.out.println("Insira '1' se aceitou ou '2' se rejeitou "); // ver no fim se isto de ler o boolean funciona
             String confirmacao = scin.nextLine();
+            int confirmacaonum = Integer.parseInt(confirmacao);
+
             boolean b ;
-            if (confirmacao.compareTo("1") == 0){
+            if (confirmacaonum == 1){
                 b = true;
             } else b = false;
             this.gestFuncionarioBalcao.registarConfirmacaoOrcamento(nif,b);
