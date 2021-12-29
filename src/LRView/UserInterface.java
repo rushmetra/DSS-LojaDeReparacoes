@@ -36,6 +36,8 @@ public class UserInterface {
      */
     public void run() {
         System.out.println("Bem vindo ao Sistema de Gestão de Reparações!");
+        System.out.println("A remover pedidos não aprovados com mais de 30 dias");
+        this.gestFuncionarioBalcao.arquivarPedidosNaoAprovados();
         menuPrincipal();
         System.out.println("Até breve...");
         this.gestGestor.saveFiles();
@@ -93,6 +95,7 @@ public class UserInterface {
             correct_password = this.gestGestor.loginGestor(username, password);
             if(!correct_password) System.out.println("Dados Log in inválidos");
 
+            this.username = username;
         }
                 Menu menuGestor = new Menu(new String[]{
                         "Adicionar Gestor",
@@ -129,7 +132,7 @@ public class UserInterface {
     try {
         System.out.println("Id do novo Gestor: ");
         String idGestor = scin.nextLine();
-        System.out.println("Passaword do novo Gestor: ");
+        System.out.println("Password do novo Gestor: ");
         String pw = scin.nextLine();
         if ((this.gestGestor.adicionarGestor(idGestor, pw))) { // Função booleana pra averiguar se o Gestor com este ID exist
           System.out.println("Gestor adicionado.");
@@ -165,7 +168,7 @@ public class UserInterface {
         try {
             System.out.println("Id do novo Funcionário de Balcão: ");
             String idFuncionario = scin.nextLine();
-            System.out.println("Passaword do novo Funcionario de Balcão: ");
+            System.out.println("Password do novo Funcionario de Balcão: ");
             String pw = scin.nextLine();
             if ((this.gestGestor.adicionarFuncionarioBalcao(idFuncionario, pw))) {
                 System.out.println("Funcionário de Balcão adicionado.");
@@ -316,17 +319,20 @@ public class UserInterface {
             if(!correct_password) System.out.println("Dados Log in inválidos");
 
         }
+        this.username = username;
             Menu menuFuncionario = new Menu(new String[]{
                     "Registar pedido de orçamento",
                     "Registar entrega do equipamento pelo cliente",
                     "Registar serviço expresso",
-                    "Registar confirmação do Orçamento"
+                    "Registar confirmação do Orçamento",
+                    "Registar recolha do equipamento por parte do cliente"
             });
 
             menuFuncionario.setHandler(1, this::registarPedidoOrcamento);
             menuFuncionario.setHandler(2, this::registarEntregaEquipamentoPeloCliente);
             menuFuncionario.setHandler(3, this::registaServicoExpresso);
             menuFuncionario.setHandler(4, this::registarConfirmacaoDoOrcamento);
+            menuFuncionario.setHandler(5,this::registarRecolhaEquipamento);
 
             menuFuncionario.run();
     }
@@ -387,7 +393,8 @@ public class UserInterface {
 
 
         } catch (NullPointerException e) {
-                    }
+            e.printStackTrace();
+        }
     }
 
 
@@ -408,6 +415,19 @@ public class UserInterface {
             System.out.println(e.getMessage());
         }
     }
+
+
+    public void registarRecolhaEquipamento(){
+
+        System.out.println("Insira o NIF:");
+        String nif = scin.nextLine();
+
+        this.gestFuncionarioBalcao.registarRecolhaEquipamentoePagamento(nif,this.username);
+
+    }
+
+
+
 
     /**
      *  Estado - Operações sobre o Tecnico de Reparacao

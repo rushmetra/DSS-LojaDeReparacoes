@@ -75,6 +75,7 @@ public interface ILojaReparacoesModel {
 
     public LocalTime getTempoPrevisto(String nif);
 
+    public void removePedido(String id);
 
 
         //pedidos-expresso

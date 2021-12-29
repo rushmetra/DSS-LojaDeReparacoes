@@ -3,7 +3,9 @@ package LRController.GestTecnico;
 import LRController.GestGestor.GestGestor;
 import LRModel.*;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 public class GestTecnico implements IGestTecnico{
@@ -19,7 +21,12 @@ public class GestTecnico implements IGestTecnico{
 
 
     public void registarPasso(String nif, float custo, LocalTime tempoPrevisto, String descricao, boolean concluido) {
-        model.getPedidoOrcamento(nif).adicionaPasso(custo, tempoPrevisto, descricao, concluido);
+
+        PedidoOrcamento po = model.getPedidoOrcamento(nif);
+
+        if(po.getDateOrcamentoRealizado() == null) po.setDateOrcamentoRealizado(LocalDate.now());
+
+        po.adicionaPasso(custo, tempoPrevisto, descricao, concluido);
     }
 
     public void assinalarExecucaoPasso(String nif, LocalTime tempo, float custo){
