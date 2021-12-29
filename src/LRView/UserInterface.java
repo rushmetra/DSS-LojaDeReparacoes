@@ -372,7 +372,8 @@ public class UserInterface {
             String nif = scin.nextLine();
             System.out.println("Insira o contacto: ");
             String contacto = scin.nextLine();
-            String descricao = null;
+            String descricao = scin.nextLine();
+            
             String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto,descricao);
 
             if(tecnico == null) System.out.println("Não existe disponibilidade para realizar o serviço expresso");
@@ -524,10 +525,9 @@ public class UserInterface {
     private void registarConclusaoDaReparacao() {
         try {
             System.out.println("Insira 1 para serviço normal e 2 para serviço expresso");
-            int op = -1;
-            while(op == -1) {
-                op = readOption(2);
-            }
+
+            int op = readOptionInt(2);
+
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
 
@@ -542,21 +542,52 @@ public class UserInterface {
 
 
     /** Ler uma opção válida */
-    private int readOption(int opcoes) {
-        int op;
 
-        System.out.print("Opção: ");
-        try {
-            String line = this.scin.nextLine();
-            op = Integer.parseInt(line);
+    private int readOptionInt(int opcoes) {
+        int op = -1;
+
+        while(op == -1){
+
+            System.out.print("Opção: ");
+            try {
+                String line = this.scin.nextLine();
+                op = Integer.parseInt(line);
+            }
+            catch (NumberFormatException e) { // Não foi inscrito um int
+                op = -1;
+            }
+            if (op<0 || op> opcoes) {
+                System.out.println("Opção Inválida!!!");
+                op = -1;
+            }
         }
-        catch (NumberFormatException e) { // Não foi inscrito um int
-            op = -1;
-        }
-        if (op<0 || op> opcoes) {
-            System.out.println("Opção Inválida!!!");
-            op = -1;
-        }
+
         return op;
+
     }
+
+
+    private float readOptionFloat(float opcoes) {
+        float op = -1;
+
+        while(op == -1){
+
+            System.out.print("Opção: ");
+            try {
+                String line = this.scin.nextLine();
+                op = Float.parseFloat(line);
+            }
+            catch (NumberFormatException e) { // Não foi inscrito um int
+                op = -1;
+            }
+            if (op<0 || op> opcoes) {
+                System.out.println("Opção Inválida!!!");
+                op = -1;
+            }
+        }
+
+        return op;
+
+    }
+
 }
