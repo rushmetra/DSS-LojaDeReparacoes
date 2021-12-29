@@ -66,7 +66,7 @@ public class GestTecnico implements IGestTecnico{
 
         if(!this.model.containsTecnico(username)) return false;
 
-        FuncionarioBalcao t = this.model.getFuncionarioBalcao(username);
+        Tecnico t = this.model.getTecnico(username);
         String tPass = t.getPassword();
 
         return password.equals(tPass);

@@ -20,6 +20,8 @@ public interface IGestTecnico {
 
     public void registarConclusaoReparacao(String nif);
 
+    public void registarConclusaoExpresso(String nif);
+
     public List<Tecnico> getTecnicos();
 
     public void saveFiles();

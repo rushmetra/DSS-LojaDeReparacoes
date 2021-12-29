@@ -316,15 +316,13 @@ public class UserInterface {
                     "Registar pedido de orçamento",
                     "Registar entrega do equipamento pelo cliente",
                     "Registar serviço expresso",
-                    "Registar conclusão de um pedido",
                     "Registar confirmação da reparação"
             });
 
             menuFuncionario.setHandler(1, this::registarPedidoOrcamento);
             menuFuncionario.setHandler(2, this::registarEntregaEquipamentoPeloCliente);
             menuFuncionario.setHandler(3, this::registaServicoExpresso);
-            menuFuncionario.setHandler(4, this::registarConclusaoPedido);
-            menuFuncionario.setHandler(5, this::registarConfirmacaoDaReparacao);
+            menuFuncionario.setHandler(4, this::registarConfirmacaoDoOrcamento);
 
             menuFuncionario.run();
     }
@@ -370,7 +368,7 @@ public class UserInterface {
             String nif = scin.nextLine();
             System.out.println("Insira o contacto: ");
             String contacto = scin.nextLine();
-            String descricao;
+            String descricao = null;
             String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto,descricao);
 
             if(tecnico == null) System.out.println("Não existe disponibilidade para realizar o serviço expresso");
@@ -384,23 +382,11 @@ public class UserInterface {
         }
     }
 
-    /**
-     *  Estado - Registar conclusão dum pedido
-     */
-    private void registarConclusaoPedido() {
-        try {
-            System.out.println("Insira o NIF:");
-            String nif = scin.nextLine();
-            this.gestFuncionarioBalcao.registarConclusaoReparacao(nif);
-        } catch (NullPointerException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     /**
      *  Estado - Registar confirmação da reparação
      */
-    private void registarConfirmacaoDaReparacao() {
+    private void registarConfirmacaoDoOrcamento() {
         try {
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
@@ -441,12 +427,14 @@ public class UserInterface {
             Menu menuTecnico = new Menu(new String[]{
                     "Registar plano de trabalho reparação",
                     "Assinalar execução de passo",
-                    "Determina equipamento mais urgente"
+                    "Determina equipamento mais urgente",
+                    "Registar conclusão da Reparação"
             });
 
             menuTecnico.setHandler(1, this::registaPlanoTrabRep);
             menuTecnico.setHandler(2, this::assinalaExecucaoPasso);
             menuTecnico.setHandler(3, this::determinaEquipamentoMaisUrgente);
+            menuTecnico.setHandler(4, this::registarConclusaoDaReparacao);
 
             menuTecnico.run();
         }
@@ -525,5 +513,44 @@ public class UserInterface {
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void registarConclusaoDaReparacao() {
+        try {
+            System.out.println("Insira 1 para serviço normal e 2 para serviço expresso");
+            int op = -1;
+            while(op == -1) {
+                op = readOption(2);
+            }
+            System.out.println("Insira o NIF:");
+            String nif = scin.nextLine();
+
+
+            if(op == 1) this.gestTecnico.registarConclusaoReparacao(nif);
+            else this.gestTecnico.registarConclusaoExpresso(nif);
+
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    /** Ler uma opção válida */
+    private int readOption(int opcoes) {
+        int op;
+
+        System.out.print("Opção: ");
+        try {
+            String line = this.scin.nextLine();
+            op = Integer.parseInt(line);
+        }
+        catch (NumberFormatException e) { // Não foi inscrito um int
+            op = -1;
+        }
+        if (op<0 || op> opcoes) {
+            System.out.println("Opção Inválida!!!");
+            op = -1;
+        }
+        return op;
     }
 }
