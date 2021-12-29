@@ -14,11 +14,11 @@ public interface IGestFuncionarioBalcao {
 
     public String registarServicoExpresso(String nif,String contacto);
 
-    public void registarConclusaoPedido(String nif);
-
-    public void registarConfirmacaoReparacao(String nif);
+    public void registarConfirmacaoOrcamento(String nif,boolean confirm);
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao);
+
+    public void registarConclusaoReparacao(String nif);
 
     public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao);
 
@@ -26,7 +26,11 @@ public interface IGestFuncionarioBalcao {
 
     public List<FuncionarioBalcao> getFuncionarios();
 
+<<<<<<< HEAD
     public void saveFiles();
 
+=======
+    public List<String> getNomeFuncionarios();
+>>>>>>> 445cf9911fda577b9b02d5c63a0c2d7e7200e148
 
 }

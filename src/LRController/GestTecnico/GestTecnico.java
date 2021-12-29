@@ -62,6 +62,8 @@ public class GestTecnico implements IGestTecnico{
         return password.equals(tPass);
     }
 
+    public List<String> getNomeTecnicos() { return this.model.getNomeTecnicos(); }
+
     public List<Tecnico> getTecnicos() {
         return this.model.getTecnicos();
     }

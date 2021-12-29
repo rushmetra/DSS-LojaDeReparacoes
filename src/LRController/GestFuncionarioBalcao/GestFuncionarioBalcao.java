@@ -47,9 +47,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return username;
     }
 
-    public List<FuncionarioBalcao> getFuncionarios() {
-        return this.model.getListaDeFuncionarios();
-    }
+
 
     public String registarServicoExpresso(String nif,String contacto) {
 
@@ -62,14 +60,15 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return username;
     }
 
-    public void registarConclusaoPedido(String nif){
-        PedidoOrcamento po = this.model.getPedidoOrcamento(nif);
-        po.setConlusaoPedido(true);
+    public List<String> getNomeFuncionarios() { return this.model.getNomeFuncionarios();}
+
+    public List<FuncionarioBalcao> getFuncionarios() {
+        return this.model.getListaDeFuncionarios();
     }
 
-    public void registarConfirmacaoReparacao(String nif){
+    public void registarConfirmacaoOrcamento(String nif,boolean confirm){
         PedidoOrcamento po = this.model.getPedidoOrcamento(nif);
-        po.setConfirmacaoReparacao(true);
+        po.setConfirmacaoReparacao(confirm);
     }
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao){
@@ -80,12 +79,17 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     }
 
 
+    public void registarConclusaoReparacao(String nif){
+        PedidoOrcamento po = model.getPedidoOrcamento(nif);
+        po.setConlusaoReparacao(true);
+    }
+
     public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao){
         Entrega e = this.model.getEntrega(nif);
         e.setEntregue(true);
         e.setPago(true);
         FuncionarioBalcao fb = model.getFuncionarioBalcao(idFuncionarioBalcao);
-        fb.setEntregasEq(fb.getEntregasEq()+1);
+        fb.incrementaEntregas();
     }
 
     public void saveFiles(){

@@ -42,6 +42,10 @@ public class GestGestor implements IGestGestor {
         return this.model.adicionarGestor(g);
     }
 
+    public List<String> getNomeGestores() {
+        return this.model.getNomeGestores();
+    }
+
     public List<Gestor> getGestores() {
         return this.model.getListaDeGestores();
     }
