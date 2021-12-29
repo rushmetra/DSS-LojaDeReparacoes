@@ -437,7 +437,7 @@ public class UserInterface {
             Menu menuTecnico = new Menu(new String[]{
                     "Registar plano de trabalho reparação",
                     "Assinalar execução de passo",
-                    "Determina equipamento mais antigo",
+                    "Determina equipamento mais urgente",
                     "Registar conclusão da Reparação"
             });
 
