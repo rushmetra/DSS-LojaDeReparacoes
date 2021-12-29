@@ -4,8 +4,11 @@ import LRController.GestTecnico.GestTecnico;
 import LRModel.LojaReparacoesModel;
 import LRView.UserInterface;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-    public class Main {
+
+public class Main {
         public static void main(String[] args)  {
 
             LojaReparacoesModel model = new LojaReparacoesModel();
@@ -15,6 +18,8 @@ import LRView.UserInterface;
 
             UserInterface view = new UserInterface(gestFuncionarioBalcao,gestGestor,gestTecnico);
             view.run();
+            //gestFuncionarioBalcao.registarPedidoOrcamento("ze","1234","1","ze@","juntas", LocalDate.of(2000,10,30));
+            //System.out.println(model.getListaPedidosOrcamento().get(0).getNomeCliente());
         }
 
 

@@ -343,14 +343,7 @@ public class UserInterface {
             String email = scin.nextLine();
             System.out.println("Insira a descricao do Pedido");
             String descricao = scin.nextLine();
-            System.out.println("Insira a Data do Pedido->");
-            System.out.println("Insira o ano ");
-            int year = readOption(5000);
-            System.out.println("Insira o mês: ");
-            int month = readOption(12);
-            System.out.println("Insira o dia: ");
-            int day = readOption(31);
-            LocalDate ldt = LocalDate.of(year,month,day);
+            LocalDate ldt = LocalDate.now();
             this.gestFuncionarioBalcao.registarPedidoOrcamento(nomeCliente, contacto, nif, email,descricao,ldt);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -459,10 +452,11 @@ public class UserInterface {
         try {
             System.out.println("Registe os passos de trabalho: ");
             System.out.println("Para sair escreva quit.");
-            String line;
-            while(scin.hasNextLine() && !( line = scin.nextLine() ).equals("quit")) {
-                System.out.println("Insira o NIF:");
-                String nif = line;
+            // FIXME verificar  NIF
+            System.out.println("Insira o NIF:");
+            String nif = scin.nextLine();
+            String line = "";
+            while( !line.equals("quit")) {
                 System.out.println("Insira o custo: ");
                 String custo_string = scin.nextLine();
                 float custo = Float.parseFloat(custo_string);
@@ -479,11 +473,14 @@ public class UserInterface {
                 LocalTime lt = LocalTime.of(hora, min, seg, 0);
                 System.out.println("Insira a descrição do passo: ");
                 String descricao = scin.nextLine();
-                System.out.println("Insira o estado de conclusão (V ou F): ");
-                String conclusao_string = scin.nextLine();
-                boolean conclusao = Boolean.parseBoolean(conclusao_string);
-                this.gestTecnico.registarPasso(nif, custo, lt, descricao, conclusao);
+                this.gestTecnico.registarPasso(nif, custo, lt, descricao, false);
+                System.out.println("Se desejar terminar escreva 'quit' ou se desejar continuar prima ENTER");
+                line = scin.nextLine();
+
             }
+            String email = this.gestTecnico.getEmailOrcamento(nif);
+            System.out.println("O seguinte orçamento foi enviado ao cliente: ");
+            System.out.println("\tNome: "+ nome);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -496,7 +493,7 @@ public class UserInterface {
         try {
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
-            System.out.println("Agora insira o tempo previsto ->");
+            System.out.println("Agora insira o tempo gastso ->");
             System.out.println("Insira a hora: ");
             String hora_string = scin.nextLine();
             int hora = Integer.parseInt(hora_string);

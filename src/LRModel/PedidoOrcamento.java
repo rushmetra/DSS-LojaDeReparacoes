@@ -2,6 +2,7 @@ package LRModel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class PedidoOrcamento implements Serializable {
         this.conlusaoReparacao = false;
     }
 
-    public PedidoOrcamento(String nif,String nomeCliente,String contacto,String email,String descricao,LocalDate data){
+    public PedidoOrcamento(String nomeCliente, String contacto, String email, String nif, String descricao, LocalDate data){
         this.nomeCliente = nomeCliente;
         this.contacto = contacto;
         this.email = email;
