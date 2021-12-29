@@ -16,5 +16,7 @@ public interface IGestTecnico {
 
     public boolean loginTecnico(String username, String password);
 
+    public List<String> getNomeTecnicos();
+
     public List<Tecnico> getTecnicos();
 }

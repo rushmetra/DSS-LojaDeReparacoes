@@ -60,6 +60,8 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return username;
     }
 
+    public List<String> getNomeFuncionarios() { return this.model.getNomeFuncionarios();}
+
     public List<FuncionarioBalcao> getFuncionarios() {
         return this.model.getListaDeFuncionarios();
     }

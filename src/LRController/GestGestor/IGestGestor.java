@@ -34,6 +34,8 @@ public interface IGestGestor {
 
     public List<String> parseToDisplayListagem3 (Map<String, AbstractMap.SimpleEntry<List<List<Passo>>, List<String>>> listaIntervencoes);
 
+    public List<String> getNomeGestores();
+
     public List<Gestor> getGestores();
 
 }

@@ -228,7 +228,7 @@ public class UserInterface {
      */
     private void listarGestores() {
         try {
-            System.out.println(this.gestGestor.getGestores().toString()); // Função que lista os Gestores
+            System.out.println(this.gestGestor.getNomeGestores().toString());
         }
         catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -240,7 +240,7 @@ public class UserInterface {
      */
     private void listarFuncionarios() {
         try {
-            System.out.println(this.gestFuncionarioBalcao.getFuncionarios().toString()); // Função que lista os Funcionarios
+            System.out.println(this.gestFuncionarioBalcao.getNomeFuncionarios().toString());
         }
         catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -252,7 +252,7 @@ public class UserInterface {
      */
     private void listarTecnicos() {
         try {
-            System.out.println(this.gestTecnico.getTecnicos().toString()); // Função que lista os Tecnicos
+            System.out.println(this.gestTecnico.getNomeTecnicos().toString());
         }
         catch (NullPointerException e) {
             System.out.println(e.getMessage());

@@ -70,6 +70,10 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     }
 
+    public List<String> getNomeGestores() {
+        return this.getListaDeGestores().stream().map(Gestor::getUsername).collect(Collectors.toList());
+    }
+
     public List<Gestor> getListaDeGestores() {
         return this.gestores.values().stream().collect(Collectors.toList());
     }
@@ -83,6 +87,10 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     public FuncionarioBalcao getFuncionarioBalcao(String username){
         return this.funcionariosDoBalcao.get(username);
+    }
+
+    public List<String> getNomeFuncionarios() {
+        return this.getListaDeFuncionarios().stream().map(FuncionarioBalcao::getUsername).collect(Collectors.toList());
     }
 
     public List<FuncionarioBalcao> getListaDeFuncionarios() {
@@ -117,6 +125,10 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     public Tecnico getTecnico(String username){
         return this.tecnicos.get(username);
+    }
+
+    public List<String> getNomeTecnicos() {
+        return this.getTecnicos().stream().map(Tecnico::getUsername).collect(Collectors.toList());
     }
 
     public List<Tecnico> getTecnicos(){

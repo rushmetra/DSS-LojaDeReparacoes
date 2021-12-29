@@ -20,6 +20,8 @@ public interface ILojaReparacoesModel {
 
     public boolean removeGestor(String username);
 
+    public List<String> getNomeGestores();
+
     public List<Gestor> getListaDeGestores();
 
 
@@ -30,9 +32,12 @@ public interface ILojaReparacoesModel {
 
     public FuncionarioBalcao getFuncionarioBalcao(String username);
 
+    public List<String> getNomeFuncionarios();
+
     public List<FuncionarioBalcao> getListaDeFuncionarios();
 
     public boolean adicionarFuncionario(FuncionarioBalcao f);
+
     public boolean removeFuncionario(String username);
 
 
@@ -42,6 +47,8 @@ public interface ILojaReparacoesModel {
     public Boolean containsTecnico(String username);
 
     public Tecnico getTecnico(String username);
+
+    public List<String> getNomeTecnicos();
 
     public List<Tecnico> getTecnicos();
 

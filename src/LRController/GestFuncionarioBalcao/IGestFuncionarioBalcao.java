@@ -26,5 +26,6 @@ public interface IGestFuncionarioBalcao {
 
     public List<FuncionarioBalcao> getFuncionarios();
 
+    public List<String> getNomeFuncionarios();
 
 }
