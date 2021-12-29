@@ -122,4 +122,21 @@ public class PedidoOrcamento {
         this.planoTrabalho.add(p);
     }
 
+    public LocalTime getTempoTotalPrevisto() {
+        LocalTime total = LocalTime.of(0,0,0);
+        for(Passo p : this.planoTrabalho) {
+            total = total.plusHours(p.getTempoPrevisto().getHour()).plusMinutes(p.getTempoPrevisto().getMinute()).plusSeconds(p.getTempoPrevisto().getSecond());
+        }
+        return total;
+    }
+
+
+    public LocalTime getTempoTotalGasto() {
+        LocalTime total = LocalTime.of(0,0,0);
+        for(Passo p : this.planoTrabalho) {
+            total = total.plusHours(p.getTempo().getHour()).plusMinutes(p.getTempo().getMinute()).plusSeconds(p.getTempo().getSecond());
+        }
+        return total;
+    }
+
 }

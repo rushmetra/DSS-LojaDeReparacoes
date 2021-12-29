@@ -10,6 +10,10 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
 
 
 
+    public GestFuncionarioBalcao(ILojaReparacoesModel model){
+        this.model = model;
+    }
+
     public boolean loginFuncionarioBalcao(String username, String password) {
         if (!this.model.containsFuncionario(username)) return false;
 
@@ -17,6 +21,10 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         String fPass = f.getPassword();
         return password.equals(fPass);
     }
+
+
+
+
 
     public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email){
         PedidoOrcamento po = new PedidoOrcamento(nomeCliente,contacto,email,nif);
@@ -39,7 +47,9 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return username;
     }
 
-
+    public List<FuncionarioBalcao> getFuncionarios() {
+        return this.model.getListaDeFuncionarios();
+    }
 
     public String registarServicoExpresso(String nif,String contacto) {
 

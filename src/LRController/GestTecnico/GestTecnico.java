@@ -1,20 +1,23 @@
 package LRController.GestTecnico;
 
-import LRModel.FuncionarioBalcao;
-import LRModel.LojaReparacoesModel;
-import LRModel.Passo;
-import LRModel.PedidoOrcamento;
+import LRController.GestGestor.GestGestor;
+import LRModel.*;
 
 import java.time.LocalTime;
 import java.util.List;
 
 public class GestTecnico implements IGestTecnico{
-    LojaReparacoesModel model;
+    ILojaReparacoesModel model;
+
+
+    public GestTecnico(ILojaReparacoesModel model){
+        this.model = model;
+    }
+
 
     // Registar Passo no Plano de Trabalhos
     public void registarPasso(String nif, float custo, LocalTime tempoPrevisto, String descricao, boolean concluido) {
-        Passo p = new Passo(custo, tempoPrevisto, descricao, concluido);
-        model.getPedidoOrcamento(nif).getPlanoTrabalho().add(p);
+        model.getPedidoOrcamento(nif).adicionaPasso(custo, tempoPrevisto, descricao, concluido);
     }
 
     public void assinalarExecucaoPasso(String nif, LocalTime tempo, float custo){
@@ -57,6 +60,10 @@ public class GestTecnico implements IGestTecnico{
         String tPass = t.getPassword();
 
         return password.equals(tPass);
+    }
+
+    public List<Tecnico> getTecnicos() {
+        return this.model.getTecnicos();
     }
 
 }
