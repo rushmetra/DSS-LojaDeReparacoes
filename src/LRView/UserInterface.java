@@ -494,10 +494,10 @@ public class UserInterface {
 
 
 
+            System.out.println("O seguinte orçamento deve ser enviado ao cliente: ");
             System.out.println("Tempo previsto : " + tempoPrevisto.toString());
             System.out.println("Prazo máximo : " + prazoMaximo.toString());
             System.out.println("Custo total : " + custo);
-            System.out.println("O seguinte orçamento deve ser enviado ao cliente: ");
             System.out.println("\tNome -> "+ nome);
             System.out.println("\tEmail -> "+ email);
 
