@@ -448,19 +448,32 @@ public class UserInterface {
 
     private void assinalaExecucaoPasso() {
         try {
-            System.out.println(" ");
-
+            System.out.println("Insira o NIF:");
+            String nif = scin.nextLine();
+            System.out.println("Agora insira o tempo previsto ->");
+            System.out.println("Insira a hora: ");
+            String hora_string = scin.nextLine();
+            int hora = Integer.parseInt(hora_string);
+            System.out.println("Insira o minuto: ");
+            String min_string = scin.nextLine();
+            int min = Integer.parseInt(min_string);
+            System.out.println("Insira os segundos: ");
+            String seg_string = scin.nextLine();
+            int seg = Integer.parseInt(seg_string);
+            LocalTime lt = LocalTime.of(hora, min, seg, 0);
+            System.out.println("Insira o custo: ");
+            String custo_string = scin.nextLine();
+            float custo = Float.parseFloat(custo_string);
+            this.gestTecnico.assinalarExecucaoPasso(nif, lt, custo);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }
     private void determinaEquipamentoMaisUrgente() {
         try {
-            System.out.println(" ");
-
+            this.gestTecnico.determinaEquipamentoMaisUrgente();
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }
-
 }
