@@ -19,7 +19,7 @@ public interface IGestFuncionarioBalcao {
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao);
 
-    public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao);
+    public void registarRecolhaEquipamentoePagamento(String nif,String idFuncionarioBalcao);
 
     public String verificaDisponiblidadeExpresso();
 
@@ -28,6 +28,8 @@ public interface IGestFuncionarioBalcao {
     public void saveFiles();
 
     public List<String> getNomeFuncionarios();
+
+    public void arquivarPedidosNaoAprovados();
 
 
 }

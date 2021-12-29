@@ -204,6 +204,12 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
                 .collect(Collectors.toList());
     }
 
+
+    public void removePedido(String id){
+        if(pedidos.containsKey(id))  this.pedidos.remove(id);
+
+    }
+
     //pedidos-expresso
 
     public Boolean containsPedidoExpresso(String nif) {

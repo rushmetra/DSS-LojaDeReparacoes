@@ -3,7 +3,9 @@ package LRController.GestFuncionarioBalcao;
 import LRModel.*;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+
 
 
 public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
@@ -83,12 +85,30 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     }
 
 
-    public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao){
+    public void registarRecolhaEquipamentoePagamento(String nif,String idFuncionarioBalcao){
         Entrega e = this.model.getEntrega(nif);
         e.setEntregue(true);
         e.setPago(true);
         FuncionarioBalcao fb = model.getFuncionarioBalcao(idFuncionarioBalcao);
         fb.incrementaEntregas();
+    }
+
+
+
+    public void arquivarPedidosNaoAprovados(){
+
+        LocalDate now = LocalDate.now();
+
+        List<PedidoOrcamento> pedidos = this.model.getListaPedidosOrcamento();
+
+        for(PedidoOrcamento p : pedidos){
+            LocalDate or = p.getDateOrcamentoRealizado();
+            long daysBetween = ChronoUnit.DAYS.between(or, now);
+            if(daysBetween >= 30) {
+                String id = p.getId();
+                this.model.removePedido(id);
+            }
+        }
     }
 
     public void saveFiles(){
