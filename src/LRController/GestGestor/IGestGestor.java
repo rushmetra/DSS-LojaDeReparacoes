@@ -9,6 +9,9 @@ public interface IGestGestor {
 
     public Gestor getGestor(String id);
 
+    public boolean adicionarGestor(String username, String password);
+
+
     public List<String> getListagem1 ();
 
     public List<String> getListagem2();

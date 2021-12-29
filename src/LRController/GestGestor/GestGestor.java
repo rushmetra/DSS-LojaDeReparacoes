@@ -21,6 +21,20 @@ public class GestGestor implements IGestGestor {
         return this.model.getGestor(id);
     }
 
+
+
+    public boolean adicionarGestor(String username, String password){
+
+        Gestor g = new Gestor(username,password);
+        return this.model.adicionarGestor(g);
+    }
+
+
+
+
+
+
+
     /*
     uma listagem em que para cada técnico de reparações é indicado o
     número de reparações programadas/expresso realizadas, a duração média
