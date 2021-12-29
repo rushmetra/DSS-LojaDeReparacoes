@@ -43,6 +43,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
             if (t.getOcupado() == false) {
                 username = t.getUsername();
                 t.setOcupado(true);
+
                 break;
             }
         }

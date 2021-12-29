@@ -28,5 +28,5 @@ public class Tecnico implements Serializable {
 
     public void setUsername(String username) { this.username = username;}
     public void setPassword(String password) { this.password = password;}
-    public void setOcupado(boolean b){ this.ocupado = ocupado; }
+    public void setOcupado(boolean b){ this.ocupado = b; }
 }
