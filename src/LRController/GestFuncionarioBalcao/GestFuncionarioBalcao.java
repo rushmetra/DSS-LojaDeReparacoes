@@ -18,6 +18,10 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return password.equals(fPass);
     }
 
+
+
+
+
     public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email){
         PedidoOrcamento po = new PedidoOrcamento(nomeCliente,contacto,email,nif);
         model.adicionaPedidoOrcamento(po);

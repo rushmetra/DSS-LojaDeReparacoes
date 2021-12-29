@@ -33,6 +33,33 @@ public class GestGestor implements IGestGestor {
         return this.model.getListaDeGestores();
     }
 
+    public boolean adicionarFuncionarioBalcao(String username, String password){
+
+        FuncionarioBalcao fb = new FuncionarioBalcao(username,password, 0,0);
+        return this.model.adicionarFuncionario(fb);
+    }
+
+
+    public boolean adicionarTecnico(String username, String password){
+
+        Tecnico t = new Tecnico(username,password,false);
+        return this.model.adicionarTecnico(t);
+    }
+
+    public boolean removerGestor(String username){
+        return this.model.removeGestor(username);
+    }
+
+    public boolean removerFuncionarioBalcao(String username){
+        return this.model.removeFuncionario(username);
+    }
+
+    public boolean removerTecnico(String username){
+        return this.model.removeTecnico(username);
+    }
+
+
+
     /*
     uma listagem em que para cada técnico de reparações é indicado o
     número de reparações programadas/expresso realizadas, a duração média

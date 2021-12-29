@@ -11,6 +11,10 @@ public interface IGestGestor {
 
     public boolean adicionarGestor(String username, String password);
 
+    public boolean adicionarFuncionarioBalcao(String username, String password);
+
+    public boolean adicionarTecnico(String username, String password);
+
 
     public List<String> getListagem1 ();
 
