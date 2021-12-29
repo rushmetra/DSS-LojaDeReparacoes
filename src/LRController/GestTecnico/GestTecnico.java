@@ -1,15 +1,18 @@
 package LRController.GestTecnico;
 
+import LRController.GestGestor.GestGestor;
 import LRModel.*;
 
 import java.time.LocalTime;
 import java.util.List;
 
 public class GestTecnico implements IGestTecnico{
-    LojaReparacoesModel model;
+    ILojaReparacoesModel model;
 
 
-
+    public GestTecnico(ILojaReparacoesModel model){
+        this.model = model;
+    }
 
 
     // Registar Passo no Plano de Trabalhos

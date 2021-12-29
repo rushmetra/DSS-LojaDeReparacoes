@@ -10,6 +10,10 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
 
 
 
+    public GestFuncionarioBalcao(ILojaReparacoesModel model){
+        this.model = model;
+    }
+
     public boolean loginFuncionarioBalcao(String username, String password) {
         if (!this.model.containsFuncionario(username)) return false;
 

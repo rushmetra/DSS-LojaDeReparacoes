@@ -1,16 +1,14 @@
 package LRController.GestFuncionarioBalcao;
 
-import LRModel.Entrega;
-import LRModel.FuncionarioBalcao;
-import LRModel.PedidoExpresso;
-import LRModel.PedidoOrcamento;
+import LRModel.*;
 
 import java.util.List;
 
 public interface IGestFuncionarioBalcao {
+
+
+
     public boolean loginFuncionarioBalcao(String username, String password);
-
-
 
     public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email);
 

@@ -26,11 +26,10 @@ public class UserInterface {
     // Scanner para leitura
     private Scanner scin;
 
-    public UserInterface(IGestFuncionarioBalcao f, IGestGestor g, IGestTecnico t, String u) {
+    public UserInterface(IGestFuncionarioBalcao f, IGestGestor g, IGestTecnico t) {
         this.gestFuncionarioBalcao = f;
         this.gestGestor = g;
         this.gestTecnico = t;
-        this.username = u;
         scin = new Scanner(System.in);
     }
 

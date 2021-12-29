@@ -20,6 +20,8 @@ public interface ILojaReparacoesModel {
 
     public boolean removeGestor(String username);
 
+    public List<Gestor> getListaDeGestores();
+
 
 
     //funcionariosBalcao
@@ -63,6 +65,8 @@ public interface ILojaReparacoesModel {
     public Boolean containsPedidoExpresso(String nif);
 
     public PedidoExpresso getPedidoExpresso(String nif);
+
+    public List<PedidoExpresso> getListaPedidosExpresso();
 
 
     //Funções para persisntência dos dados

@@ -5,7 +5,13 @@ import LRModel.*;
 import java.util.*;
 
 public class GestGestor implements IGestGestor {
-    LojaReparacoesModel model;
+    ILojaReparacoesModel model;
+
+
+
+    public GestGestor(ILojaReparacoesModel model){
+        this.model = model;
+    }
 
 
     public boolean loginGestor(String username, String password) {
@@ -67,7 +73,7 @@ public class GestGestor implements IGestGestor {
     às durações previstas
      */
     public List<String> getListagem1 () {
-
+        return null;
     }
 
     /*
