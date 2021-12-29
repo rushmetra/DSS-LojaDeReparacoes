@@ -387,8 +387,7 @@ public class UserInterface {
 
 
         } catch (NullPointerException e) {
-            System.out.println(e.getMessage());
-        }
+                    }
     }
 
 
@@ -498,8 +497,8 @@ public class UserInterface {
             System.out.println("Tempo previsto : " + tempoPrevisto.toString());
             System.out.println("Prazo máximo : " + prazoMaximo.toString());
             System.out.println("Custo total : " + custo);
-            System.out.println("\tNome -> "+ nome);
-            System.out.println("\tEmail -> "+ email);
+            System.out.println("Nome -> "+ nome);
+            System.out.println("Email -> "+ email);
 
 
 

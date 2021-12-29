@@ -18,26 +18,45 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     public LojaReparacoesModel() {
 
-        this.gestores = new HashMap<>();
-        this.funcionariosDoBalcao = new HashMap<>();
-        this.tecnicos = new HashMap<>();
-        this.pedidos = new HashMap<>();
-        this.pedidosExpressos = new HashMap<>();
-        this.entregas = new HashMap<>();
+        try {
 
-        File file = new File("saves"); //alterar pasta possivelmente
-        if (!file.exists()) {
-            this.gestores = new HashMap<>();
-            this.funcionariosDoBalcao = new HashMap<>();
-            this.tecnicos = new HashMap<>();
-        } else {
 
-            try {
-                loadData("saves");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            File gestores = new File("saves/gestores.txt"); //alterar pasta possivelmente
+            if (gestores.exists()) loadGestores("saves");
+            else this.gestores = new HashMap<>();
+
+
+            File funcionarios = new File("saves/funcionarios.txt"); //alterar pasta possivelmente
+            if (funcionarios.exists()) loadFuncionarios("saves");
+            else this.funcionariosDoBalcao = new HashMap<>();
+
+
+            File tecnicos = new File("saves/tecnicos.txt"); //alterar pasta possivelmente
+            if (tecnicos.exists()) loadTecnicos("saves");
+            else this.tecnicos = new HashMap<>();
+
+
+
+            File pedidos = new File("saves/pedidos.txt"); //alterar pasta possivelmente
+            if (pedidos.exists()) loadPedidos("saves");
+            else this.pedidos = new HashMap<>();
+
+
+            File pedidosExpresso = new File("saves/pedidos-expresso.txt"); //alterar pasta possivelmente
+            if (pedidosExpresso.exists()) loadPedidosExpresso("saves");
+            else this.pedidosExpressos = new HashMap<>();
+
+
+            File entregas = new File("saves/entregas.txt"); //alterar pasta possivelmente
+            if (entregas.exists()) loadEntregas("saves");
+            else this.pedidosExpressos = new HashMap<>();
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
+
+
 
     }
 
@@ -272,6 +291,20 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     }
 
+    public void loadEntregas(String pasta) throws IOException, ClassNotFoundException {
+
+        File toRead = new File(pasta + "/entregas.txt");
+        FileInputStream fis = new FileInputStream(toRead);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+
+        this.entregas = (HashMap<String,Entrega>) ois.readObject();
+
+
+        ois.close();
+        fis.close();
+
+    }
+
 
     public void loadData(String pasta) throws IOException, ClassNotFoundException {
 
@@ -280,6 +313,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         loadGestores(pasta);
         loadPedidos(pasta);
         loadPedidosExpresso(pasta);
+        loadEntregas(pasta);
     }
 
     public void saveGestores(String pasta) throws IOException {
