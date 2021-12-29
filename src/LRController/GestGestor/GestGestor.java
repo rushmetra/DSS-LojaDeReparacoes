@@ -173,11 +173,37 @@ public class GestGestor implements IGestGestor {
 
     public List<String> parseToDisplayListagem1 (Map<String, AbstractMap.SimpleEntry<Integer, Integer>> numReparacoesPorTecnico, Map<String, Float> duracaoMediaReparacoesProgramadas, Map<String, Float> desvio) {
         List<String> res = new ArrayList<>();
+        int nRepsProg = 0;
+        int nRepsExpr = 0;
         for (Tecnico tecnico : this.model.getTecnicos()) {
+            if (numReparacoesPorTecnico.get(tecnico.getUsername()) != null) {
+                if (numReparacoesPorTecnico.get(tecnico.getUsername()).getKey() != null) {
+                    nRepsProg = numReparacoesPorTecnico.get(tecnico.getUsername()).getKey();
+                }
+                else {
+                    nRepsProg = 0;
+                }
+            }
+            else {
+                nRepsProg = 0;
+            }
+
+            if (numReparacoesPorTecnico.get(tecnico.getUsername()) != null) {
+                if (numReparacoesPorTecnico.get(tecnico.getUsername()).getValue() != null) {
+                    nRepsExpr = numReparacoesPorTecnico.get(tecnico.getUsername()).getValue();
+                }
+                else {
+                    nRepsExpr = 0;
+                }
+            }
+            else {
+                nRepsExpr = 0;
+            }
+
             res.add("Tecnico ID: " + tecnico.getUsername() + "\n" +
-                    "\t tem " + numReparacoesPorTecnico.get(tecnico.getUsername()).getKey() + " reparações programadas e " + numReparacoesPorTecnico.get(tecnico.getUsername()).getValue() + " reparações expresso realizadas\n" +
-                    "\t a duração média das suas reparações programadas realizadas é de " + duracaoMediaReparacoesProgramadas.get(tecnico.getUsername())+ " segundos\n" +
-                    "\t e a média dos desvios em relação às durações previstas é de " + desvio.get(tecnico.getUsername()) + "\n");
+                    "\t tem " + nRepsProg + " reparações programadas e " + nRepsExpr + " reparações expresso realizadas\n" +
+                    "\t a duração média das suas reparações programadas realizadas é de " + (duracaoMediaReparacoesProgramadas.get(tecnico.getUsername())==null ? "0" : duracaoMediaReparacoesProgramadas.get(tecnico.getUsername()) )+ " segundos\n" +
+                    "\t e a média dos desvios em relação às durações previstas é de " + (desvio.get(tecnico.getUsername())==null ? "0" : desvio.get(tecnico.getUsername()) ) + "\n");
         }
         return res;
     }
@@ -241,8 +267,8 @@ public class GestGestor implements IGestGestor {
         List<String> res = new ArrayList<>();
         for(var entry : listaIntervencoes.entrySet()) {
             res.add("Tecnico ID: " + entry.getKey() + "\n" +
-                    "Lista dos passos de reparação: " + entry.getValue().getKey() + "\n" +
-                    "Lista das reparações expresso: " + entry.getValue().getValue() + "\n\n");
+                    "Lista dos passos de reparação: " + (entry.getValue().getKey() == null ? "Não existente" : entry.getValue().getKey() ) + "\n" +
+                    "Lista das reparações expresso: " + (entry.getValue().getValue() == null ? "Não existente" : entry.getValue().getValue() ) + "\n\n");
         }
         return res;
     }
