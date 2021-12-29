@@ -57,9 +57,9 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         po.setConlusaoPedido(true);
     }
 
-    public void registarConfirmacaoReparacao(String nif){
+    public void registarConfirmacaoOrcamento(String nif,boolean confirm){
         PedidoOrcamento po = this.model.getPedidoOrcamento(nif);
-        po.setConfirmacaoReparacao(true);
+        po.setConfirmacaoReparacao(confirm);
     }
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao){
@@ -75,7 +75,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         e.setEntregue(true);
         e.setPago(true);
         FuncionarioBalcao fb = model.getFuncionarioBalcao(idFuncionarioBalcao);
-        fb.setEntregasEq(fb.getEntregasEq()+1);
+        fb.incrementaEntregas();
     }
 
 

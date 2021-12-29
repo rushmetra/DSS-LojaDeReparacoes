@@ -13,7 +13,7 @@ public interface IGestFuncionarioBalcao {
 
     public void registarConclusaoPedido(String nif);
 
-    public void registarConfirmacaoReparacao(String nif);
+    public void registarConfirmacaoOrcamento(String nif,boolean confirm);
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao);
 
