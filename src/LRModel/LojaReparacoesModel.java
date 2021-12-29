@@ -166,7 +166,8 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
     public List<PedidoOrcamento> getListaPedidosOrcamento() { // mais recente fica à cabeça
         List<PedidoOrcamento> pedidos = new ArrayList<>();
         for (PedidoOrcamento p : this.pedidos.values()) {
-            pedidos.add(p);
+            if (p.getPlanoTrabalho().size() == 0)
+                pedidos.add(p);
         }
         return pedidos.stream().sorted(Comparator.comparing(PedidoOrcamento::getDataPedido).reversed())
                 .collect(Collectors.toList());

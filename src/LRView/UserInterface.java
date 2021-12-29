@@ -455,29 +455,35 @@ public class UserInterface {
      */
     private void registaPlanoTrabRep() {
         try {
-            System.out.println("Registe os passos de trabalho: ");
-            System.out.println("Para sair escreva quit.");
-            // FIXME verificar  NIF
-            System.out.println("Insira o NIF:");
-            String nif = scin.nextLine();
-            String line = "";
-            while( !line.equals("quit")) {
-                System.out.println("Insira o custo: ");
-                float custo = readOptionFloat(1000);
-                System.out.println("Agora insira o tempo previsto ->");
-                System.out.println("Insira a hora: ");
-                int hora= readOptionInt(168);
-                System.out.println("Insira o minuto: ");
-                int min = readOptionInt(59);
-                System.out.println("Insira os segundos: ");
-                int seg = readOptionInt(59);
-                LocalTime lt = LocalTime.of(hora, min, seg, 0);
-                System.out.println("Insira a descrição do passo: ");
-                String descricao = scin.nextLine();
-                this.gestTecnico.registarPasso(nif, custo, lt, descricao, false);
-                System.out.println("Se desejar terminar escreva 'quit' ou se desejar continuar prima ENTER");
-                line = scin.nextLine();
+            String nif = this.gestTecnico.determinaEquipamentoMaisAntigo();
+            if (nif == null){
+                System.out.println("Não existe nenhum equipamento para efectuar o plano de trabalhos");
+            } else {
+                System.out.println("O NIF do equipamento mais antigo é:" + nif);
+                System.out.println("Descrição do Pedido: " +  this.gestTecnico.getInfoPedido(nif));
 
+                System.out.println("Quando tiver analisado a descrição do pedido e o equipamento, registe os passos de trabalho: ");
+                System.out.println("Para sair escreva quit.");
+
+                String line = "";
+                while (!line.equals("quit")) {
+                    System.out.println("Insira o custo: ");
+                    float custo = readOptionFloat(1000);
+                    System.out.println("Agora insira o tempo previsto ->");
+                    System.out.println("Insira a hora: ");
+                    int hora = readOptionInt(168);
+                    System.out.println("Insira o minuto: ");
+                    int min = readOptionInt(59);
+                    System.out.println("Insira os segundos: ");
+                    int seg = readOptionInt(59);
+                    LocalTime lt = LocalTime.of(hora, min, seg, 0);
+                    System.out.println("Insira a descrição do passo: ");
+                    String descricao = scin.nextLine();
+                    this.gestTecnico.registarPasso(nif, custo, lt, descricao, false);
+                    System.out.println("Se desejar terminar escreva 'quit' ou se desejar continuar prima ENTER");
+                    line = scin.nextLine();
+
+                }
             }
 
             String email = this.gestTecnico.getEmailOrcamento(nif);
@@ -530,7 +536,22 @@ public class UserInterface {
      */
     private void determinaEquipamentoMaisUrgente() {
         try {
-            System.out.println(this.gestTecnico.determinaEquipamentoMaisUrgente());
+            String nif = this.gestTecnico.determinaEquipamentoMaisUrgente();
+            if (nif != null)
+                System.out.println("O NIF do equipamento mais urgente é: " + nif);
+            else
+                System.out.println("Não existem equipamentos para serem reparados.");
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     *  Estado - Determina equipamento mais urgente
+     */
+    private void determinaEquipamentoMaisAntigo() {
+        try {
+            System.out.println(this.gestTecnico.determinaEquipamentoMaisAntigo());
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }

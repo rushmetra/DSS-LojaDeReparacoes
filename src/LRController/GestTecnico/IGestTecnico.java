@@ -14,6 +14,10 @@ public interface IGestTecnico {
 
     public String determinaEquipamentoMaisUrgente();
 
+    public String determinaEquipamentoMaisAntigo() ;
+
+    public String getInfoPedido(String nif);
+
     public boolean loginTecnico(String username, String password);
 
     public List<String> getNomeTecnicos();
