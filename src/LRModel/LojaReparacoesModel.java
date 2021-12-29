@@ -70,6 +70,9 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     }
 
+    public List<Gestor> getListaDeGestores() {
+        return this.gestores.values().stream().collect(Collectors.toList());
+    }
 
     //funcionariosBalcao
 

@@ -1,8 +1,11 @@
 package LRController.GestFuncionarioBalcao;
 
 import LRModel.Entrega;
+import LRModel.FuncionarioBalcao;
 import LRModel.PedidoExpresso;
 import LRModel.PedidoOrcamento;
+
+import java.util.List;
 
 public interface IGestFuncionarioBalcao {
     public boolean loginFuncionarioBalcao(String username, String password);
@@ -21,4 +24,5 @@ public interface IGestFuncionarioBalcao {
 
     public String verificaDisponiblidadeExpresso();
 
+    public List<FuncionarioBalcao> getFuncionarios();
 }

@@ -137,8 +137,7 @@ public class UserInterface {
         String idGestor = scin.nextLine();
         System.out.println("Passaword do novo Gestor: ");
         String pw = scin.nextLine();
-        if (!this.gestGestor.existeGestor(idGestor)) { // Função booleana pra averiguar se o Gestor com este ID exist
-          this.gestGestor.adicionaGestor(idGestor, pw);
+        if ((this.gestGestor.adicionaGestor(idGestor, pw))) { // Função booleana pra averiguar se o Gestor com este ID exist
           System.out.println("Gestor adicionado.");
         } else {
           System.out.println("Gestor já existe!");
@@ -155,8 +154,7 @@ public class UserInterface {
     try{
         System.out.println("Id do Gestor: ");
         String idGestor = scin.nextLine();
-        if(this.gestGestor.existeGestor(idGestor)) {
-            this.gestGestor.removeGestor(idGestor);
+        if((this.gestGestor.removeGestor(idGestor))) {
             System.out.println("Gestor removido!");
         } else {
             System.out.println("Gestor não existe!");
@@ -175,8 +173,7 @@ public class UserInterface {
             String idFuncionario = scin.nextLine();
             System.out.println("Passaword do novo Funcionario de Balcão: ");
             String pw = scin.nextLine();
-            if (!this.gestFuncionarioBalcao.existeFuncionario(idFuncionario)) { // Função booleana pra averiguar se este ID existe
-                this.gestFuncionarioBalcao.adicionaFuncionario(idFuncionario, pw);
+            if ((this.gestGestor.adicionaFuncionario(idFuncionario, pw))) {
                 System.out.println("Funcionário de Balcão adicionado.");
             } else {
                 System.out.println("Funcionário de Balcão já existe!");
@@ -193,8 +190,7 @@ public class UserInterface {
         try{
             System.out.println("Id do Funcionário de Balcão: ");
             String idFuncionario = scin.nextLine();
-            if(this.gestFuncionarioBalcao.existeFuncionario(idFuncionario)) {
-                this.gestFuncionarioBalcao.removeFuncionario(idFuncionario);
+            if((this.gestGestor.removeFuncionario(idFuncionario))) {
                 System.out.println("Funcionário de Balcão removido!");
             } else {
                 System.out.println("Funcionário de Balcão não existe!");
@@ -213,8 +209,7 @@ public class UserInterface {
             String idTecnico = scin.nextLine();
             System.out.println("Passaword do novo Técnico de Reparações: ");
             String pw = scin.nextLine();
-            if (!this.gestTecnico.existeTecnico(idTecnico)) { // Função booleana pra averiguar se este ID existe
-                this.gestTecnico.adicionaTecnico(idTecnico, pw);
+            if (this.gestGestor.adicionaTecnico(idTecnico, pw)) {
                 System.out.println("Técnico de Reparações adicionado.");
             } else {
                 System.out.println("Técnico de Reparações já existe!");
@@ -231,8 +226,7 @@ public class UserInterface {
         try{
             System.out.println("Id do Técnico de Reparações: ");
             String idTecnico = scin.nextLine();
-            if(this.gestTecnico.existeTecnico(idTecnico)) {
-                this.gestTecnico.removeTecnico(idTecnico);
+            if((this.gestGestor.removeTecnico(idTecnico))) {
                 System.out.println("Funcionário de Balcão removido!");
             } else {
                 System.out.println("Funcionário de Balcão não existe!");
@@ -303,7 +297,7 @@ public class UserInterface {
      *  Estado - Operações sobre o Funcionario de Balcao
      *
      *  Transições possíveis:
-     *      Registar pedido orçamento
+     *      Registar pedido de orçamento
      *      Registar entrega do equipamento pelo cliente
      *      Registar serviço expresso
      *      Registar conclusão de um pedido
@@ -312,7 +306,7 @@ public class UserInterface {
      */
     private void gestaoFuncionarioBalcao() {
         Menu menuFuncionario = new Menu(new String[]{
-                "Registar pedido orçamento",
+                "Registar pedido de orçamento",
                 "Registar entrega do equipamento pelo cliente",
                 "Registar serviço expresso",
                 "Registar conclusão de um pedido",
@@ -328,6 +322,9 @@ public class UserInterface {
         menuFuncionario.run();
     }
 
+    /**
+     *  Estado - Registar pedido de orçamento
+     */
     private void registarPedidoOrcamento() {
         try {
             System.out.println("Insira nome do Cliente: ");
@@ -344,6 +341,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Estado - Registar entrega do equipamento pelo cliente
+     */
     private void registarEntregaEquipamentoPeloCliente() {
         try {
             System.out.println("Insira o NIF: ");
@@ -354,6 +354,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     *  Estado - Registar serviço expresso
+     */
     private void registaServicoExpresso() {
         try {
             System.out.println("Insira o NIF:");
@@ -366,6 +369,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     *  Estado - Registar conclusão dum pedido
+     */
     private void registarConclusaoPedido() {
         try {
             System.out.println("Insira o NIF:");
@@ -376,6 +382,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     *  Estado - Registar confirmação da reparação
+     */
     private void registarConfirmacaoDaReparacao() {
         try {
             System.out.println("Insira o NIF:");
@@ -412,6 +421,9 @@ public class UserInterface {
         menuTecnico.run();
     }
 
+    /**
+     *  Estado - Registar de trabalho reparação
+     */
     private void registaPlanoTrabRep() {
         try {
             System.out.println("Registe os passos de trabalho: ");
@@ -446,6 +458,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     *  Estado - Assinalar execução de passo
+     */
     private void assinalaExecucaoPasso() {
         try {
             System.out.println("Insira o NIF:");
@@ -469,6 +484,10 @@ public class UserInterface {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     *  Estado - Determina equipamento mais urgente
+     */
     private void determinaEquipamentoMaisUrgente() {
         try {
             this.gestTecnico.determinaEquipamentoMaisUrgente();

@@ -29,11 +29,9 @@ public class GestGestor implements IGestGestor {
         return this.model.adicionarGestor(g);
     }
 
-
-
-
-
-
+    public List<Gestor> getGestores() {
+        return this.model.getListaDeGestores();
+    }
 
     /*
     uma listagem em que para cada técnico de reparações é indicado o

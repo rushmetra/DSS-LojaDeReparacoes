@@ -1,9 +1,6 @@
 package LRController.GestTecnico;
 
-import LRModel.FuncionarioBalcao;
-import LRModel.LojaReparacoesModel;
-import LRModel.Passo;
-import LRModel.PedidoOrcamento;
+import LRModel.*;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -56,6 +53,10 @@ public class GestTecnico implements IGestTecnico{
         String tPass = t.getPassword();
 
         return password.equals(tPass);
+    }
+
+    public List<Tecnico> getTecnicos() {
+        return this.model.getTecnicos();
     }
 
 }

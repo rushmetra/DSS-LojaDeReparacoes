@@ -39,7 +39,9 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return username;
     }
 
-
+    public List<FuncionarioBalcao> getFuncionarios() {
+        return this.model.getListaDeFuncionarios();
+    }
 
     public String registarServicoExpresso(String nif,String contacto) {
 
