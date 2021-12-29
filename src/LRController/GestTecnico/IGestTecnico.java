@@ -18,6 +18,8 @@ public interface IGestTecnico {
 
     public List<String> getNomeTecnicos();
 
+    public void registarConclusaoReparacao(String nif);
+
     public List<Tecnico> getTecnicos();
 
     public void saveFiles();

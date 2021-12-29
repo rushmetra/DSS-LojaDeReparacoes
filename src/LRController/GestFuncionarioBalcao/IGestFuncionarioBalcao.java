@@ -12,13 +12,11 @@ public interface IGestFuncionarioBalcao {
 
     public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email);
 
-    public String registarServicoExpresso(String nif,String contacto);
+    public String registarServicoExpresso(String nif,String contacto,String descricao);
 
     public void registarConfirmacaoOrcamento(String nif,boolean confirm);
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao);
-
-    public void registarConclusaoReparacao(String nif);
 
     public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao);
 

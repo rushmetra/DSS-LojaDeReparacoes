@@ -51,6 +51,16 @@ public class GestTecnico implements IGestTecnico{
         return p;
     }
 
+    public void registarConclusaoReparacao(String nif){
+        PedidoOrcamento po = model.getPedidoOrcamento(nif);
+        po.setConlusaoReparacao(true);
+    }
+
+    public void registarConclusaoExpresso(String nif){
+        PedidoExpresso pe = model.getPedidoExpresso(nif);
+        pe.setConcluido(true);
+    }
+
 
     public boolean loginTecnico(String username, String password){
 

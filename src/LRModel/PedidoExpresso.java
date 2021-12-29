@@ -7,17 +7,14 @@ public class PedidoExpresso implements Serializable {
     private String nif;
     private String idTecnico;
     private String descricao;
-
-    public PedidoExpresso(String nif,String contacto){  //TODO apagar este e passar todos os construtores para o outro
-        this.contacto = contacto;
-        this.nif = nif;
-    }
+    private boolean concluido;
 
     public PedidoExpresso (String contacto, String nif, String idTecnico, String descricao) {
         this.contacto = contacto;
         this.nif = nif;
         this.idTecnico = idTecnico;
         this.descricao = descricao;
+        this.concluido = false;
     }
 
     // getters e setters
@@ -51,5 +48,13 @@ public class PedidoExpresso implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public boolean isConcluido() {
+        return concluido;
+    }
+
+    public void setConcluido(boolean concluido) {
+        this.concluido = concluido;
     }
 }
