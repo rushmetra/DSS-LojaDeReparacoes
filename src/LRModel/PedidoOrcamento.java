@@ -16,6 +16,7 @@ public class PedidoOrcamento implements Serializable {
     private String descricao;
     private List<Passo> planoTrabalho;
     private String idTecnico;
+    private LocalDate dateOrcamentoRealizado;
     private boolean confirmacaoReparacao;
     private boolean conlusaoReparacao;
 
@@ -31,6 +32,7 @@ public class PedidoOrcamento implements Serializable {
         this.idTecnico = "";
         this.confirmacaoReparacao = false;
         this.conlusaoReparacao = false;
+        this.dateOrcamentoRealizado = null;
     }
 
     public PedidoOrcamento(String nomeCliente, String contacto, String email, String nif, String descricao, LocalDate data){
@@ -88,6 +90,10 @@ public class PedidoOrcamento implements Serializable {
         return idTecnico;
     }
 
+    public LocalDate getDateOrcamentoRealizado(){
+        return  this.dateOrcamentoRealizado;
+    }
+
     public LocalDate getDataPedido() { return this.dataPedido;}
 
     public String getDescricaoPedido() { return this.descricao;}
@@ -123,6 +129,10 @@ public class PedidoOrcamento implements Serializable {
     public void adicionaPasso(float custoPrevisto, LocalTime tempoPrevisto, String descricao, boolean concluido){
         Passo p = new Passo(custoPrevisto,tempoPrevisto,descricao,concluido);
         this.planoTrabalho.add(p);
+    }
+
+    public void setDateOrcamentoRealizado(LocalDate dateOrcamentoRealizado) {
+        this.dateOrcamentoRealizado = dateOrcamentoRealizado;
     }
 
     public LocalTime getTempoTotalPrevisto() {

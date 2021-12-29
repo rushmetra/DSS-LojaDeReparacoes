@@ -18,8 +18,15 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     public LojaReparacoesModel() {
 
-        try {
+        this.gestores = new HashMap<>();
+        this.funcionariosDoBalcao = new HashMap<>();
+        this.tecnicos = new HashMap<>();
+        this.pedidos = new HashMap<>();
+        this.pedidosExpressos = new HashMap<>();
+        this.entregas = new HashMap<>();
 
+
+        try {
 
             File gestores = new File("saves/gestores.txt"); //alterar pasta possivelmente
             if (gestores.exists()) loadGestores("saves");
@@ -34,7 +41,6 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
             File tecnicos = new File("saves/tecnicos.txt"); //alterar pasta possivelmente
             if (tecnicos.exists()) loadTecnicos("saves");
             else this.tecnicos = new HashMap<>();
-
 
 
             File pedidos = new File("saves/pedidos.txt"); //alterar pasta possivelmente
@@ -54,9 +60,6 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
-
 
     }
 

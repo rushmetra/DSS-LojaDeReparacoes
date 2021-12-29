@@ -320,7 +320,7 @@ public class UserInterface {
                     "Registar pedido de orçamento",
                     "Registar entrega do equipamento pelo cliente",
                     "Registar serviço expresso",
-                    "Registar confirmação da reparação"
+                    "Registar confirmação do Orçamento"
             });
 
             menuFuncionario.setHandler(1, this::registarPedidoOrcamento);
