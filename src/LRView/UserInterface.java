@@ -4,6 +4,7 @@ import LRController.GestFuncionarioBalcao.IGestFuncionarioBalcao;
 import LRController.GestGestor.IGestGestor;
 import LRController.GestTecnico.IGestTecnico;
 
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
@@ -377,7 +378,9 @@ public class UserInterface {
 
     private void registarConfirmacaoDaReparacao() {
         try {
-
+            System.out.println("Insira o NIF:");
+            String nif = scin.nextLine();
+            this.gestFuncionarioBalcao.registarConfirmacaoReparacao(nif);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -411,7 +414,33 @@ public class UserInterface {
 
     private void registaPlanoTrabRep() {
         try {
-
+            System.out.println("Registe os passos de trabalho: ");
+            System.out.println("Para sair escreva quit.");
+            String line;
+            while(scin.hasNextLine() && !( line = scin.nextLine() ).equals("quit")) {
+                System.out.println("Insira o NIF:");
+                String nif = line;
+                System.out.println("Insira o custo: ");
+                String custo_string = scin.nextLine();
+                float custo = Float.parseFloat(custo_string);
+                System.out.println("Agora insira o tempo previsto ->");
+                System.out.println("Insira a hora: ");
+                String hora_string = scin.nextLine();
+                int hora = Integer.parseInt(hora_string);
+                System.out.println("Insira o minuto: ");
+                String min_string = scin.nextLine();
+                int min = Integer.parseInt(min_string);
+                System.out.println("Insira os segundos: ");
+                String seg_string = scin.nextLine();
+                int seg = Integer.parseInt(seg_string);
+                LocalTime lt = LocalTime.of(hora, min, seg, 0);
+                System.out.println("Insira a descrição do passo: ");
+                String descricao = scin.nextLine();
+                System.out.println("Insira o estado de conclusão (V ou F): ");
+                String conclusao_string = scin.nextLine();
+                boolean conclusao = Boolean.parseBoolean(conclusao_string);
+                this.gestTecnico.registarPasso(nif, custo, lt, descricao, conclusao);
+            }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -419,6 +448,7 @@ public class UserInterface {
 
     private void assinalaExecucaoPasso() {
         try {
+            System.out.println(" ");
 
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -426,6 +456,7 @@ public class UserInterface {
     }
     private void determinaEquipamentoMaisUrgente() {
         try {
+            System.out.println(" ");
 
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
