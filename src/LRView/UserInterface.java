@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import static java.awt.SystemColor.menu;
-
-
 /**
  * Interface do projeto.
  */
@@ -38,7 +35,7 @@ public class UserInterface {
      */
     public void run() {
         System.out.println("Bem vindo ao Sistema de Gestão de Reparações!");
-        efetuarLogin();
+        menuPrincipal();
         System.out.println("Até breve...");
     }
 
@@ -46,40 +43,21 @@ public class UserInterface {
      * Menu Principal - Efetuar login
      *
      * Transições possíveis:
-     *      Operações sobre Gestor
+     *      Operações sobre Gestores
      *      Operações sobre Técnicos de Reparação
-     *      Operações sobre Funcionário de Balcão
+     *      Operações sobre Funcionários de Balcão
      *
      */
-    private void efetuarLogin() {
-        System.out.println("Prima 1 para Gestor. Prima 2 para Funcionário de Balcão. Prima 3 para Técnico de Reparação");
-        String num = scin.nextLine();
-        int user_type = Integer.parseInt(num);
-        boolean correct_password = false;
-        while(!correct_password) {
-            if (user_type == 1) {
-                System.out.println("Insira o seu username: ");
-                username = scin.nextLine();
-                System.out.println("Insira a sua password: ");
-                String password = scin.nextLine();
-                correct_password = this.gestGestor.loginGestor(username, password);
-                gestaoGestor();
-            } else if (user_type == 2) {
-                System.out.println("Insira o seu username: ");
-                username = scin.nextLine();
-                System.out.println("Insira a sua password: ");
-                String password = scin.nextLine();
-                correct_password = this.gestFuncionarioBalcao.loginFuncionarioBalcao(username, password);
-                gestaoFuncionarioBalcao();
-            } else if (user_type == 3) {
-                System.out.println("Insira o seu username: ");
-                username = scin.nextLine();
-                System.out.println("Insira a sua password: ");
-                String password = scin.nextLine();
-                correct_password = this.gestTecnico.loginTecnico(username, password);
-                gestaoTecnicoReparacao();
-            }
-        }
+    private void menuPrincipal() {
+        Menu menuPrincipal = new Menu(new String[]{
+                "Operações sobre Gestores",
+                "Operações sobre Técnicos de Reparação",
+                "Operações sobre Funcionários de Balcão"
+        });
+
+        menuPrincipal.setHandler(1, this::gestaoGestor);
+        menuPrincipal.setHandler(2, this::gestaoFuncionarioBalcao);
+        menuPrincipal.setHandler(3, this::gestaoTecnicoReparacao);
     }
 
     // Métodos auxiliares - Estados da UI
@@ -100,31 +78,41 @@ public class UserInterface {
      *       Consultar Listagem
      */
     private void gestaoGestor() {
-        Menu menuGestor = new Menu(new String[]{
-                "Adicionar Gestor",
-                "Remover Gestor",
-                "Adicionar Funcionário de Balcão",
-                "Remover Funcionário de Balcão",
-                "Adicionar Técnico de Reparação",
-                "Remover Técnico de Reparação",
-                "Listar Gestores",
-                "Listar Funcionários de Balcão",
-                "Listar Técnicos de Reparação",
-                "Consultar Listagem"
-        });
 
-        menuGestor.setHandler(1, () -> adicionarGestor());
-        menuGestor.setHandler(2, () -> removerGestor());
-        menuGestor.setHandler(3, () -> adicionarFuncionario());
-        menuGestor.setHandler(4, () -> removerFuncionario());
-        menuGestor.setHandler(5, () -> adicionarTecnico());
-        menuGestor.setHandler(6, () -> removerTecnico());
-        menuGestor.setHandler(7, () -> listarGestores());
-        menuGestor.setHandler(8, ()-> listarFuncionarios());
-        menuGestor.setHandler(9, ()-> listarTecnicos());
-        menuGestor.setHandler(10, () -> consultarListagem());
+        boolean correct_password = false;
+        while(!correct_password) {
+            System.out.println("Insira o seu username: ");
+            username = scin.nextLine();
+            System.out.println("Insira a sua password: ");
+            String password = scin.nextLine();
+            correct_password = this.gestGestor.loginGestor(username, password);
 
-        menuGestor.run();
+        }
+                Menu menuGestor = new Menu(new String[]{
+                        "Adicionar Gestor",
+                        "Remover Gestor",
+                        "Adicionar Funcionário de Balcão",
+                        "Remover Funcionário de Balcão",
+                        "Adicionar Técnico de Reparação",
+                        "Remover Técnico de Reparação",
+                        "Listar Gestores",
+                        "Listar Funcionários de Balcão",
+                        "Listar Técnicos de Reparação",
+                        "Consultar Listagem"
+                });
+
+                menuGestor.setHandler(1, this::adicionarGestor);
+                menuGestor.setHandler(2, this::removerGestor);
+                menuGestor.setHandler(3, this::adicionarFuncionario);
+                menuGestor.setHandler(4, this::removerFuncionario);
+                menuGestor.setHandler(5, this::adicionarTecnico);
+                menuGestor.setHandler(6, this::removerTecnico);
+                menuGestor.setHandler(7, this::listarGestores);
+                menuGestor.setHandler(8, this::listarFuncionarios);
+                menuGestor.setHandler(9, this::listarTecnicos);
+                menuGestor.setHandler(10, this::consultarListagem);
+
+                menuGestor.run();
     }
 
     /**
@@ -304,21 +292,29 @@ public class UserInterface {
      *
      */
     private void gestaoFuncionarioBalcao() {
-        Menu menuFuncionario = new Menu(new String[]{
-                "Registar pedido de orçamento",
-                "Registar entrega do equipamento pelo cliente",
-                "Registar serviço expresso",
-                "Registar conclusão de um pedido",
-                "Registar confirmação da reparação"
-        });
+        boolean correct_password = false;
+        while(!correct_password) {
+            System.out.println("Insira o seu username: ");
+            username = scin.nextLine();
+            System.out.println("Insira a sua password: ");
+            String password = scin.nextLine();
+            correct_password = this.gestFuncionarioBalcao.loginFuncionarioBalcao(username, password);
+        }
+            Menu menuFuncionario = new Menu(new String[]{
+                    "Registar pedido de orçamento",
+                    "Registar entrega do equipamento pelo cliente",
+                    "Registar serviço expresso",
+                    "Registar conclusão de um pedido",
+                    "Registar confirmação da reparação"
+            });
 
-        menuFuncionario.setHandler(1, () -> registarPedidoOrcamento());
-        menuFuncionario.setHandler(2, () -> registarEntregaEquipamentoPeloCliente());
-        menuFuncionario.setHandler(3, () -> registaServicoExpresso());
-        menuFuncionario.setHandler(4, () -> registarConclusaoPedido());
-        menuFuncionario.setHandler(5, () -> registarConfirmacaoDaReparacao());
+            menuFuncionario.setHandler(1, this::registarPedidoOrcamento);
+            menuFuncionario.setHandler(2, this::registarEntregaEquipamentoPeloCliente);
+            menuFuncionario.setHandler(3, this::registaServicoExpresso);
+            menuFuncionario.setHandler(4, this::registarConclusaoPedido);
+            menuFuncionario.setHandler(5, this::registarConfirmacaoDaReparacao);
 
-        menuFuncionario.run();
+            menuFuncionario.run();
     }
 
     /**
@@ -393,9 +389,7 @@ public class UserInterface {
             int confirmacaonum = Integer.parseInt(confirmacao);
 
             boolean b ;
-            if (confirmacaonum == 1){
-                b = true;
-            } else b = false;
+            b = confirmacaonum == 1;
             this.gestFuncionarioBalcao.registarConfirmacaoOrcamento(nif,b);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -415,18 +409,28 @@ public class UserInterface {
      *
      */
     private void gestaoTecnicoReparacao() {
-        Menu menuTecnico = new Menu(new String[]{
-                "Registar plano de trabalho reparação",
-                "Assinalar execução de passo",
-                "Determina equipamento mais urgente"
-        });
+        boolean correct_password = false;
+        while(!correct_password) {
+            System.out.println("Insira o seu username: ");
+            username = scin.nextLine();
+            System.out.println("Insira a sua password: ");
+            String password = scin.nextLine();
+            correct_password = this.gestTecnico.loginTecnico(username, password);
+        }
 
-        menuTecnico.setHandler(1, () -> registaPlanoTrabRep());
-        menuTecnico.setHandler(2, () -> assinalaExecucaoPasso());
-        menuTecnico.setHandler(3, () -> determinaEquipamentoMaisUrgente());
+            Menu menuTecnico = new Menu(new String[]{
+                    "Registar plano de trabalho reparação",
+                    "Assinalar execução de passo",
+                    "Determina equipamento mais urgente"
+            });
 
-        menuTecnico.run();
-    }
+            menuTecnico.setHandler(1, this::registaPlanoTrabRep);
+            menuTecnico.setHandler(2, this::assinalaExecucaoPasso);
+            menuTecnico.setHandler(3, this::determinaEquipamentoMaisUrgente);
+
+            menuTecnico.run();
+        }
+
 
     /**
      *  Estado - Registar de trabalho reparação
