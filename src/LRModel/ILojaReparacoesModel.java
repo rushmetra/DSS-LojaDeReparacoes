@@ -67,6 +67,8 @@ public interface ILojaReparacoesModel {
 
     public String getEmailOrcamento(String nif);
 
+    public List<PedidoOrcamento> getListaPedidosAceites() ;
+
     public String getNomeOrcamento(String nif);
 
     public float getCustoTotalPrevisto(String nif);
@@ -74,7 +76,8 @@ public interface ILojaReparacoesModel {
     public LocalTime getTempoPrevisto(String nif);
 
 
-    //pedidos-expresso
+
+        //pedidos-expresso
 
     public Boolean containsPedidoExpresso(String nif);
 

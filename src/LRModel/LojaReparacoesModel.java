@@ -172,6 +172,15 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
                 .collect(Collectors.toList());
     }
 
+    public List<PedidoOrcamento> getListaPedidosAceites() { // mais recente fica à cabeça
+        List<PedidoOrcamento> pedidos = new ArrayList<>();
+        for (PedidoOrcamento p : this.pedidos.values()) {
+            if (p.isConfirmacaoReparacao()) pedidos.add(p);
+        }
+        return pedidos.stream().sorted(Comparator.comparing(PedidoOrcamento::getDataPedido).reversed())
+                .collect(Collectors.toList());
+    }
+
     //pedidos-expresso
 
     public Boolean containsPedidoExpresso(String nif) {
