@@ -90,6 +90,7 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestGestor.loginGestor(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
 
         }
                 Menu menuGestor = new Menu(new String[]{
@@ -311,6 +312,8 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestFuncionarioBalcao.loginFuncionarioBalcao(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
+
         }
             Menu menuFuncionario = new Menu(new String[]{
                     "Registar pedido de orçamento",
@@ -369,7 +372,7 @@ public class UserInterface {
             System.out.println("Insira o contacto: ");
             String contacto = scin.nextLine();
             String descricao = scin.nextLine();
-            
+
             String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto,descricao);
 
             if(tecnico == null) System.out.println("Não existe disponibilidade para realizar o serviço expresso");
@@ -423,6 +426,8 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestTecnico.loginTecnico(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
+
         }
 
             Menu menuTecnico = new Menu(new String[]{
