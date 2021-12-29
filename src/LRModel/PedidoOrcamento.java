@@ -1,7 +1,7 @@
 package LRModel;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class PedidoOrcamento implements Serializable {
     private String nomeCliente;
     private String contacto;
     private String email;
-    private LocalDateTime dataPedido;
+    private LocalDate dataPedido;
     private String descricao;
     private List<Passo> planoTrabalho;
     private String idTecnico;
@@ -19,7 +19,7 @@ public class PedidoOrcamento implements Serializable {
     private boolean conlusaoReparacao;
 
 
-    public PedidoOrcamento(String id,String nomeCliente,String contacto,String email,LocalDateTime data, String descricao,List<Passo> plano){
+    public PedidoOrcamento(String id,String nomeCliente,String contacto,String email,LocalDate data, String descricao,List<Passo> plano){
         this.id = id;
         this.nomeCliente = nomeCliente;
         this.contacto = contacto;
@@ -32,12 +32,13 @@ public class PedidoOrcamento implements Serializable {
         this.conlusaoReparacao = false;
     }
 
-    public PedidoOrcamento(String nif,String nomeCliente,String contacto,String email){
+    public PedidoOrcamento(String nif,String nomeCliente,String contacto,String email,String descricao,LocalDate data){
         this.nomeCliente = nomeCliente;
         this.contacto = contacto;
         this.email = email;
         this.id = nif;
-        this.descricao = "";
+        this.dataPedido = data;
+        this.descricao = descricao;
         this.planoTrabalho = new ArrayList<>();
         this.idTecnico = "";
         this.confirmacaoReparacao = false;
@@ -86,7 +87,7 @@ public class PedidoOrcamento implements Serializable {
         return idTecnico;
     }
 
-    public LocalDateTime getDataPedido() { return this.dataPedido;}
+    public LocalDate getDataPedido() { return this.dataPedido;}
 
     public String getDescricaoPedido() { return this.descricao;}
 

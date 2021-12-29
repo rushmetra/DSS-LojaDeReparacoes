@@ -2,6 +2,7 @@ package LRController.GestFuncionarioBalcao;
 
 import LRModel.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -26,8 +27,8 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
 
 
 
-    public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email){
-        PedidoOrcamento po = new PedidoOrcamento(nomeCliente,contacto,email,nif);
+    public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email, String descricao, LocalDate data){
+        PedidoOrcamento po = new PedidoOrcamento(nomeCliente,contacto,email,nif,descricao,data);
         model.adicionaPedidoOrcamento(po);
     }
 

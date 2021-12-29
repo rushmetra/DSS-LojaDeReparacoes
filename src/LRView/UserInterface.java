@@ -4,6 +4,7 @@ import LRController.GestFuncionarioBalcao.IGestFuncionarioBalcao;
 import LRController.GestGestor.IGestGestor;
 import LRController.GestTecnico.IGestTecnico;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collection;
 import java.util.List;
@@ -340,7 +341,17 @@ public class UserInterface {
             String nif = scin.nextLine();
             System.out.println("Insira o email: ");
             String email = scin.nextLine();
-            this.gestFuncionarioBalcao.registarPedidoOrcamento(nomeCliente, contacto, nif, email);
+            System.out.println("Insira a descricao do Pedido");
+            String descricao = scin.nextLine();
+            System.out.println("Insira a Data do Pedido->");
+            System.out.println("Insira o ano ");
+            int year = readOption(5000);
+            System.out.println("Insira o mês: ");
+            int month = readOption(12);
+            System.out.println("Insira o dia: ");
+            int day = readOption(31);
+            LocalDate ldt = LocalDate.of(year,month,day);
+            this.gestFuncionarioBalcao.registarPedidoOrcamento(nomeCliente, contacto, nif, email,descricao,ldt);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
