@@ -348,11 +348,11 @@ public class UserInterface {
             String descricao = scin.nextLine();
             System.out.println("Insira a Data do Pedido->");
             System.out.println("Insira o ano ");
-            int year = readOption(5000);
+            int year = readOptionInt(5000);
             System.out.println("Insira o mês: ");
-            int month = readOption(12);
+            int month = readOptionInt(12);
             System.out.println("Insira o dia: ");
-            int day = readOption(31);
+            int day = readOptionInt(31);
             LocalDate ldt = LocalDate.of(year,month,day);
             this.gestFuncionarioBalcao.registarPedidoOrcamento(nomeCliente, contacto, nif, email,descricao,ldt);
         } catch (NullPointerException e) {
