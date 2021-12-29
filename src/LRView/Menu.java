@@ -158,13 +158,7 @@ public class Menu {
             }
         } while (op != 0);
 
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> 445cf9911fda577b9b02d5c63a0c2d7e7200e148
     }
 
     /**

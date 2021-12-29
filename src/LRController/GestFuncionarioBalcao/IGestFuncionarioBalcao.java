@@ -26,11 +26,9 @@ public interface IGestFuncionarioBalcao {
 
     public List<FuncionarioBalcao> getFuncionarios();
 
-<<<<<<< HEAD
     public void saveFiles();
 
-=======
     public List<String> getNomeFuncionarios();
->>>>>>> 445cf9911fda577b9b02d5c63a0c2d7e7200e148
+
 
 }

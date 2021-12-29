@@ -201,7 +201,7 @@ public class GestGestor implements IGestGestor {
 
     /*
     uma listagem exaustiva, para cada técnico, de todas as intervenções
-    (passos de reparação e reparações expresso) realizas.
+    (passos de reparação e reparações expresso) realizadas.
      */
     public List<String> getListagem3() {
         Map<String, AbstractMap.SimpleEntry<List<List<Passo>>, List<String>>> intervencoesPorTecnico = new HashMap<>();

@@ -37,6 +37,7 @@ public class UserInterface {
         System.out.println("Bem vindo ao Sistema de Gestão de Reparações!");
         menuPrincipal();
         System.out.println("Até breve...");
+        this.gestGestor.saveFiles();
     }
 
     /**
@@ -55,9 +56,11 @@ public class UserInterface {
                 "Operações sobre Funcionários de Balcão"
         });
 
-        menuPrincipal.setHandler(1, this::gestaoGestor);
-        menuPrincipal.setHandler(2, this::gestaoFuncionarioBalcao);
-        menuPrincipal.setHandler(3, this::gestaoTecnicoReparacao);
+        menuPrincipal.setHandler(1, ()-> gestaoGestor());
+        menuPrincipal.setHandler(2, ()-> gestaoFuncionarioBalcao());
+        menuPrincipal.setHandler(3, ()-> gestaoTecnicoReparacao());
+
+        menuPrincipal.run();
     }
 
     // Métodos auxiliares - Estados da UI
@@ -79,22 +82,6 @@ public class UserInterface {
      */
     private void gestaoGestor() {
 
-<<<<<<< HEAD
-        menuGestor.setHandler(1, () -> adicionarGestor());
-        menuGestor.setHandler(2, () -> removerGestor());
-        menuGestor.setHandler(3, () -> adicionarFuncionario());
-        menuGestor.setHandler(4, () -> removerFuncionario());
-        menuGestor.setHandler(5, () -> adicionarTecnico());
-        menuGestor.setHandler(6, () -> removerTecnico());
-        menuGestor.setHandler(7, () -> listarGestores());
-        menuGestor.setHandler(8, ()-> listarFuncionarios());
-        menuGestor.setHandler(9, ()-> listarTecnicos());
-        menuGestor.setHandler(10, () -> consultarListagem());
-
-        menuGestor.run();
-
-        this.gestGestor.saveFiles();
-=======
         boolean correct_password = false;
         while(!correct_password) {
             System.out.println("Insira o seu username: ");
@@ -129,7 +116,7 @@ public class UserInterface {
                 menuGestor.setHandler(10, this::consultarListagem);
 
                 menuGestor.run();
->>>>>>> 445cf9911fda577b9b02d5c63a0c2d7e7200e148
+
     }
 
     /**
@@ -283,6 +270,13 @@ public class UserInterface {
     private void consultarListagem() {
         try {
             System.out.println("Número da listagem a consultar: ");
+            System.out.println("1 - Por técnico: \n" +
+                                  "                   - número de reparações programadas/expresso realizadas \n" +
+                                  "                   _ a duração média das reparações programadas realizadas\n" +
+                                  "                   _ média dos desvio em relação às durações previstas \n");
+
+            System.out.println("2 - Recepções e entregas de equipamentos realizadas por funcionário balcão\n");
+            System.out.println("3 - Todas as intervenções (passos de reparação e reparações expresso) realizadas por técnico.\n");
             String num = scin.nextLine();
             int listNumber = Integer.parseInt(num);
             if(listNumber == 1) {
