@@ -15,7 +15,7 @@ public class PedidoOrcamento {
     private List<Passo> planoTrabalho;
     private String idTecnico;
     private boolean confirmacaoReparacao;
-    private boolean conlusaoPedido;
+    private boolean conlusaoReparacao;
 
 
     public PedidoOrcamento(String id,String nomeCliente,String contacto,String email,LocalDateTime data, String descricao,List<Passo> plano){
@@ -28,7 +28,7 @@ public class PedidoOrcamento {
         this.planoTrabalho = plano;
         this.idTecnico = "";
         this.confirmacaoReparacao = false;
-        this.conlusaoPedido = false;
+        this.conlusaoReparacao = false;
     }
 
     public PedidoOrcamento(String nif,String nomeCliente,String contacto,String email){
@@ -40,7 +40,7 @@ public class PedidoOrcamento {
         this.planoTrabalho = new ArrayList<>();
         this.idTecnico = "";
         this.confirmacaoReparacao = false;
-        this.conlusaoPedido = false;
+        this.conlusaoReparacao = false;
     }
 
     // getters e setters
@@ -77,8 +77,8 @@ public class PedidoOrcamento {
         return confirmacaoReparacao;
     }
 
-    public boolean isConlusaoPedido() {
-        return conlusaoPedido;
+    public boolean isConlusaoReparacao() {
+        return conlusaoReparacao;
     }
 
     public String getIdTecnico() {
@@ -109,8 +109,8 @@ public class PedidoOrcamento {
         this.confirmacaoReparacao = confirmacaoReparacao;
     }
 
-    public void setConlusaoPedido(boolean conlusaoPedido) {
-        this.conlusaoPedido = conlusaoPedido;
+    public void setConlusaoReparacao(boolean conlusaoReparacao) {
+        this.conlusaoReparacao = conlusaoReparacao;
     }
 
     public void setIdTecnico(String idTecnico) {

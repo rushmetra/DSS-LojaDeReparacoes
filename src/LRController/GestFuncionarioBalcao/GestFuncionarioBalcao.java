@@ -47,9 +47,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return username;
     }
 
-    public List<FuncionarioBalcao> getFuncionarios() {
-        return this.model.getListaDeFuncionarios();
-    }
+
 
     public String registarServicoExpresso(String nif,String contacto) {
 
@@ -62,9 +60,8 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         return username;
     }
 
-    public void registarConclusaoPedido(String nif){
-        PedidoOrcamento po = this.model.getPedidoOrcamento(nif);
-        po.setConlusaoPedido(true);
+    public List<FuncionarioBalcao> getFuncionarios() {
+        return this.model.getListaDeFuncionarios();
     }
 
     public void registarConfirmacaoOrcamento(String nif,boolean confirm){
@@ -79,6 +76,11 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         fb.incrementaRececao();
     }
 
+
+    public void registarConclusaoReparacao(String nif){
+        PedidoOrcamento po = model.getPedidoOrcamento(nif);
+        po.setConlusaoReparacao(true);
+    }
 
     public void registarEntregaEquipamentoePagamento(String nif,String idFuncionarioBalcao){
         Entrega e = this.model.getEntrega(nif);

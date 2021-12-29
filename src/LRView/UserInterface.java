@@ -375,7 +375,7 @@ public class UserInterface {
         try {
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
-            this.gestFuncionarioBalcao.registarConclusaoPedido(nif);
+            this.gestFuncionarioBalcao.registarConclusaoReparacao(nif);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -388,7 +388,13 @@ public class UserInterface {
         try {
             System.out.println("Insira o NIF:");
             String nif = scin.nextLine();
-            this.gestFuncionarioBalcao.registarConfirmacaoReparacao(nif);
+            System.out.println("Insira '1' se aceitou ou '2' se rejeitou "); // ver no fim se isto de ler o boolean funciona
+            String confirmacao = scin.nextLine();
+            boolean b ;
+            if (confirmacao.compareTo("1") == 0){
+                b = true;
+            } else b = false;
+            this.gestFuncionarioBalcao.registarConfirmacaoOrcamento(nif,b);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
