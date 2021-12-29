@@ -52,8 +52,9 @@ public class UserInterface {
     private void menuPrincipal() {
         Menu menuPrincipal = new Menu(new String[]{
                 "Operações sobre Gestores",
-                "Operações sobre Técnicos de Reparação",
-                "Operações sobre Funcionários de Balcão"
+                "Operações sobre Funcionários de Balcão",
+                "Operações sobre Técnicos de Reparação"
+
         });
 
         menuPrincipal.setHandler(1, ()-> gestaoGestor());
@@ -369,7 +370,14 @@ public class UserInterface {
             String nif = scin.nextLine();
             System.out.println("Insira o contacto: ");
             String contacto = scin.nextLine();
-            this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto);
+            String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto);
+
+            if(tecnico == null) System.out.println("Não existe disponibilidade para realizar o serviço expresso");
+            else{
+                System.out.println("O Serviço expresso foi atribuido ao tecnico  " + tecnico);
+            }
+
+
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }

@@ -37,7 +37,9 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
 
         List<Tecnico> tecnicos = this.model.getTecnicos();
         String username = null;
+
         for (Tecnico t : tecnicos) {
+
             if (t.getOcupado() == false) {
                 username = t.getUsername();
                 t.setOcupado(true);
