@@ -4,6 +4,7 @@ import LRController.GestFuncionarioBalcao.IGestFuncionarioBalcao;
 import LRController.GestGestor.IGestGestor;
 import LRController.GestTecnico.IGestTecnico;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collection;
 import java.util.List;
@@ -90,6 +91,7 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestGestor.loginGestor(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
 
         }
                 Menu menuGestor = new Menu(new String[]{
@@ -315,6 +317,8 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestFuncionarioBalcao.loginFuncionarioBalcao(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
+
         }
             Menu menuFuncionario = new Menu(new String[]{
                     "Registar pedido de orçamento",
@@ -344,7 +348,17 @@ public class UserInterface {
             String nif = scin.nextLine();
             System.out.println("Insira o email: ");
             String email = scin.nextLine();
-            this.gestFuncionarioBalcao.registarPedidoOrcamento(nomeCliente, contacto, nif, email);
+            System.out.println("Insira a descricao do Pedido");
+            String descricao = scin.nextLine();
+            System.out.println("Insira a Data do Pedido->");
+            System.out.println("Insira o ano ");
+            int year = readOptionInt(5000);
+            System.out.println("Insira o mês: ");
+            int month = readOptionInt(12);
+            System.out.println("Insira o dia: ");
+            int day = readOptionInt(31);
+            LocalDate ldt = LocalDate.of(year,month,day);
+            this.gestFuncionarioBalcao.registarPedidoOrcamento(nomeCliente, contacto, nif, email,descricao,ldt);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -373,7 +387,7 @@ public class UserInterface {
             System.out.println("Insira o contacto: ");
             String contacto = scin.nextLine();
             String descricao = scin.nextLine();
-            
+
             String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto,descricao);
 
             if(tecnico == null) System.out.println("Não existe disponibilidade para realizar o serviço expresso");
@@ -429,6 +443,8 @@ public class UserInterface {
             System.out.println("Insira a sua password: ");
             String password = scin.nextLine();
             correct_password = this.gestTecnico.loginTecnico(username, password);
+            if(!correct_password) System.out.println("Dados Log in inválidos");
+
         }
 
             Menu menuTecnico = new Menu(new String[]{

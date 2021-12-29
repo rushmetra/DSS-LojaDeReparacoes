@@ -2,6 +2,7 @@ package LRController.GestFuncionarioBalcao;
 
 import LRModel.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IGestFuncionarioBalcao {
@@ -10,7 +11,7 @@ public interface IGestFuncionarioBalcao {
 
     public boolean loginFuncionarioBalcao(String username, String password);
 
-    public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email);
+    public void registarPedidoOrcamento(String nomeCliente, String contacto, String nif, String email, String descricao, LocalDate data);
 
     public String registarServicoExpresso(String nif,String contacto,String descricao);
 
