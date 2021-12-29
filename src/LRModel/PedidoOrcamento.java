@@ -1,11 +1,12 @@
 package LRModel;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PedidoOrcamento {
+public class PedidoOrcamento implements Serializable {
     private String id;
     private String nomeCliente;
     private String contacto;

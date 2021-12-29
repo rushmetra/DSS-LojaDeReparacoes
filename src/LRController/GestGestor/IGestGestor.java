@@ -36,4 +36,6 @@ public interface IGestGestor {
 
     public List<Gestor> getGestores();
 
+    public void saveFiles();
+
 }

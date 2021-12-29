@@ -1,6 +1,8 @@
 package LRModel;
 
-public class Gestor {
+import java.io.Serializable;
+
+public class Gestor implements Serializable {
 
     String username;
     String password;

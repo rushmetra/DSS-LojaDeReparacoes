@@ -1,6 +1,9 @@
 package LRModel;
 
-public class Tecnico {
+import java.io.Serializable;
+
+public class Tecnico implements Serializable {
+
     private String username;
     private String password;
     private boolean ocupado;

@@ -66,4 +66,9 @@ public class GestTecnico implements IGestTecnico{
         return this.model.getTecnicos();
     }
 
+
+    public void saveFiles(){
+        this.model.saveData("saves");
+    }
+
 }

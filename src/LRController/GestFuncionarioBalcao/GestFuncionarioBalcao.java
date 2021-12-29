@@ -88,6 +88,8 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         fb.setEntregasEq(fb.getEntregasEq()+1);
     }
 
-
+    public void saveFiles(){
+        this.model.saveData("saves");
+    }
 
 }

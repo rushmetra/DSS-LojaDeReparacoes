@@ -125,6 +125,8 @@ public class UserInterface {
         menuGestor.setHandler(10, () -> consultarListagem());
 
         menuGestor.run();
+
+        this.gestGestor.saveFiles();
     }
 
     /**

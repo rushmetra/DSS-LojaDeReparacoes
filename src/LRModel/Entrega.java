@@ -1,6 +1,8 @@
 package LRModel;
 
-public class Entrega {
+import java.io.Serializable;
+
+public class Entrega implements Serializable {
     private String nif;
     private String idfuncionarioBalcao;
     private boolean entregue;

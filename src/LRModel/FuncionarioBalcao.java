@@ -1,6 +1,8 @@
 package LRModel;
 
-public class FuncionarioBalcao {
+import java.io.Serializable;
+
+public class FuncionarioBalcao implements Serializable {
     private String username;
     private String password;
     private int rececoesEq;

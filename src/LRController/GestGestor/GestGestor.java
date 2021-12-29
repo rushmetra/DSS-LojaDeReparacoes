@@ -242,4 +242,22 @@ public class GestGestor implements IGestGestor {
         }
         return res;
     }
+
+
+
+    public void saveFiles(){
+        this.model.saveData("saves");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -330,6 +330,10 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     public void saveData(String pasta){
 
+
+            File folder = new File(pasta);
+            if(!folder.exists()) folder.mkdir();
+
         try {
             saveFuncionarios(pasta);
             saveGestores(pasta);

@@ -26,5 +26,7 @@ public interface IGestFuncionarioBalcao {
 
     public List<FuncionarioBalcao> getFuncionarios();
 
+    public void saveFiles();
+
 
 }

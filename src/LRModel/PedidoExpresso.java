@@ -1,6 +1,8 @@
 package LRModel;
 
-public class PedidoExpresso {
+import java.io.Serializable;
+
+public class PedidoExpresso implements Serializable {
     private String contacto;
     private String nif;
     private String idTecnico;

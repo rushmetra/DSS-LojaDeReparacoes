@@ -93,6 +93,8 @@ public interface ILojaReparacoesModel {
 
     public void savePedidosExpresso(String pasta) throws IOException ;
 
+    public void saveData(String pasta);
+
     public void adicionaPedidoOrcamento(PedidoOrcamento po);
 
     public void adicionaPedidoExpresso(PedidoExpresso pe) ;
