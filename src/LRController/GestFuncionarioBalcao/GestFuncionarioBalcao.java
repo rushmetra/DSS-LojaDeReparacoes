@@ -74,7 +74,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
 
     public void registarConfirmacaoOrcamento(String nif,boolean confirm){
         PedidoOrcamento po = this.model.getPedidoOrcamento(nif);
-        po.setConfirmacaoReparacao(confirm);
+        po.setAprovado(confirm);
     }
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao){
@@ -85,12 +85,18 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     }
 
 
-    public void registarRecolhaEquipamentoePagamento(String nif,String idFuncionarioBalcao){
+    public boolean registarRecolhaEquipamentoePagamento(String nif,String idFuncionarioBalcao){
+
         Entrega e = this.model.getEntrega(nif);
-        e.setEntregue(true);
+
+        if(e.getProntoParaRecolha() == null) return  false;
+
+        e.setRecolhido(true);
         e.setPago(true);
         FuncionarioBalcao fb = model.getFuncionarioBalcao(idFuncionarioBalcao);
         fb.incrementaEntregas();
+
+        return true;
     }
 
 
@@ -102,13 +108,46 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         List<PedidoOrcamento> pedidos = this.model.getListaPedidosOrcamento();
 
         for(PedidoOrcamento p : pedidos){
-            LocalDate or = p.getDateOrcamentoRealizado();
-            long daysBetween = ChronoUnit.DAYS.between(or, now);
-            if(daysBetween >= 30) {
-                String id = p.getId();
-                this.model.removePedido(id);
+
+            if(!p.isAprovado()){
+
+                LocalDate or = p.getDateOrcamentoRealizado();
+                long daysBetween = ChronoUnit.DAYS.between(or, now);
+                if(daysBetween >= 30) {
+                    String id = p.getId();
+                    this.model.removePedido(id);
+                    colocarProntoParaRecolha(p.getId());
+                }
+            }
+
+        }
+    }
+
+
+    public void darBaixaEquipamentosNaoRecolhidos(){
+
+        LocalDate now = LocalDate.now();
+
+        List<Entrega> entregas = this.model.getListaEntregas();
+
+        for(Entrega e : entregas){
+
+            if(e.isRecolhido()) {
+                LocalDate or = e.getProntoParaRecolha();
+                long daysBetween = ChronoUnit.DAYS.between(or, now);
+                if (daysBetween >= 90) {
+                    String id = e.getNif();
+                    this.model.removeEntrega(id);
+                }
             }
         }
+    }
+
+
+
+
+    public void colocarProntoParaRecolha(String nif){
+        this.model.getEntrega(nif).setProntoParaRecolha(LocalDate.now());
     }
 
     public void saveFiles(){

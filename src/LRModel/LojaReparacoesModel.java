@@ -198,7 +198,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
     public List<PedidoOrcamento> getListaPedidosAceites() { // mais recente fica à cabeça
         List<PedidoOrcamento> pedidos = new ArrayList<>();
         for (PedidoOrcamento p : this.pedidos.values()) {
-            if (p.isConfirmacaoReparacao()) pedidos.add(p);
+            if (p.isAprovado()) pedidos.add(p);
         }
         return pedidos.stream().sorted(Comparator.comparing(PedidoOrcamento::getDataPedido).reversed())
                 .collect(Collectors.toList());
@@ -447,5 +447,13 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     public Entrega getEntrega(String nif) {
         return this.entregas.get(nif);
+    }
+
+    public List<Entrega> getListaEntregas(){
+        return this.entregas.values().stream().collect(Collectors.toList());
+    }
+
+    public void removeEntrega(String nif){
+        this.entregas.remove(nif);
     }
 }

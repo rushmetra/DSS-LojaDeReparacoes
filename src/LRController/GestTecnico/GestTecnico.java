@@ -91,11 +91,15 @@ public class GestTecnico implements IGestTecnico{
         public void registarConclusaoReparacao(String nif){
         PedidoOrcamento po = model.getPedidoOrcamento(nif);
         po.setConlusaoReparacao(true);
+        Entrega e = model.getEntrega(nif);
+        e.setProntoParaRecolha(LocalDate.now());
     }
 
     public void registarConclusaoExpresso(String nif){
         PedidoExpresso pe = model.getPedidoExpresso(nif);
         pe.setConcluido(true);
+        Entrega e = model.getEntrega(nif);
+        e.setProntoParaRecolha(LocalDate.now());
     }
 
 
@@ -149,5 +153,10 @@ public class GestTecnico implements IGestTecnico{
 
         return prazo;
     }
+
+    public void colocarProntoParaRecolha(String nif){
+        this.model.getEntrega(nif).setProntoParaRecolha(LocalDate.now());
+    }
+
 
 }

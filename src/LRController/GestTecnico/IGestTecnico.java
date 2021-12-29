@@ -40,5 +40,7 @@ public interface IGestTecnico {
 
     public LocalTime getPrazoMaximo(String nif);
 
+    public void colocarProntoParaRecolha(String nif);
+
 
 }

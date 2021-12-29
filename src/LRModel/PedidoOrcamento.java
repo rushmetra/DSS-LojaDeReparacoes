@@ -17,7 +17,7 @@ public class PedidoOrcamento implements Serializable {
     private List<Passo> planoTrabalho;
     private String idTecnico;
     private LocalDate dateOrcamentoRealizado;
-    private boolean confirmacaoReparacao;
+    private boolean aprovado;
     private boolean conlusaoReparacao;
 
 
@@ -30,7 +30,7 @@ public class PedidoOrcamento implements Serializable {
         this.descricao = descricao;
         this.planoTrabalho = plano;
         this.idTecnico = "";
-        this.confirmacaoReparacao = false;
+        this.aprovado = false;
         this.conlusaoReparacao = false;
         this.dateOrcamentoRealizado = null;
     }
@@ -44,7 +44,7 @@ public class PedidoOrcamento implements Serializable {
         this.descricao = descricao;
         this.planoTrabalho = new ArrayList<>();
         this.idTecnico = "";
-        this.confirmacaoReparacao = false;
+        this.aprovado = false;
         this.conlusaoReparacao = false;
     }
 
@@ -78,8 +78,8 @@ public class PedidoOrcamento implements Serializable {
         }
     }
 
-    public boolean isConfirmacaoReparacao() {
-        return confirmacaoReparacao;
+    public boolean isAprovado() {
+        return aprovado;
     }
 
     public boolean isConlusaoReparacao() {
@@ -114,8 +114,8 @@ public class PedidoOrcamento implements Serializable {
         this.id = id;
     }
 
-    public void setConfirmacaoReparacao(boolean confirmacaoReparacao) {
-        this.confirmacaoReparacao = confirmacaoReparacao;
+    public void setAprovado(boolean confirmacaoReparacao) {
+        this.aprovado = confirmacaoReparacao;
     }
 
     public void setConlusaoReparacao(boolean conlusaoReparacao) {

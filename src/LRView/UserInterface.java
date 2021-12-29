@@ -38,6 +38,8 @@ public class UserInterface {
         System.out.println("Bem vindo ao Sistema de Gestão de Reparações!");
         System.out.println("A remover pedidos não aprovados com mais de 30 dias");
         this.gestFuncionarioBalcao.arquivarPedidosNaoAprovados();
+        System.out.println("A remover equipamentos não levantados há mais de 90 dias");
+        this.gestFuncionarioBalcao.darBaixaEquipamentosNaoRecolhidos();
         menuPrincipal();
         System.out.println("Até breve...");
         this.gestGestor.saveFiles();
@@ -422,7 +424,8 @@ public class UserInterface {
         System.out.println("Insira o NIF:");
         String nif = scin.nextLine();
 
-        this.gestFuncionarioBalcao.registarRecolhaEquipamentoePagamento(nif,this.username);
+        if(!this.gestFuncionarioBalcao.registarRecolhaEquipamentoePagamento(nif,this.username))
+            System.out.println("O equipamento não está pronto para ser recolhido");
 
     }
 
@@ -588,6 +591,9 @@ public class UserInterface {
 
             if(op == 1) this.gestTecnico.registarConclusaoReparacao(nif);
             else this.gestTecnico.registarConclusaoExpresso(nif);
+
+
+            this.gestTecnico.colocarProntoParaRecolha(nif);
 
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());

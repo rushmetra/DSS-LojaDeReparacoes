@@ -121,6 +121,10 @@ public interface ILojaReparacoesModel {
 
     public Entrega getEntrega(String nif) ;
 
+    public List<Entrega> getListaEntregas();
+
+    public void removeEntrega(String nif);
+
 
 
 }

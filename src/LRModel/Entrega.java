@@ -1,18 +1,21 @@
 package LRModel;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Entrega implements Serializable {
     private String nif;
     private String idfuncionarioBalcao;
-    private boolean entregue;
+    private LocalDate prontoParaRecolha;
+    private boolean recolhido;
     private boolean pago;
 
     public Entrega (String nif, String idfuncionarioBalcao){
         this.nif = nif;
         this.idfuncionarioBalcao = idfuncionarioBalcao;
-        this.entregue = false;
+        this.recolhido = false;
         this.pago = false;
+        this.prontoParaRecolha = null;
     }
 
     public String getNif() {
@@ -23,8 +26,8 @@ public class Entrega implements Serializable {
         return this.idfuncionarioBalcao;
     }
 
-    public boolean isEntregue() {
-        return this.entregue;
+    public boolean isRecolhido() {
+        return this.recolhido;
     }
 
     public boolean isPago(){
@@ -39,11 +42,19 @@ public class Entrega implements Serializable {
         this.idfuncionarioBalcao = idfuncionarioBalcao;
     }
 
-    public void setEntregue(boolean entregue) {
-        this.entregue = entregue;
+    public void setRecolhido(boolean entregue) {
+        this.recolhido = entregue;
     }
 
     public void setPago(boolean pago) {
         this.pago = pago;
+    }
+
+    public void setProntoParaRecolha(LocalDate d){
+        this.prontoParaRecolha = d;
+    }
+
+    public LocalDate getProntoParaRecolha() {
+        return prontoParaRecolha;
     }
 }

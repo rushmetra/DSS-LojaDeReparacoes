@@ -19,7 +19,7 @@ public interface IGestFuncionarioBalcao {
 
     public void registarEntregaEquipamentoPeloCliente(String nif,String idFuncionarioBalcao);
 
-    public void registarRecolhaEquipamentoePagamento(String nif,String idFuncionarioBalcao);
+    public boolean registarRecolhaEquipamentoePagamento(String nif,String idFuncionarioBalcao);
 
     public String verificaDisponiblidadeExpresso();
 
@@ -30,6 +30,10 @@ public interface IGestFuncionarioBalcao {
     public List<String> getNomeFuncionarios();
 
     public void arquivarPedidosNaoAprovados();
+
+    public void colocarProntoParaRecolha(String nif);
+
+    public void darBaixaEquipamentosNaoRecolhidos();
 
 
 }
