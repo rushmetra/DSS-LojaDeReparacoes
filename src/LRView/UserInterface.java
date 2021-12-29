@@ -370,7 +370,8 @@ public class UserInterface {
             String nif = scin.nextLine();
             System.out.println("Insira o contacto: ");
             String contacto = scin.nextLine();
-            String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto);
+            String descricao;
+            String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto,descricao);
 
             if(tecnico == null) System.out.println("Não existe disponibilidade para realizar o serviço expresso");
             else{
