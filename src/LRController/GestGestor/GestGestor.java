@@ -219,10 +219,15 @@ public class GestGestor implements IGestGestor {
     public List<String> getListagem2() {
         List<String> res = new ArrayList<>();
         for (FuncionarioBalcao f : this.model.getListaDeFuncionarios()) {
-            String s = "O funcionário " + f.getUsername() + " tem " + f.getRececoesEq() + " receções de equipamentos e " + f.getEntregasEq() + " entregas de equipamentos.";
+            String s = toStringListagem2(f.getUsername(), f.getRececoesEq(), f.getEntregasEq());
             res.add(s);
         }
         return res;
+    }
+
+    public String toStringListagem2(String username, int nRececoes, int nEntregas) {
+        String s = "O funcionário " + username + " tem " + nRececoes + " receções de equipamentos e " + nEntregas + " entregas de equipamentos. \n";
+        return s;
     }
 
     /*
