@@ -13,8 +13,7 @@ public class GestTecnico implements IGestTecnico{
 
     // Registar Passo no Plano de Trabalhos
     public void registarPasso(String nif, float custo, LocalTime tempoPrevisto, String descricao, boolean concluido) {
-        Passo p = new Passo(custo, tempoPrevisto, descricao, concluido);
-        model.getPedidoOrcamento(nif).getPlanoTrabalho().add(p);
+        model.getPedidoOrcamento(nif).adicionaPasso(custo, tempoPrevisto, descricao, concluido);
     }
 
     public void assinalarExecucaoPasso(String nif, LocalTime tempo, float custo){

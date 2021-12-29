@@ -11,4 +11,6 @@ public interface IGestTecnico {
     public void assinalarExecucaoPasso(String nif, LocalTime tempo, float custo);
 
     public PedidoOrcamento determinaEquipamentoMaisUrgente();
+
+    public boolean loginTecnico(String username, String password);
 }
