@@ -25,4 +25,15 @@ public interface IGestTecnico {
     public List<Tecnico> getTecnicos();
 
     public void saveFiles();
+
+    public String getEmailOrcamento(String nif);
+
+    public String getNomeOrcamento(String nif);
+
+    public Float getCustoTotalPrevisto(String nif);
+
+    public LocalTime getTempoPrevistoOrcamento(String nif);
+
+
+
 }

@@ -1,6 +1,7 @@
 package LRModel;
 
 import java.io.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -64,7 +65,13 @@ public interface ILojaReparacoesModel {
 
     public List<PedidoOrcamento> getListaPedidosOrcamento() ;
 
+    public String getEmailOrcamento(String nif);
 
+    public String getNomeOrcamento(String nif);
+
+    public float getCustoTotalPrevisto(String nif);
+
+    public LocalTime getTempoPrevisto(String nif);
 
 
     //pedidos-expresso

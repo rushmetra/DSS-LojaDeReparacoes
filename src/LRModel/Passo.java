@@ -23,6 +23,7 @@ public class Passo {
     public LocalTime getTempo() { return this.tempo;}
     public LocalTime getTempoPrevisto() { return this.tempoPrevisto; }
     public float getCustoPrevisto() { return this.custoPrevisto;}
+    public float getCustoFinal(){return  this.getCustoFinal();}
     public boolean getConcluido() { return this.concluido; }
 
     /* Setters */
