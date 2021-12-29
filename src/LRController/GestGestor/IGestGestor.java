@@ -15,6 +15,13 @@ public interface IGestGestor {
 
     public boolean adicionarTecnico(String username, String password);
 
+    public boolean removerGestor(String username);
+
+    public boolean removerFuncionarioBalcao(String username);
+
+    public boolean removerTecnico(String username);
+
+
 
     public List<String> getListagem1 ();
 

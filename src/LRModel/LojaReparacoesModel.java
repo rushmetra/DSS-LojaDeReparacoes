@@ -127,7 +127,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
         if(this.tecnicos.containsKey(t.getUsername())) return false;
 
-        this.funcionariosDoBalcao.put(t.getUsername(),t);
+        this.tecnicos.put(t.getUsername(),t);
 
         return true;
     }

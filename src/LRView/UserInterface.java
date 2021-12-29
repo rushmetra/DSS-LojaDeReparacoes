@@ -137,7 +137,7 @@ public class UserInterface {
         String idGestor = scin.nextLine();
         System.out.println("Passaword do novo Gestor: ");
         String pw = scin.nextLine();
-        if ((this.gestGestor.adicionaGestor(idGestor, pw))) { // Função booleana pra averiguar se o Gestor com este ID exist
+        if ((this.gestGestor.adicionarGestor(idGestor, pw))) { // Função booleana pra averiguar se o Gestor com este ID exist
           System.out.println("Gestor adicionado.");
         } else {
           System.out.println("Gestor já existe!");
@@ -154,7 +154,7 @@ public class UserInterface {
     try{
         System.out.println("Id do Gestor: ");
         String idGestor = scin.nextLine();
-        if((this.gestGestor.removeGestor(idGestor))) {
+        if((this.gestGestor.removerGestor(idGestor))) {
             System.out.println("Gestor removido!");
         } else {
             System.out.println("Gestor não existe!");
@@ -173,7 +173,7 @@ public class UserInterface {
             String idFuncionario = scin.nextLine();
             System.out.println("Passaword do novo Funcionario de Balcão: ");
             String pw = scin.nextLine();
-            if ((this.gestGestor.adicionaFuncionario(idFuncionario, pw))) {
+            if ((this.gestGestor.adicionarFuncionarioBalcao(idFuncionario, pw))) {
                 System.out.println("Funcionário de Balcão adicionado.");
             } else {
                 System.out.println("Funcionário de Balcão já existe!");
@@ -190,7 +190,7 @@ public class UserInterface {
         try{
             System.out.println("Id do Funcionário de Balcão: ");
             String idFuncionario = scin.nextLine();
-            if((this.gestGestor.removeFuncionario(idFuncionario))) {
+            if((this.gestGestor.removerFuncionarioBalcao(idFuncionario))) {
                 System.out.println("Funcionário de Balcão removido!");
             } else {
                 System.out.println("Funcionário de Balcão não existe!");
@@ -209,7 +209,7 @@ public class UserInterface {
             String idTecnico = scin.nextLine();
             System.out.println("Passaword do novo Técnico de Reparações: ");
             String pw = scin.nextLine();
-            if (this.gestGestor.adicionaTecnico(idTecnico, pw)) {
+            if (this.gestGestor.adicionarTecnico(idTecnico, pw)) {
                 System.out.println("Técnico de Reparações adicionado.");
             } else {
                 System.out.println("Técnico de Reparações já existe!");
@@ -226,7 +226,7 @@ public class UserInterface {
         try{
             System.out.println("Id do Técnico de Reparações: ");
             String idTecnico = scin.nextLine();
-            if((this.gestGestor.removeTecnico(idTecnico))) {
+            if((this.gestGestor.removerTecnico(idTecnico))) {
                 System.out.println("Funcionário de Balcão removido!");
             } else {
                 System.out.println("Funcionário de Balcão não existe!");
