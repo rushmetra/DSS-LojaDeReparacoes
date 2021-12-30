@@ -24,6 +24,16 @@ public class UserInterface {
     // Scanner para leitura
     private Scanner scin;
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
     public UserInterface(IGestFuncionarioBalcao f, IGestGestor g, IGestTecnico t) {
         this.gestFuncionarioBalcao = f;
         this.gestGestor = g;
@@ -62,9 +72,9 @@ public class UserInterface {
 
         });
 
-        menuPrincipal.setHandler(1, ()-> gestaoGestor());
-        menuPrincipal.setHandler(2, ()-> gestaoFuncionarioBalcao());
-        menuPrincipal.setHandler(3, ()-> gestaoTecnicoReparacao());
+        menuPrincipal.setHandler(1, this::gestaoGestor);
+        menuPrincipal.setHandler(2, this::gestaoFuncionarioBalcao);
+        menuPrincipal.setHandler(3, this::gestaoTecnicoReparacao);
 
         menuPrincipal.run();
     }
