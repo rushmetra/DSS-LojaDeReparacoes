@@ -112,12 +112,15 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
             if(!p.isAprovado()){
 
                 LocalDate or = p.getDateOrcamentoRealizado();
-                long daysBetween = ChronoUnit.DAYS.between(or, now);
-                if(daysBetween >= 30) {
-                    String id = p.getId();
-                    this.model.removePedido(id);
-                    colocarProntoParaRecolha(p.getId());
+                if(or != null){
+                    long daysBetween = ChronoUnit.DAYS.between(or, now);
+                    if(daysBetween >= 30) {
+                        String id = p.getId();
+                        this.model.removePedido(id);
+                        colocarProntoParaRecolha(p.getId());
+                    }
                 }
+
             }
 
         }
