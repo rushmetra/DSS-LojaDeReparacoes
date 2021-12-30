@@ -278,9 +278,9 @@ public class UserInterface {
         try {
             System.out.println("Número da listagem a consultar: ");
             System.out.println("1 - Por técnico: \n" +
-                                  "                   - número de reparações programadas/expresso realizadas \n" +
-                                  "                   _ a duração média das reparações programadas realizadas\n" +
-                                  "                   _ média dos desvio em relação às durações previstas \n");
+                                  "                   - número de reparações normais/expresso \n" +
+                                  "                   - a duração média das reparações normais \n" +
+                                  "                   - média dos desvio em relação às durações previstas \n");
 
             System.out.println("2 - Recepções e entregas de equipamentos realizadas por funcionário balcão\n");
             System.out.println("3 - Todas as intervenções (passos de reparação e reparações expresso) realizadas por técnico.\n");
