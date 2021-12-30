@@ -4,6 +4,7 @@ import LRController.GestFuncionarioBalcao.IGestFuncionarioBalcao;
 import LRController.GestGestor.IGestGestor;
 import LRController.GestTecnico.IGestTecnico;
 
+import java.awt.image.ReplicateScaleFilter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collection;
@@ -45,13 +46,13 @@ public class UserInterface {
      * Executa o menu principal e invoca o método correspondente à opção seleccionada.
      */
     public void run() {
-        System.out.println("Bem vindo ao Sistema de Gestão de Reparações!");
+        System.out.println(ANSI_BLUE + "Bem vindo ao Sistema de Gestão de Reparações!" + ANSI_RESET);
         System.out.println("A remover pedidos não aprovados com mais de 30 dias");
         this.gestFuncionarioBalcao.arquivarPedidosNaoAprovados();
         System.out.println("A remover equipamentos não levantados há mais de 90 dias");
         this.gestFuncionarioBalcao.darBaixaEquipamentosNaoRecolhidos();
         menuPrincipal();
-        System.out.println("Até breve...");
+        System.out.println(ANSI_BLUE + "Até breve..." + ANSI_RESET);
         this.gestGestor.saveFiles();
     }
 
@@ -100,12 +101,12 @@ public class UserInterface {
 
         boolean correct_password = false;
         while(!correct_password) {
-            System.out.println("Insira o seu username: ");
+            System.out.println(ANSI_YELLOW + "Insira o seu username: " + ANSI_RESET);
             username = scin.nextLine();
-            System.out.println("Insira a sua password: ");
+            System.out.println(ANSI_YELLOW + "Insira a sua password: " + ANSI_RESET);
             String password = scin.nextLine();
             correct_password = this.gestGestor.loginGestor(username, password);
-            if(!correct_password) System.out.println("Dados Log in inválidos");
+            if(!correct_password) System.out.println(ANSI_RED + "Dados Log in inválidos" + ANSI_RESET);
 
             this.username = username;
         }
@@ -142,14 +143,14 @@ public class UserInterface {
      */
     private void adicionarGestor() {
     try {
-        System.out.println("Id do novo Gestor: ");
+        System.out.println(ANSI_YELLOW + "Id do novo Gestor: " + ANSI_RESET);
         String idGestor = scin.nextLine();
-        System.out.println("Password do novo Gestor: ");
+        System.out.println(ANSI_YELLOW + "Password do novo Gestor: " + ANSI_RESET);
         String pw = scin.nextLine();
         if ((this.gestGestor.adicionarGestor(idGestor, pw))) { // Função booleana pra averiguar se o Gestor com este ID exist
-          System.out.println("Gestor adicionado.");
+          System.out.println(ANSI_GREEN + "Gestor adicionado." + ANSI_RESET);
         } else {
-          System.out.println("Gestor já existe!");
+          System.out.println(ANSI_RED + "Gestor já existe!" + ANSI_RESET);
         }
        } catch (NullPointerException e) {
         System.out.println(e.getMessage());
@@ -161,12 +162,12 @@ public class UserInterface {
      */
     private void removerGestor(){
     try{
-        System.out.println("Id do Gestor: ");
+        System.out.println(ANSI_YELLOW + "Id do Gestor: " + ANSI_RESET);
         String idGestor = scin.nextLine();
         if((this.gestGestor.removerGestor(idGestor))) {
-            System.out.println("Gestor removido!");
+            System.out.println(ANSI_GREEN + "Gestor removido!" + ANSI_RESET);
         } else {
-            System.out.println("Gestor não existe!");
+            System.out.println(ANSI_RED + "Gestor não existe!" + ANSI_RESET);
         }
     } catch (NullPointerException e) {
         System.out.println(e.getMessage());
@@ -178,14 +179,14 @@ public class UserInterface {
      */
     private void adicionarFuncionario() {
         try {
-            System.out.println("Id do novo Funcionário de Balcão: ");
+            System.out.println(ANSI_YELLOW + "Id do novo Funcionário de Balcão: " + ANSI_RESET);
             String idFuncionario = scin.nextLine();
-            System.out.println("Password do novo Funcionario de Balcão: ");
+            System.out.println(ANSI_YELLOW + "Password do novo Funcionario de Balcão: " + ANSI_RESET);
             String pw = scin.nextLine();
             if ((this.gestGestor.adicionarFuncionarioBalcao(idFuncionario, pw))) {
-                System.out.println("Funcionário de Balcão adicionado.");
+                System.out.println(ANSI_GREEN + "Funcionário de Balcão adicionado." + ANSI_RESET);
             } else {
-                System.out.println("Funcionário de Balcão já existe!");
+                System.out.println(ANSI_RED + "Funcionário de Balcão já existe!" + ANSI_RESET);
             }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -197,12 +198,12 @@ public class UserInterface {
      */
     private void removerFuncionario() {
         try{
-            System.out.println("Id do Funcionário de Balcão: ");
+            System.out.println(ANSI_YELLOW + "Id do Funcionário de Balcão: " + ANSI_RESET);
             String idFuncionario = scin.nextLine();
             if((this.gestGestor.removerFuncionarioBalcao(idFuncionario))) {
-                System.out.println("Funcionário de Balcão removido!");
+                System.out.println(ANSI_GREEN + "Funcionário de Balcão removido!" + ANSI_RESET);
             } else {
-                System.out.println("Funcionário de Balcão não existe!");
+                System.out.println(ANSI_RED + "Funcionário de Balcão não existe!" + ANSI_RESET);
             }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -214,14 +215,14 @@ public class UserInterface {
      */
     private void adicionarTecnico() {
         try {
-            System.out.println("Id do novo Técnico de Reparações: ");
+            System.out.println(ANSI_YELLOW + "Id do novo Técnico de Reparações: " + ANSI_RESET);
             String idTecnico = scin.nextLine();
-            System.out.println("Passaword do novo Técnico de Reparações: ");
+            System.out.println(ANSI_YELLOW + "Password do novo Técnico de Reparações: " + ANSI_RESET);
             String pw = scin.nextLine();
             if (this.gestGestor.adicionarTecnico(idTecnico, pw)) {
-                System.out.println("Técnico de Reparações adicionado.");
+                System.out.println(ANSI_GREEN + "Técnico de Reparações adicionado." + ANSI_RESET);
             } else {
-                System.out.println("Técnico de Reparações já existe!");
+                System.out.println(ANSI_RED + "Técnico de Reparações já existe!" + ANSI_RESET);
             }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -233,12 +234,12 @@ public class UserInterface {
      */
     private void removerTecnico() {
         try{
-            System.out.println("Id do Técnico de Reparações: ");
+            System.out.println(ANSI_YELLOW + "Id do Técnico de Reparações: " + ANSI_RESET);
             String idTecnico = scin.nextLine();
             if((this.gestGestor.removerTecnico(idTecnico))) {
-                System.out.println("Funcionário de Balcão removido!");
+                System.out.println(ANSI_GREEN + "Funcionário de Balcão removido!" + ANSI_RESET);
             } else {
-                System.out.println("Funcionário de Balcão não existe!");
+                System.out.println(ANSI_RED + "Funcionário de Balcão não existe!" + ANSI_RESET);
             }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -323,12 +324,12 @@ public class UserInterface {
     private void gestaoFuncionarioBalcao() {
         boolean correct_password = false;
         while(!correct_password) {
-            System.out.println("Insira o seu username: ");
+            System.out.println(ANSI_YELLOW + "Insira o seu username: " + ANSI_RESET);
             username = scin.nextLine();
-            System.out.println("Insira a sua password: ");
+            System.out.println(ANSI_YELLOW + "Insira a sua password: " + ANSI_RESET);
             String password = scin.nextLine();
             correct_password = this.gestFuncionarioBalcao.loginFuncionarioBalcao(username, password);
-            if(!correct_password) System.out.println("Dados Log in inválidos");
+            if(!correct_password) System.out.println(ANSI_RED + "Dados Log in inválidos" + ANSI_RESET);
 
         }
         this.username = username;
