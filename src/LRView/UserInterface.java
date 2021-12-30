@@ -495,7 +495,7 @@ public class UserInterface {
                         float custo = readOptionFloat(1000);
                         System.out.println("Agora insira o tempo previsto ->");
                         System.out.println("Insira a hora: ");
-                        int hora = readOptionInt(168);
+                        int hora = readOptionInt(23);
                         System.out.println("Insira o minuto: ");
                         int min = readOptionInt(59);
                         System.out.println("Insira os segundos: ");
@@ -540,10 +540,8 @@ public class UserInterface {
      */
     private void assinalaExecucaoPassos() {
         try {
-
             boolean pausa = false;
             boolean valorSuperior = false;
-
 
             System.out.println("Insira o NIF associado à reparação:");
             String nif = scin.nextLine();
@@ -552,14 +550,15 @@ public class UserInterface {
 
            while (!pausa && !valorSuperior) {
 
-                String descricao = this.gestTecnico.proximoPassoExecutarString(nif);
-                System.out.println(descricao);
+               String descricao = this.gestTecnico.proximoPassoExecutarString(nif);
+               if (descricao.equals("Nao existem mais passos.\n")) break;
+               System.out.println(descricao);
 
                System.out.println("Insira o custo: ");
                float custo = readOptionFloat(1000);
                System.out.println("Agora insira o tempo gasto ->");
                System.out.println("Insira a hora: ");
-               int hora = readOptionInt(170);
+               int hora = readOptionInt(23);
                System.out.println("Insira o minuto: ");
                int min = readOptionInt(59);
                System.out.println("Insira os segundos: ");

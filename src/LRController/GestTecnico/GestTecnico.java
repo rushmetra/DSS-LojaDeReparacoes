@@ -68,7 +68,9 @@ public class GestTecnico implements IGestTecnico{
 
         Passo proximo = proximoPassoExecutar(p.getPlanoTrabalho());
 
-        return proximo.getDescricao();
+        if(proximo == null){
+            return new String("Nao existem mais passos.\n");
+        } else return proximo.getDescricao();
     }
 
 
