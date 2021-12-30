@@ -144,8 +144,6 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     }
 
 
-
-
     public void colocarProntoParaRecolha(String nif){
         this.model.getEntrega(nif).setProntoParaRecolha(LocalDate.now());
     }

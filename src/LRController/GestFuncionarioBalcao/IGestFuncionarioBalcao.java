@@ -32,4 +32,5 @@ public interface IGestFuncionarioBalcao {
     public void arquivarPedidosNaoAprovados();
 
 
+    public void darBaixaEquipamentosNaoRecolhidos();
 }
