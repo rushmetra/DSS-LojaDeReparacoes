@@ -10,7 +10,7 @@ import java.util.List;
 public interface IGestTecnico {
     public void registarPasso(String nif, float custo, LocalTime tempoPrevisto, String descricao, boolean concluido);
 
-    public void assinalarExecucaoPasso(String nif, LocalTime tempo, float custo);
+    public float assinalarExecucaoPasso(String nif, LocalTime tempo, float custo);
 
     public String determinaEquipamentoMaisUrgente();
 
@@ -41,6 +41,10 @@ public interface IGestTecnico {
     public LocalTime getPrazoMaximo(String nif);
 
     public void colocarProntoParaRecolha(String nif);
+
+    public String proximoPassoExecutarString(String nif);
+
+    public void colocarReparacaoAEsperaDeAprovacao(String nif);
 
 
 }

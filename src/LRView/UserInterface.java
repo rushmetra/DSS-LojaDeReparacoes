@@ -458,13 +458,13 @@ public class UserInterface {
 
             Menu menuTecnico = new Menu(new String[]{
                     "Registar plano de trabalho reparação",
-                    "Assinalar execução de passo",
+                    "Assinalar execução dos passos",
                     "Determina equipamento mais urgente",
                     "Registar conclusão da Reparação"
             });
 
             menuTecnico.setHandler(1, this::registaPlanoTrabRep);
-            menuTecnico.setHandler(2, this::assinalaExecucaoPasso);
+            menuTecnico.setHandler(2, this::assinalaExecucaoPassos);
             menuTecnico.setHandler(3, this::determinaEquipamentoMaisUrgente);
             menuTecnico.setHandler(4, this::registarConclusaoDaReparacao);
 
@@ -533,22 +533,62 @@ public class UserInterface {
     /**
      *  Estado - Assinalar execução de passo
      */
-    private void assinalaExecucaoPasso() {
+    private void assinalaExecucaoPassos() {
         try {
-            System.out.println("Insira o NIF:");
+
+            boolean pausa = false;
+            boolean valorSuperior = false;
+
+
+            System.out.println("Insira o NIF associado à reparação:");
             String nif = scin.nextLine();
-            System.out.println("Insira o custo: ");
-            float custo = readOptionFloat(1000);
-            System.out.println("Agora insira o tempo gasto ->");
-            System.out.println("Insira a hora: ");
-            int hora= readOptionInt(168);
-            System.out.println("Insira o minuto: ");
-            int min = readOptionInt(59);
-            System.out.println("Insira os segundos: ");
-            int seg = readOptionInt(59);
-            LocalTime lt = LocalTime.of(hora, min, seg, 0);
-            this.gestTecnico.assinalarExecucaoPasso(nif, lt, custo);
-        } catch (NullPointerException e) {
+
+            float custoPrevisto = this.gestTecnico.getCustoTotalPrevisto(nif);
+
+           while (!pausa && !valorSuperior) {
+
+                String descricao = this.gestTecnico.proximoPassoExecutarString(nif);
+                System.out.println(descricao);
+
+               System.out.println("Insira o custo: ");
+               float custo = readOptionFloat(1000);
+               System.out.println("Agora insira o tempo gasto ->");
+               System.out.println("Insira a hora: ");
+               int hora = readOptionInt(170);
+               System.out.println("Insira o minuto: ");
+               int min = readOptionInt(59);
+               System.out.println("Insira os segundos: ");
+               int seg = readOptionInt(59);
+               LocalTime lt = LocalTime.of(hora, min, seg, 0);
+               float novoCusto = this.gestTecnico.assinalarExecucaoPasso(nif, lt, custo);
+
+               if(novoCusto > 1.2 * custoPrevisto) valorSuperior = true;
+
+               System.out.println("Deseja colocar a reparação em pausa? (digite y)");
+               String pausaS = scin.nextLine();
+
+               if(pausaS.equals("y")) pausa = true;
+
+           }
+
+           if(valorSuperior){
+               this.gestTecnico.colocarReparacaoAEsperaDeAprovacao(nif);
+
+               String email = this.gestTecnico.getEmailOrcamento(nif);
+               String nome = this.gestTecnico.getNomeOrcamento(nif);
+               LocalTime tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
+               LocalTime prazoMaximo = this.gestTecnico.getPrazoMaximo(nif);
+               Float custo = this.gestTecnico.getCustoTotalPrevisto(nif);
+
+
+               System.out.println("A reparação ultrapassou em 120% o valor previsto inicialmente é necessário informar o cliente  : " +nif);
+               System.out.println("Nome -> "+ nome);
+               System.out.println("Email -> "+ email);
+           }
+
+
+
+           } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }

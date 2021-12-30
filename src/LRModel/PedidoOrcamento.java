@@ -9,6 +9,7 @@ import java.util.List;
 
 public class PedidoOrcamento implements Serializable {
     private String id;
+    private float custoTotal;
     private String nomeCliente;
     private String contacto;
     private String email;
@@ -21,7 +22,7 @@ public class PedidoOrcamento implements Serializable {
     private boolean conlusaoReparacao;
 
 
-    public PedidoOrcamento(String id,String nomeCliente,String contacto,String email,LocalDate data, String descricao,List<Passo> plano){
+    public PedidoOrcamento(String id, String nomeCliente, String contacto, String email, LocalDate data, String descricao, List<Passo> plano) {
         this.id = id;
         this.nomeCliente = nomeCliente;
         this.contacto = contacto;
@@ -33,9 +34,10 @@ public class PedidoOrcamento implements Serializable {
         this.aprovado = false;
         this.conlusaoReparacao = false;
         this.dateOrcamentoRealizado = null;
+        this.custoTotal = 0;
     }
 
-    public PedidoOrcamento(String nomeCliente, String contacto, String email, String nif, String descricao, LocalDate data){
+    public PedidoOrcamento(String nomeCliente, String contacto, String email, String nif, String descricao, LocalDate data) {
         this.nomeCliente = nomeCliente;
         this.contacto = contacto;
         this.email = email;
@@ -46,6 +48,7 @@ public class PedidoOrcamento implements Serializable {
         this.idTecnico = "";
         this.aprovado = false;
         this.conlusaoReparacao = false;
+        this.custoTotal = 0;
     }
 
     // getters e setters
@@ -54,7 +57,7 @@ public class PedidoOrcamento implements Serializable {
         return this.nomeCliente;
     }
 
-    public String getContacto(){
+    public String getContacto() {
         return this.contacto;
     }
 
@@ -62,18 +65,20 @@ public class PedidoOrcamento implements Serializable {
         return this.email;
     }
 
-    public String getId() { return this.id;}
+    public String getId() {
+        return this.id;
+    }
 
     public List<Passo> getPlanoTrabalho() {
         List<Passo> res = new ArrayList<>();
-        for(Passo p : this.planoTrabalho) {
+        for (Passo p : this.planoTrabalho) {
             res.add(p);
         }
         return res;
     }
 
     public void setPlanoTrabalho(List<Passo> planoTrabalho) {
-        for(Passo p : planoTrabalho) {
+        for (Passo p : planoTrabalho) {
             this.planoTrabalho.add(p);
         }
     }
@@ -90,13 +95,18 @@ public class PedidoOrcamento implements Serializable {
         return idTecnico;
     }
 
-    public LocalDate getDateOrcamentoRealizado(){
-        return  this.dateOrcamentoRealizado;
+    public LocalDate getDateOrcamentoRealizado() {
+        return this.dateOrcamentoRealizado;
     }
 
-    public LocalDate getDataPedido() { return this.dataPedido;}
+    public LocalDate getDataPedido() {
+        return this.dataPedido;
+    }
 
-    public String getDescricaoPedido() { return this.descricao;}
+    public String getDescricaoPedido() {
+        return this.descricao;
+    }
+
 
     public void setNomeCliente(String nomeCliente) {
         this.nomeCliente = nomeCliente;
@@ -126,8 +136,8 @@ public class PedidoOrcamento implements Serializable {
         this.idTecnico = idTecnico;
     }
 
-    public void adicionaPasso(float custoPrevisto, LocalTime tempoPrevisto, String descricao, boolean concluido){
-        Passo p = new Passo(custoPrevisto,tempoPrevisto,descricao,concluido);
+    public void adicionaPasso(float custoPrevisto, LocalTime tempoPrevisto, String descricao, boolean concluido) {
+        Passo p = new Passo(custoPrevisto, tempoPrevisto, descricao, concluido);
         this.planoTrabalho.add(p);
     }
 
@@ -136,8 +146,8 @@ public class PedidoOrcamento implements Serializable {
     }
 
     public LocalTime getTempoTotalPrevisto() {
-        LocalTime total = LocalTime.of(0,0,0);
-        for(Passo p : this.planoTrabalho) {
+        LocalTime total = LocalTime.of(0, 0, 0);
+        for (Passo p : this.planoTrabalho) {
             total = total.plusHours(p.getTempoPrevisto().getHour()).plusMinutes(p.getTempoPrevisto().getMinute()).plusSeconds(p.getTempoPrevisto().getSecond());
         }
         return total;
@@ -145,26 +155,27 @@ public class PedidoOrcamento implements Serializable {
 
 
     public LocalTime getTempoTotalGasto() {
-        LocalTime total = LocalTime.of(0,0,0);
-        for(Passo p : this.planoTrabalho) {
+        LocalTime total = LocalTime.of(0, 0, 0);
+        for (Passo p : this.planoTrabalho) {
             total = total.plusHours(p.getTempo().getHour()).plusMinutes(p.getTempo().getMinute()).plusSeconds(p.getTempo().getSecond());
         }
         return total;
     }
 
-    public  float getCustoTotalPrevisto(){
+    public float getCustoTotalPrevisto() {
         float custo = 0;
-        for(Passo p : this.getPlanoTrabalho()){
+        for (Passo p : this.getPlanoTrabalho()) {
             custo = custo + p.getCustoPrevisto();
         }
         return custo;
     }
 
-    public  float getCustoTotalGasto(){
-        float custo = 0;
-        for(Passo p : this.getPlanoTrabalho()){
-            custo = custo + p.getCustoFinal();
-        }
-        return custo;
+
+    public float getCustoTotal() {
+        return custoTotal;
+    }
+
+    public void setCustoTotal(float custoTotal) {
+        this.custoTotal = custoTotal;
     }
 }

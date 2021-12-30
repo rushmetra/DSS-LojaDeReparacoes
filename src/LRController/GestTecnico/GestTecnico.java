@@ -29,7 +29,10 @@ public class GestTecnico implements IGestTecnico{
         po.adicionaPasso(custo, tempoPrevisto, descricao, concluido);
     }
 
-    public void assinalarExecucaoPasso(String nif, LocalTime tempo, float custo){
+
+    //devolve novo custo total
+
+    public float assinalarExecucaoPasso(String nif, LocalTime tempo, float custo){
         PedidoOrcamento p = model.getPedidoOrcamento(nif);
         List<Passo> passos = p.getPlanoTrabalho();
 
@@ -39,6 +42,12 @@ public class GestTecnico implements IGestTecnico{
             proximo.setTempo(tempo);
             proximo.setCustoFinal(custo);
         }
+
+        float novoCusto =  p.getCustoTotal() + custo;
+
+        p.setCustoTotal(novoCusto);
+
+        return novoCusto;
     }
 
     public Passo proximoPassoExecutar(List<Passo> passos){
@@ -50,6 +59,16 @@ public class GestTecnico implements IGestTecnico{
             }
         }
         return prox;
+    }
+
+
+    public String proximoPassoExecutarString(String nif){
+
+        PedidoOrcamento p = model.getPedidoOrcamento(nif);
+
+        Passo proximo = proximoPassoExecutar(p.getPlanoTrabalho());
+
+        return proximo.getDescricao();
     }
 
 
@@ -119,11 +138,9 @@ public class GestTecnico implements IGestTecnico{
         return this.model.getTecnicos();
     }
 
-
     public void saveFiles(){
         this.model.saveData("saves");
     }
-
 
     public String getEmailOrcamento(String nif){
         return this.model.getEmailOrcamento(nif);
@@ -156,6 +173,11 @@ public class GestTecnico implements IGestTecnico{
 
     public void colocarProntoParaRecolha(String nif){
         this.model.getEntrega(nif).setProntoParaRecolha(LocalDate.now());
+    }
+
+
+    public void colocarReparacaoAEsperaDeAprovacao(String nif){
+        this.model.getPedidoOrcamento(nif).setAprovado(false);
     }
 
 
