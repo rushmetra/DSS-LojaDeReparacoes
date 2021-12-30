@@ -482,48 +482,54 @@ public class UserInterface {
                 System.out.println("Não existe nenhum equipamento para efectuar o plano de trabalhos");
             } else {
                 System.out.println("O NIF do equipamento mais antigo é:" + nif);
-                System.out.println("Descrição do Pedido: " +  this.gestTecnico.getInfoPedido(nif));
+                System.out.println("Descrição do Pedido: " + this.gestTecnico.getInfoPedido(nif));
 
                 System.out.println("Quando tiver analisado a descrição do pedido e o equipamento, registe os passos de trabalho: ");
                 System.out.println("Para sair escreva quit.");
+                System.out.println("Se o equipamento puder ser reparado digite 1, caso contrário digite 2: ");
+                int reparavel = readOptionInt(2);
+                if (reparavel == 1) {
+                    String line = "";
+                    while (!line.equals("quit")) {
+                        System.out.println("Insira o custo: ");
+                        float custo = readOptionFloat(1000);
+                        System.out.println("Agora insira o tempo previsto ->");
+                        System.out.println("Insira a hora: ");
+                        int hora = readOptionInt(168);
+                        System.out.println("Insira o minuto: ");
+                        int min = readOptionInt(59);
+                        System.out.println("Insira os segundos: ");
+                        int seg = readOptionInt(59);
+                        LocalTime lt = LocalTime.of(hora, min, seg, 0);
+                        System.out.println("Insira a descrição do passo: ");
+                        String descricao = scin.nextLine();
+                        this.gestTecnico.registarPasso(nif, custo, lt, descricao, false);
+                        System.out.println("Se desejar terminar escreva 'quit' ou se desejar continuar prima ENTER");
+                        line = scin.nextLine();
 
-                String line = "";
-                while (!line.equals("quit")) {
-                    System.out.println("Insira o custo: ");
-                    float custo = readOptionFloat(1000);
-                    System.out.println("Agora insira o tempo previsto ->");
-                    System.out.println("Insira a hora: ");
-                    int hora = readOptionInt(168);
-                    System.out.println("Insira o minuto: ");
-                    int min = readOptionInt(59);
-                    System.out.println("Insira os segundos: ");
-                    int seg = readOptionInt(59);
-                    LocalTime lt = LocalTime.of(hora, min, seg, 0);
-                    System.out.println("Insira a descrição do passo: ");
-                    String descricao = scin.nextLine();
-                    this.gestTecnico.registarPasso(nif, custo, lt, descricao, false);
-                    System.out.println("Se desejar terminar escreva 'quit' ou se desejar continuar prima ENTER");
-                    line = scin.nextLine();
+                        String email = this.gestTecnico.getEmailOrcamento(nif);
+                        String nome = this.gestTecnico.getNomeOrcamento(nif);
+                        LocalTime tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
+                        LocalTime prazoMaximo = this.gestTecnico.getPrazoMaximo(nif);
+                        Float custo = this.gestTecnico.getCustoTotalPrevisto(nif);
 
+                        System.out.println("O seguinte orçamento deve ser enviado ao cliente: ");
+                        System.out.println("Tempo previsto : " + tempoPrevisto.toString());
+                        System.out.println("Prazo máximo : " + prazoMaximo.toString());
+                        System.out.println("Custo total : " + custo);
+                        System.out.println("Nome -> " + nome);
+                        System.out.println("Email -> " + email);
+
+                    }
+                } else if(reparavel == 2) {
+                    String email = this.gestTecnico.getEmailOrcamento(nif);
+                    String nome = this.gestTecnico.getNomeOrcamento(nif);
+                    System.out.println("Deve informar o cliente que não possível reparar o equipamento e que pode levantá-lo: ");
+                    System.out.println("Email->" + email);
+                    System.out.println("Nome->" + nome);
+                    this.gestTecnico.colocarProntoParaRecolha(nif);
                 }
-            }
-
-            String email = this.gestTecnico.getEmailOrcamento(nif);
-            String nome = this.gestTecnico.getNomeOrcamento(nif);
-            LocalTime tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
-            LocalTime prazoMaximo = this.gestTecnico.getPrazoMaximo(nif);
-            Float custo = this.gestTecnico.getCustoTotalPrevisto(nif);
-
-
-
-            System.out.println("O seguinte orçamento deve ser enviado ao cliente: ");
-            System.out.println("Tempo previsto : " + tempoPrevisto.toString());
-            System.out.println("Prazo máximo : " + prazoMaximo.toString());
-            System.out.println("Custo total : " + custo);
-            System.out.println("Nome -> "+ nome);
-            System.out.println("Email -> "+ email);
-
-
+                }
 
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
