@@ -65,7 +65,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     //gestores
 
-    public Boolean containsGestor(String username){
+    public boolean containsGestor(String username){
         return this.gestores.containsKey(username);
     }
 
@@ -103,7 +103,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     //funcionariosBalcao
 
-    public Boolean containsFuncionario(String username){
+    public boolean containsFuncionario(String username){
         return this.funcionariosDoBalcao.containsKey(username);
     }
 
@@ -144,7 +144,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
     //tecnicos
 
 
-    public Boolean containsTecnico(String username){
+    public boolean containsTecnico(String username){
         return this.tecnicos.containsKey(username);
     }
 
@@ -181,7 +181,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     //pedidos
 
-    public Boolean containsPedido(String id) { return this.pedidos.containsKey(id); }
+    public boolean containsPedido(String id) { return this.pedidos.containsKey(id); }
 
     public PedidoOrcamento getPedidoOrcamento(String id) { return this.pedidos.get(id); }
 
@@ -212,7 +212,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     //pedidos-expresso
 
-    public Boolean containsPedidoExpresso(String nif) {
+    public boolean containsPedidoExpresso(String nif) {
         return this.pedidosExpressos.containsKey(nif);
     }
 

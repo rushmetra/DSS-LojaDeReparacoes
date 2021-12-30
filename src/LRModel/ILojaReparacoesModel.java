@@ -13,7 +13,7 @@ public interface ILojaReparacoesModel {
 
     //gestor
 
-    public Boolean containsGestor(String username);
+    public boolean containsGestor(String username);
 
     public Gestor getGestor(String username);
 
@@ -29,7 +29,7 @@ public interface ILojaReparacoesModel {
 
     //funcionariosBalcao
 
-    public Boolean containsFuncionario(String username);
+    public boolean containsFuncionario(String username);
 
     public FuncionarioBalcao getFuncionarioBalcao(String username);
 
@@ -45,7 +45,7 @@ public interface ILojaReparacoesModel {
     //tecnicos
 
 
-    public Boolean containsTecnico(String username);
+    public boolean containsTecnico(String username);
 
     public Tecnico getTecnico(String username);
 
@@ -59,7 +59,7 @@ public interface ILojaReparacoesModel {
 
     //pedidos
 
-    public Boolean containsPedido(String id);
+    public boolean containsPedido(String id);
 
     public PedidoOrcamento getPedidoOrcamento(String id) ;
 
@@ -80,7 +80,7 @@ public interface ILojaReparacoesModel {
 
         //pedidos-expresso
 
-    public Boolean containsPedidoExpresso(String nif);
+    public boolean containsPedidoExpresso(String nif);
 
     public PedidoExpresso getPedidoExpresso(String nif);
 
