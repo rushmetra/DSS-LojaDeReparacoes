@@ -101,7 +101,10 @@ public class UserInterface {
     private void gestaoGestor() {
 
         boolean correct_password = false;
+
         while(!correct_password) {
+
+
             System.out.println(ANSI_YELLOW + "Insira o seu username: " + ANSI_RESET);
             username = scin.nextLine();
             System.out.println(ANSI_YELLOW + "Insira a sua password: " + ANSI_RESET);
