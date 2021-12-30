@@ -89,7 +89,7 @@ public class GestGestor implements IGestGestor {
         Map<String, Float> desvio = new HashMap<>();
 
         //lista dos passos de reparacao
-        for(PedidoOrcamento po : this.model.getListaPedidosOrcamento()) {
+        for(PedidoOrcamento po : this.model.getListaPedidosRealizados()) {
             if (numReparacoesPorTecnico.get(po.getIdTecnico()) != null) {
                 AbstractMap.SimpleEntry<Integer, Integer> pair = numReparacoesPorTecnico.get(po.getIdTecnico());  //ir buscar o map que temos atualmente como value
                 int oldOrcamento = pair.getKey();
@@ -121,7 +121,7 @@ public class GestGestor implements IGestGestor {
 
         //calcular duracao media das reparacoes programadas
         Map<String, Long> duracaoTotalReparacoesProgramadas = new HashMap<>();
-        for(PedidoOrcamento po : this.model.getListaPedidosOrcamento()) {
+        for(PedidoOrcamento po : this.model.getListaPedidosRealizados()) {
             if (duracaoTotalReparacoesProgramadas.get(po.getIdTecnico()) != null) {
                 long t = po.getTempoTotalPrevisto();
                 long novoValor = duracaoTotalReparacoesProgramadas.get(po.getIdTecnico()) + t;
@@ -143,12 +143,12 @@ public class GestGestor implements IGestGestor {
 
         //média dos desvio em relação às durações previstas
         Map<String, Double> totalDesvio = new HashMap<>();
-        for(PedidoOrcamento po : this.model.getListaPedidosOrcamento()) {
+        for(PedidoOrcamento po : this.model.getListaPedidosRealizados()) {
             if (duracaoTotalReparacoesProgramadas.get(po.getIdTecnico()) != null) {
                 long tempoTotalPrevisto = po.getTempoTotalPrevisto();
                 long  tempoTotalGasto = po.getTempoTotalGasto();
                 double diff = tempoTotalGasto - tempoTotalPrevisto;       //ESTE TEMPO É EM SEGUNDOS
-                double novoDesvio = (double)totalDesvio.get(po.getIdTecnico()) + diff;
+                double novoDesvio = (double) (totalDesvio.get(po.getIdTecnico()) == null ? 0 : totalDesvio.get(po.getIdTecnico()) ) + diff;
                 totalDesvio.put(po.getIdTecnico(), novoDesvio);
             }
             else {
@@ -161,7 +161,8 @@ public class GestGestor implements IGestGestor {
 
         for(var entry : totalDesvio.entrySet()) {
             double desvioTotal = entry.getValue();
-            int totalReparacoes = numReparacoesPorTecnico.get(entry.getKey()).getKey();
+            //int totalReparacoes = numReparacoesPorTecnico.get(entry.getKey()).getKey();
+            int totalReparacoes = (numReparacoesPorTecnico.get(entry.getKey()) == null ? 0 : numReparacoesPorTecnico.get(entry.getKey()).getKey());
             desvio.put(entry.getKey(), (float) (desvioTotal/totalReparacoes));
         }
         return parseToDisplayListagem1(numReparacoesPorTecnico, duracaoMediaReparacoesProgramadas, desvio);
@@ -200,8 +201,8 @@ public class GestGestor implements IGestGestor {
             }
 
             res.add("Tecnico ID: " + tecnico.getUsername() + "\n" +
-                    "\t tem " + nRepsProg + " reparações programadas e " + nRepsExpr + " reparações expresso realizadas\n" +
-                    "\t a duração média das suas reparações programadas realizadas é de " + (duracaoMediaReparacoesProgramadas.get(tecnico.getUsername())==null ? "0" : duracaoMediaReparacoesProgramadas.get(tecnico.getUsername()) )+ " segundos\n" +
+                    "\t tem " + nRepsProg + " reparações normais e " + nRepsExpr + " reparações expresso realizadas\n" +
+                    "\t a duração média das suas reparações normais realizadas é de " + (duracaoMediaReparacoesProgramadas.get(tecnico.getUsername())==null ? "0" : duracaoMediaReparacoesProgramadas.get(tecnico.getUsername()) )+ " segundos\n" +
                     "\t e a média dos desvios em relação às durações previstas é de " + (desvio.get(tecnico.getUsername())==null ? "0" : desvio.get(tecnico.getUsername()) ) + "\n");
         }
         return res;
@@ -236,7 +237,7 @@ public class GestGestor implements IGestGestor {
     public List<String> getListagem3() {
         Map<String, AbstractMap.SimpleEntry<List<List<Passo>>, List<String>>> intervencoesPorTecnico = new HashMap<>();
         //lista dos passos de reparacao
-        for(PedidoOrcamento po : this.model.getListaPedidosOrcamento()) {
+        for(PedidoOrcamento po : this.model.getListaPedidosRealizados()) {
             if (intervencoesPorTecnico.get(po.getIdTecnico()) != null) {
                 AbstractMap.SimpleEntry<List<List<Passo>>, List<String>> pair = intervencoesPorTecnico.get(po.getIdTecnico());  //ir buscar o map que temos atualmente como value
                 pair.getKey().add(po.getPlanoTrabalho());   //atualizar a lista que esta como key

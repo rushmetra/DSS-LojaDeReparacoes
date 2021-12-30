@@ -69,6 +69,8 @@ public interface ILojaReparacoesModel {
 
     public List<PedidoOrcamento> getListaPedidosAceites() ;
 
+    public List<PedidoOrcamento> getListaPedidosRealizados();
+
     public String getNomeOrcamento(String nif);
 
     public float getCustoTotalPrevisto(String nif);

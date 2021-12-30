@@ -204,6 +204,15 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
                 .collect(Collectors.toList());
     }
 
+    public List<PedidoOrcamento> getListaPedidosRealizados() { // mais recente fica à cabeça
+        List<PedidoOrcamento> pedidos = new ArrayList<>();
+        for (PedidoOrcamento p : this.pedidos.values()) {
+            if (p.isConlusaoReparacao()) pedidos.add(p);
+        }
+        return pedidos.stream().sorted(Comparator.comparing(PedidoOrcamento::getDataPedido).reversed())
+                .collect(Collectors.toList());
+    }
+
 
     public void removePedido(String id){
         if(pedidos.containsKey(id))  this.pedidos.remove(id);
