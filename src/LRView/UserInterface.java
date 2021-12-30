@@ -506,7 +506,7 @@ public class UserInterface {
                         this.gestTecnico.registarPasso(nif, custo, lt, descricao, false);
                         System.out.println("Se desejar terminar escreva 'quit' ou se desejar continuar prima ENTER");
                         line = scin.nextLine();
-
+                    }
                         String email = this.gestTecnico.getEmailOrcamento(nif);
                         String nome = this.gestTecnico.getNomeOrcamento(nif);
                         LocalTime tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
@@ -520,7 +520,6 @@ public class UserInterface {
                         System.out.println("Nome -> " + nome);
                         System.out.println("Email -> " + email);
 
-                    }
                 } else if(reparavel == 2) {
                     String email = this.gestTecnico.getEmailOrcamento(nif);
                     String nome = this.gestTecnico.getNomeOrcamento(nif);
