@@ -34,6 +34,10 @@ public class Entrega implements Serializable {
         return this.pago;
     }
 
+    public LocalDate getProntoParaRecolha() {
+        return prontoParaRecolha;
+    }
+
     public void setNif(String nif) {
         this.nif = nif;
     }
@@ -54,7 +58,5 @@ public class Entrega implements Serializable {
         this.prontoParaRecolha = d;
     }
 
-    public LocalDate getProntoParaRecolha() {
-        return prontoParaRecolha;
-    }
+
 }

@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Gestor implements Serializable {
 
-    String username;
-    String password;
+    private String username;
+    private String password;
 
 
     public Gestor(String username, String password){

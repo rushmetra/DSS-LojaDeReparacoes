@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 public class LojaReparacoesModel implements ILojaReparacoesModel {
 
-    Map<String, Gestor> gestores;
-    Map<String, FuncionarioBalcao> funcionariosDoBalcao;
-    Map<String, Tecnico> tecnicos;
-    Map<String, PedidoOrcamento> pedidos;
-    Map<String, PedidoExpresso> pedidosExpressos;
-    Map<String, Entrega> entregas;
+    private Map<String, Gestor> gestores;
+    private Map<String, FuncionarioBalcao> funcionariosDoBalcao;
+    private Map<String, Tecnico> tecnicos;
+    private Map<String, PedidoOrcamento> pedidos;
+    private Map<String, PedidoExpresso> pedidosExpressos;
+    private Map<String, Entrega> entregas;
 
 
 

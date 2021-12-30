@@ -50,6 +50,8 @@ public class FuncionarioBalcao implements Serializable {
         this.entregasEq = entregasEq;
     }
 
+
+
     public void incrementaRececao() {
         setRececoesEq(this.rececoesEq + 1);
     }
