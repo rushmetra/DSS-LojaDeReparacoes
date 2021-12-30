@@ -27,6 +27,16 @@ public class Menu {
     private List<PreCondition> disponivel;  // Lista de pré-condições
     private List<Handler> handlers;         // Lista de handlers
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
     // Construtor
 
     /**
@@ -132,7 +142,7 @@ public class Menu {
         op = readOption();
         // testar pré-condição
         if (op>0 && !this.disponivel.get(op-1).validate()) {
-            System.out.println("Opção indisponível!");
+            System.out.println(ANSI_RED + "Opção indisponível!" + ANSI_RESET);
         } else if (op>0) {
             // executar handler
             this.handlers.get(op-1).execute();
@@ -151,7 +161,7 @@ public class Menu {
             op = readOption();
             // testar pré-condição
             if (op>0 && !this.disponivel.get(op-1).validate()) {
-                System.out.println("Opção indisponível! Tente novamente.");
+                System.out.println(ANSI_RED + "Opção indisponível! Tente novamente." + ANSI_RESET);
             } else if (op>0) {
                 // executar handler
                 this.handlers.get(op-1).execute();
@@ -185,7 +195,7 @@ public class Menu {
 
     /** Apresentar o menu */
     private void show() {
-        System.out.println("\n *** "+this.titulo+" *** ");
+        System.out.println(ANSI_CYAN + "\n *** "+this.titulo+" *** " + ANSI_RESET);
         for (int i=0; i<this.opcoes.size(); i++) {
             System.out.print(i+1);
             System.out.print(" - ");
@@ -198,7 +208,7 @@ public class Menu {
     private int readOption() {
         int op;
 
-        System.out.print("Opção: ");
+        System.out.print(ANSI_YELLOW + "Opção: " + ANSI_RESET);
         try {
             String line = is.nextLine();
             op = Integer.parseInt(line);
@@ -207,7 +217,7 @@ public class Menu {
             op = -1;
         }
         if (op<0 || op>this.opcoes.size()) {
-            System.out.println("Opção Inválida!!!");
+            System.out.println(ANSI_RED + "Opção Inválida!!!" + ANSI_RESET);
             op = -1;
         }
         return op;
