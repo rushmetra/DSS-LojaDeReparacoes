@@ -495,12 +495,10 @@ public class UserInterface {
                         float custo = readOptionFloat(1000);
                         System.out.println("Agora insira o tempo previsto ->");
                         System.out.println("Insira a hora: ");
-                        int hora = readOptionInt(168);
+                        int hora = readOptionInt(23);
                         System.out.println("Insira o minuto: ");
                         int min = readOptionInt(59);
-                        System.out.println("Insira os segundos: ");
-                        int seg = readOptionInt(59);
-                        LocalTime lt = LocalTime.of(hora, min, seg, 0);
+                        LocalTime lt = LocalTime.of(hora, min, 0, 0);
                         System.out.println("Insira a descrição do passo: ");
                         String descricao = scin.nextLine();
                         this.gestTecnico.registarPasso(nif, custo, lt, descricao, false);
@@ -509,13 +507,13 @@ public class UserInterface {
                     }
                         String email = this.gestTecnico.getEmailOrcamento(nif);
                         String nome = this.gestTecnico.getNomeOrcamento(nif);
-                        LocalTime tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
-                        LocalTime prazoMaximo = this.gestTecnico.getPrazoMaximo(nif);
+                        long tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
+                        long prazoMaximo = this.gestTecnico.getPrazoMaximo(nif);
                         Float custo = this.gestTecnico.getCustoTotalPrevisto(nif);
 
                         System.out.println("O seguinte orçamento deve ser enviado ao cliente: ");
-                        System.out.println("Tempo previsto : " + tempoPrevisto.toString());
-                        System.out.println("Prazo máximo : " + prazoMaximo.toString());
+                        System.out.println("Tempo previsto : " + parseMinutosToDisplay(tempoPrevisto));
+                        System.out.println("Prazo máximo : " + parseMinutosToDisplay(prazoMaximo));
                         System.out.println("Custo total : " + custo);
                         System.out.println("Nome -> " + nome);
                         System.out.println("Email -> " + email);
@@ -559,12 +557,10 @@ public class UserInterface {
                float custo = readOptionFloat(1000);
                System.out.println("Agora insira o tempo gasto ->");
                System.out.println("Insira a hora: ");
-               int hora = readOptionInt(170);
+               int hora = readOptionInt(23);
                System.out.println("Insira o minuto: ");
                int min = readOptionInt(59);
-               System.out.println("Insira os segundos: ");
-               int seg = readOptionInt(59);
-               LocalTime lt = LocalTime.of(hora, min, seg, 0);
+               LocalTime lt = LocalTime.of(hora, min, 0, 0);
                float novoCusto = this.gestTecnico.assinalarExecucaoPasso(nif, lt, custo);
 
                if(novoCusto > 1.2 * custoPrevisto) valorSuperior = true;
@@ -581,9 +577,6 @@ public class UserInterface {
 
                String email = this.gestTecnico.getEmailOrcamento(nif);
                String nome = this.gestTecnico.getNomeOrcamento(nif);
-               LocalTime tempoPrevisto = this.gestTecnico.getTempoPrevistoOrcamento(nif);
-               LocalTime prazoMaximo = this.gestTecnico.getPrazoMaximo(nif);
-               Float custo = this.gestTecnico.getCustoTotalPrevisto(nif);
 
 
                System.out.println("A reparação ultrapassou em 120% o valor previsto inicialmente é necessário informar o cliente  : " +nif);
@@ -691,8 +684,22 @@ public class UserInterface {
             }
         }
 
+
         return op;
 
     }
+
+
+    public  String parseMinutosToDisplay(long minutos){
+
+            long horas = minutos/60;
+
+            long min = minutos - horas*60;
+
+            String res = "Horas: " + horas + " Minutos: " + min;
+
+            return res;
+    }
+
 
 }

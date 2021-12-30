@@ -169,19 +169,20 @@ public class PedidoOrcamento implements Serializable {
     }
 
 
-    public LocalTime getTempoTotalPrevisto() {
-        LocalTime total = LocalTime.of(0, 0, 0);
+    public long getTempoTotalPrevisto() {
+        long total = 0;
         for (Passo p : this.planoTrabalho) {
-            total = total.plusHours(p.getTempoPrevisto().getHour()).plusMinutes(p.getTempoPrevisto().getMinute()).plusSeconds(p.getTempoPrevisto().getSecond());
+            total = total + p.getTempoPrevisto().getHour()*60 + p.getTempoPrevisto().getMinute();
         }
         return total;
     }
 
 
-    public LocalTime getTempoTotalGasto() {
-        LocalTime total = LocalTime.of(0, 0, 0);
+    //minutos
+    public long getTempoTotalGasto() {
+        long total = 0;
         for (Passo p : this.planoTrabalho) {
-            total = total.plusHours(p.getTempo().getHour()).plusMinutes(p.getTempo().getMinute()).plusSeconds(p.getTempo().getSecond());
+            total = total + p.getTempo().getHour()*60 + p.getTempo().getMinute();
         }
         return total;
     }

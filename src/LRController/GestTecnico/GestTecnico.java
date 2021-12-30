@@ -154,19 +154,15 @@ public class GestTecnico implements IGestTecnico{
         return  this.model.getCustoTotalPrevisto(nif);
     }
 
-    public LocalTime getTempoPrevistoOrcamento(String nif){
+    public long getTempoPrevistoOrcamento(String nif){
         return this.model.getTempoPrevisto(nif);
     }
 
-    public LocalTime getPrazoMaximo(String nif){
+    public long getPrazoMaximo(String nif){
 
-        LocalTime previsto = getTempoPrevistoOrcamento(nif);
+        long previsto = getTempoPrevistoOrcamento(nif);
 
-        int segundos = (int) (previsto.getHour()*3600 + previsto.getMinute()*60 + previsto.getSecond()*60 * 1.20);
-
-        LocalTime prazo = LocalTime.of(0,0,0);
-
-        prazo.plusSeconds(segundos);
+        long prazo = (long) (previsto * 1.20);
 
         return prazo;
     }

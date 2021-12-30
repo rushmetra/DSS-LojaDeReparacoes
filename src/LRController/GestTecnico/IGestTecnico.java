@@ -36,15 +36,16 @@ public interface IGestTecnico {
 
     public Float getCustoTotalPrevisto(String nif);
 
-    public LocalTime getTempoPrevistoOrcamento(String nif);
 
-    public LocalTime getPrazoMaximo(String nif);
+    public long getPrazoMaximo(String nif);
 
     public void colocarProntoParaRecolha(String nif);
 
     public String proximoPassoExecutarString(String nif);
 
     public void colocarReparacaoAEsperaDeAprovacao(String nif);
+
+    public long getTempoPrevistoOrcamento(String nif);
 
 
 }

@@ -73,7 +73,7 @@ public interface ILojaReparacoesModel {
 
     public float getCustoTotalPrevisto(String nif);
 
-    public LocalTime getTempoPrevisto(String nif);
+    public long getTempoPrevisto(String nif);
 
     public void removePedido(String id);
 

@@ -85,7 +85,7 @@ public class GestGestor implements IGestGestor {
      */
     public List<String> getListagem1 () {
         Map<String, AbstractMap.SimpleEntry<Integer, Integer>> numReparacoesPorTecnico = new HashMap<>();
-        Map<String, Float> duracaoMediaReparacoesProgramadas = new HashMap<>();
+        Map<String, Double> duracaoMediaReparacoesProgramadas = new HashMap<>();
         Map<String, Float> desvio = new HashMap<>();
 
         //lista dos passos de reparacao
@@ -120,48 +120,47 @@ public class GestGestor implements IGestGestor {
 
 
         //calcular duracao media das reparacoes programadas
-        Map<String, LocalTime> duracaoTotalReparacoesProgramadas = new HashMap<>();
+        Map<String, Long> duracaoTotalReparacoesProgramadas = new HashMap<>();
         for(PedidoOrcamento po : this.model.getListaPedidosOrcamento()) {
             if (duracaoTotalReparacoesProgramadas.get(po.getIdTecnico()) != null) {
-                LocalTime t = po.getTempoTotalPrevisto();
-                LocalTime novoValor = duracaoTotalReparacoesProgramadas.get(po.getIdTecnico()).plusHours(t.getHour()).plusMinutes(t.getMinute()).plusSeconds(t.getSecond());
+                long t = po.getTempoTotalPrevisto();
+                long novoValor = duracaoTotalReparacoesProgramadas.get(po.getIdTecnico()) + t;
                 duracaoTotalReparacoesProgramadas.put(po.getIdTecnico(), novoValor);
             }
             else {
-                LocalTime t = po.getTempoTotalPrevisto();
+                long t = po.getTempoTotalPrevisto();
                 duracaoTotalReparacoesProgramadas.put(po.getIdTecnico(), t);
             }
         }
 
 
         for(var entry : duracaoTotalReparacoesProgramadas.entrySet()) {
-            LocalTime duracaoTotal = entry.getValue();
-            float tempoTotalEmSegundos = duracaoTotal.getHour()*60 + duracaoTotal.getMinute()*60 + duracaoTotal.getSecond();    //ESTE TEMPO É EM SEGUNDOS
+            double duracaoTotal = entry.getValue();
             int totalReparacoes = numReparacoesPorTecnico.get(entry.getKey()).getKey();
-            duracaoMediaReparacoesProgramadas.put(entry.getKey(), tempoTotalEmSegundos/totalReparacoes);
+            duracaoMediaReparacoesProgramadas.put(entry.getKey(), duracaoTotal/totalReparacoes);
         }
 
 
         //média dos desvio em relação às durações previstas
-        Map<String, Long> totalDesvio = new HashMap<>();
+        Map<String, Double> totalDesvio = new HashMap<>();
         for(PedidoOrcamento po : this.model.getListaPedidosOrcamento()) {
             if (duracaoTotalReparacoesProgramadas.get(po.getIdTecnico()) != null) {
-                LocalTime tempoTotalPrevisto = po.getTempoTotalPrevisto();
-                LocalTime tempoTotalGasto = po.getTempoTotalGasto();
-                long diff = SECONDS.between(tempoTotalGasto, tempoTotalPrevisto);       //ESTE TEMPO É EM SEGUNDOS
-                long novoDesvio = totalDesvio.get(po.getIdTecnico()) + diff;
+                long tempoTotalPrevisto = po.getTempoTotalPrevisto();
+                long  tempoTotalGasto = po.getTempoTotalGasto();
+                double diff = tempoTotalGasto - tempoTotalPrevisto;       //ESTE TEMPO É EM SEGUNDOS
+                double novoDesvio = (double)totalDesvio.get(po.getIdTecnico()) + diff;
                 totalDesvio.put(po.getIdTecnico(), novoDesvio);
             }
             else {
-                LocalTime tempoTotalPrevisto = po.getTempoTotalPrevisto();
-                LocalTime tempoTotalGasto = po.getTempoTotalGasto();
-                long diff = SECONDS.between(tempoTotalGasto, tempoTotalPrevisto);       //ESTE TEMPO É EM SEGUNDOS
-                totalDesvio.put(po.getIdTecnico(), diff);
+                long tempoTotalPrevisto = po.getTempoTotalPrevisto();
+                long tempoTotalGasto = po.getTempoTotalGasto();
+                long diff = tempoTotalGasto - tempoTotalPrevisto;      //ESTE TEMPO É EM SEGUNDOS
+                totalDesvio.put(po.getIdTecnico(), (double)diff);
             }
         }
 
         for(var entry : totalDesvio.entrySet()) {
-            long desvioTotal = entry.getValue();
+            double desvioTotal = entry.getValue();
             int totalReparacoes = numReparacoesPorTecnico.get(entry.getKey()).getKey();
             desvio.put(entry.getKey(), (float) (desvioTotal/totalReparacoes));
         }
@@ -171,7 +170,7 @@ public class GestGestor implements IGestGestor {
 
 
 
-    public List<String> parseToDisplayListagem1 (Map<String, AbstractMap.SimpleEntry<Integer, Integer>> numReparacoesPorTecnico, Map<String, Float> duracaoMediaReparacoesProgramadas, Map<String, Float> desvio) {
+    public List<String> parseToDisplayListagem1 (Map<String, AbstractMap.SimpleEntry<Integer, Integer>> numReparacoesPorTecnico, Map<String, Double> duracaoMediaReparacoesProgramadas, Map<String, Float> desvio) {
         List<String> res = new ArrayList<>();
         int nRepsProg = 0;
         int nRepsExpr = 0;

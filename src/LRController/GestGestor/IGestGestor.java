@@ -25,7 +25,7 @@ public interface IGestGestor {
 
     public List<String> getListagem1 ();
 
-    public List<String> parseToDisplayListagem1 (Map<String, AbstractMap.SimpleEntry<Integer, Integer>> numReparacoesPorTecnico, Map<String, Float> duracaoMediaReparacoesProgramadas, Map<String, Float> desvio);
+    public List<String> parseToDisplayListagem1 (Map<String, AbstractMap.SimpleEntry<Integer, Integer>> numReparacoesPorTecnico, Map<String, Double> duracaoMediaReparacoesProgramadas, Map<String, Float> desvio);
 
     public List<String> getListagem2();
 

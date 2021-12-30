@@ -428,7 +428,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         return this.pedidos.get(nif).getCustoTotalPrevisto();
     }
 
-    public LocalTime getTempoPrevisto(String nif){
+    public long getTempoPrevisto(String nif){
         return this.pedidos.get(nif).getTempoTotalPrevisto();
     }
 

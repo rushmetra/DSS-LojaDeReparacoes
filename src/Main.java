@@ -18,8 +18,7 @@ public class Main {
 
             UserInterface view = new UserInterface(gestFuncionarioBalcao,gestGestor,gestTecnico);
             view.run();
-            //gestFuncionarioBalcao.registarPedidoOrcamento("ze","1234","1","ze@","juntas", LocalDate.of(2000,10,30));
-            //System.out.println(model.getListaPedidosOrcamento().get(0).getNomeCliente());
+
         }
 
 
