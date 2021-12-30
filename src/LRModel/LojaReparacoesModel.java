@@ -278,7 +278,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         FileInputStream fis = new FileInputStream(toRead);
         ObjectInputStream ois = new ObjectInputStream(fis);
 
-        this.gestores = (HashMap<String,Gestor>) ois.readObject();
+        this.pedidos = (HashMap<String,PedidoOrcamento>) ois.readObject();
 
 
         ois.close();
@@ -374,7 +374,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
         if (!file.exists()) file.createNewFile();
         FileOutputStream fos=new FileOutputStream(file);
         ObjectOutputStream oos=new ObjectOutputStream(fos);
-        oos.writeObject(this.gestores);
+        oos.writeObject(this.pedidos);
         oos.flush();
         oos.close();
         fos.close();
