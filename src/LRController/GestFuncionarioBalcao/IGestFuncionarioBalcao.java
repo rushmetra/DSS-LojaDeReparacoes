@@ -31,9 +31,5 @@ public interface IGestFuncionarioBalcao {
 
     public void arquivarPedidosNaoAprovados();
 
-    public void colocarProntoParaRecolha(String nif);
-
-    public void darBaixaEquipamentosNaoRecolhidos();
-
 
 }

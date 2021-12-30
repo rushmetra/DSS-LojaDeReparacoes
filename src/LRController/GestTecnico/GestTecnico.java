@@ -24,7 +24,7 @@ public class GestTecnico implements IGestTecnico{
 
         PedidoOrcamento po = model.getPedidoOrcamento(nif);
 
-        if(po.getDateOrcamentoRealizado() == null) po.setDateOrcamentoRealizado(LocalDate.now());
+        po.setDateOrcamentoRealizado(LocalDate.now());
 
         po.adicionaPasso(custo, tempoPrevisto, descricao, concluido);
     }

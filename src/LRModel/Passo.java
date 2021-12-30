@@ -27,6 +27,9 @@ public class Passo {
     public boolean getConcluido() { return this.concluido; }
 
     /* Setters */
+
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public void setTempoPrevisto(LocalTime tempoPrevisto){ this.tempoPrevisto = tempoPrevisto;}
     public void setTempo(LocalTime tempo) { this.tempo = tempo; }
     public void setCustoPrevisto(float custoPrevisto) { this.custoPrevisto = custoPrevisto; }
     public void setCustoFinal(float custoFinal) { this.custoFinal = custoFinal; }
