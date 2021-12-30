@@ -88,6 +88,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
     public boolean registarRecolhaEquipamentoePagamento(String nif,String idFuncionarioBalcao){
 
         Entrega e = this.model.getEntrega(nif);
+        if(e == null) return false;
 
         if(e.getProntoParaRecolha() == null) return  false;
 

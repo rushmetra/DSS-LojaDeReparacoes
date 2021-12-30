@@ -55,7 +55,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
             File entregas = new File("saves/entregas.txt"); //alterar pasta possivelmente
             if (entregas.exists()) loadEntregas("saves");
-            else this.pedidosExpressos = new HashMap<>();
+            else this.entregas = new HashMap<>();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -404,6 +404,19 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
 
     }
 
+    public void saveEntregas(String pasta) throws IOException {
+
+        File file = new File(pasta + "/entregas.txt");
+        if (!file.exists()) file.createNewFile();
+        FileOutputStream fos=new FileOutputStream(file);
+        ObjectOutputStream oos=new ObjectOutputStream(fos);
+        oos.writeObject(this.entregas);
+        oos.flush();
+        oos.close();
+        fos.close();
+
+    }
+
 
     public void saveData(String pasta){
 
@@ -417,6 +430,7 @@ public class LojaReparacoesModel implements ILojaReparacoesModel {
             saveTecnicos(pasta);
             savePedidos(pasta);
             savePedidosExpresso(pasta);
+            saveEntregas(pasta);
 
         } catch (IOException e) {
             e.printStackTrace();
