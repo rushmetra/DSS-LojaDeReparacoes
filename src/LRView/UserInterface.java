@@ -415,9 +415,9 @@ public class UserInterface {
      */
     private void registarConfirmacaoDoOrcamento() {
         try {
-            System.out.println("Insira o NIF:");
+            System.out.println(ANSI_YELLOW +"Insira o NIF:" + ANSI_RESET);
             String nif = scin.nextLine();
-            System.out.println("Insira '1' se aceitou ou '2' se rejeitou "); // ver no fim se isto de ler o boolean funciona
+            System.out.println(ANSI_YELLOW + "Insira '1' se aceitou ou '2' se rejeitou " + ANSI_RESET); // ver no fim se isto de ler o boolean funciona
             int op = readOptionInt(2);
 
             boolean b ;
@@ -431,11 +431,11 @@ public class UserInterface {
 
     public void registarRecolhaEquipamento(){
 
-        System.out.println("Insira o NIF:");
+        System.out.println(ANSI_YELLOW + "Insira o NIF:" + ANSI_RESET);
         String nif = scin.nextLine();
 
         if(!this.gestFuncionarioBalcao.registarRecolhaEquipamentoePagamento(nif,this.username))
-            System.out.println("O equipamento não está pronto para ser recolhido");
+            System.out.println(ANSI_RED + "O equipamento não está pronto para ser recolhido" + ANSI_RESET);
 
     }
 
@@ -457,12 +457,12 @@ public class UserInterface {
     private void gestaoTecnicoReparacao() {
         boolean correct_password = false;
         while(!correct_password) {
-            System.out.println("Insira o seu username: ");
+            System.out.println(ANSI_YELLOW + "Insira o seu username: " + ANSI_RESET);
             username = scin.nextLine();
-            System.out.println("Insira a sua password: ");
+            System.out.println(ANSI_YELLOW + "Insira a sua password: " + ANSI_RESET);
             String password = scin.nextLine();
             correct_password = this.gestTecnico.loginTecnico(username, password);
-            if(!correct_password) System.out.println("Dados Log in inválidos");
+            if(!correct_password) System.out.println(ANSI_RED + "Dados Log in inválidos"  + ANSI_RESET);
 
         }
 
@@ -489,30 +489,30 @@ public class UserInterface {
         try {
             String nif = this.gestTecnico.determinaEquipamentoMaisAntigo();
             if (nif == null){
-                System.out.println("Não existe nenhum equipamento para efectuar o plano de trabalhos");
+                System.out.println(ANSI_RED + "Não existe nenhum equipamento para efectuar o plano de trabalhos"  + ANSI_RESET);
             } else {
-                System.out.println("O NIF do equipamento mais antigo é:" + nif);
-                System.out.println("Descrição do Pedido: " + this.gestTecnico.getInfoPedido(nif));
+                System.out.println(ANSI_PURPLE + "O NIF do equipamento mais antigo é:" + nif  + ANSI_RESET);
+                System.out.println(ANSI_PURPLE + "Descrição do Pedido: " + this.gestTecnico.getInfoPedido(nif) + ANSI_RESET);
 
-                System.out.println("Quando tiver analisado a descrição do pedido e o equipamento, registe os passos de trabalho: ");
-                System.out.println("Para sair escreva quit.");
-                System.out.println("Se o equipamento puder ser reparado digite 1, caso contrário digite 2: ");
+                System.out.println(ANSI_YELLOW + "Quando tiver analisado a descrição do pedido e o equipamento, registe os passos de trabalho: "  + ANSI_RESET);
+                System.out.println(ANSI_PURPLE + "Para sair escreva quit." + ANSI_RESET);
+                System.out.println(ANSI_YELLOW + "Se o equipamento puder ser reparado digite 1, caso contrário digite 2: " + ANSI_RESET);
                 int reparavel = readOptionInt(2);
                 if (reparavel == 1) {
                     String line = "";
                     while (!line.equals("quit")) {
-                        System.out.println("Insira o custo: ");
+                        System.out.println(ANSI_YELLOW + "Insira o custo: " + ANSI_RESET);
                         float custo = readOptionFloat(1000);
-                        System.out.println("Agora insira o tempo previsto ->");
-                        System.out.println("Insira a hora: ");
+                        System.out.println(ANSI_YELLOW + "Agora insira o tempo previsto ->" + ANSI_RESET);
+                        System.out.println(ANSI_YELLOW + "Insira a hora: " + ANSI_RESET);
                         int hora = readOptionInt(23);
-                        System.out.println("Insira o minuto: ");
+                        System.out.println(ANSI_YELLOW + "Insira o minuto: " + ANSI_RESET);
                         int min = readOptionInt(59);
                         LocalTime lt = LocalTime.of(hora, min, 0, 0);
-                        System.out.println("Insira a descrição do passo: ");
+                        System.out.println(ANSI_YELLOW + "Insira a descrição do passo: " + ANSI_RESET);
                         String descricao = scin.nextLine();
                         this.gestTecnico.registarPasso(nif, custo, lt, descricao, false);
-                        System.out.println("Se desejar terminar escreva 'quit' ou se desejar continuar prima ENTER");
+                        System.out.println(ANSI_PURPLE + "Se desejar terminar escreva 'quit' ou se desejar continuar prima ENTER" + ANSI_RESET);
                         line = scin.nextLine();
                     }
                         String email = this.gestTecnico.getEmailOrcamento(nif);
@@ -521,19 +521,19 @@ public class UserInterface {
                         long prazoMaximo = this.gestTecnico.getPrazoMaximo(nif);
                         Float custo = this.gestTecnico.getCustoTotalPrevisto(nif);
 
-                        System.out.println("O seguinte orçamento deve ser enviado ao cliente: ");
-                        System.out.println("Tempo previsto : " + parseMinutosToDisplay(tempoPrevisto));
-                        System.out.println("Prazo máximo : " + parseMinutosToDisplay(prazoMaximo));
-                        System.out.println("Custo total : " + custo);
-                        System.out.println("Nome -> " + nome);
-                        System.out.println("Email -> " + email);
+                        System.out.println(ANSI_PURPLE + "O seguinte orçamento deve ser enviado ao cliente: " + ANSI_RESET);
+                        System.out.println(ANSI_YELLOW + "Tempo previsto : " + parseMinutosToDisplay(tempoPrevisto) + ANSI_RESET);
+                        System.out.println(ANSI_YELLOW + "Prazo máximo : " + parseMinutosToDisplay(prazoMaximo) + ANSI_RESET);
+                        System.out.println(ANSI_YELLOW + "Custo total : " + custo + ANSI_RESET);
+                        System.out.println(ANSI_YELLOW + "Nome -> " + nome + ANSI_RESET);
+                        System.out.println(ANSI_YELLOW + "Email -> " + email + ANSI_RESET);
 
                 } else if(reparavel == 2) {
                     String email = this.gestTecnico.getEmailOrcamento(nif);
                     String nome = this.gestTecnico.getNomeOrcamento(nif);
-                    System.out.println("Deve informar o cliente que não possível reparar o equipamento e que pode levantá-lo: ");
-                    System.out.println("Email->" + email);
-                    System.out.println("Nome->" + nome);
+                    System.out.println(ANSI_PURPLE+ "Deve informar o cliente que não possível reparar o equipamento e que pode levantá-lo: " + ANSI_RESET);
+                    System.out.println(ANSI_YELLOW +"Email->" + email + ANSI_RESET);
+                    System.out.println(ANSI_YELLOW + "Nome->" + nome + ANSI_RESET);
                     this.gestTecnico.colocarProntoParaRecolha(nif);
                 }
                 }
@@ -551,7 +551,7 @@ public class UserInterface {
             boolean pausa = false;
             boolean valorSuperior = false;
 
-            System.out.println("Insira o NIF associado à reparação:");
+            System.out.println(ANSI_YELLOW + "Insira o NIF associado à reparação:" + ANSI_RESET);
             String nif = scin.nextLine();
 
             float custoPrevisto = this.gestTecnico.getCustoTotalPrevisto(nif);
@@ -562,19 +562,19 @@ public class UserInterface {
                if (descricao.equals("Nao existem mais passos.\n")) break;
                System.out.println(descricao);
 
-               System.out.println("Insira o custo: ");
+               System.out.println(ANSI_YELLOW + "Insira o custo: " + ANSI_RESET);
                float custo = readOptionFloat(1000);
-               System.out.println("Agora insira o tempo gasto ->");
-               System.out.println("Insira a hora: ");
+               System.out.println(ANSI_YELLOW + "Agora insira o tempo gasto ->" + ANSI_RESET);
+               System.out.println(ANSI_YELLOW + "Insira a hora: " + ANSI_RESET);
                int hora = readOptionInt(23);
-               System.out.println("Insira o minuto: ");
+               System.out.println(ANSI_YELLOW + "Insira o minuto: " + ANSI_RESET);
                int min = readOptionInt(59);
                LocalTime lt = LocalTime.of(hora, min, 0, 0);
                float novoCusto = this.gestTecnico.assinalarExecucaoPasso(nif, lt, custo);
 
                if(novoCusto > 1.2 * custoPrevisto) valorSuperior = true;
 
-               System.out.println("Deseja colocar a reparação em pausa? (digite y)");
+               System.out.println(ANSI_YELLOW + "Deseja colocar a reparação em pausa? (digite y)" + ANSI_RESET);
                String pausaS = scin.nextLine();
 
                if(pausaS.equals("y")) pausa = true;
@@ -588,9 +588,9 @@ public class UserInterface {
                String nome = this.gestTecnico.getNomeOrcamento(nif);
 
 
-               System.out.println("A reparação ultrapassou em 120% o valor previsto inicialmente é necessário informar o cliente  : " +nif);
-               System.out.println("Nome -> "+ nome);
-               System.out.println("Email -> "+ email);
+               System.out.println(ANSI_YELLOW + "A reparação ultrapassou em 120% o valor previsto inicialmente é necessário informar o cliente  : " +nif + ANSI_RESET);
+               System.out.println(ANSI_YELLOW + "Nome -> "+ nome + ANSI_RESET);
+               System.out.println(ANSI_YELLOW + "Email -> "+ email + ANSI_RESET);
            }
 
 
@@ -607,9 +607,9 @@ public class UserInterface {
         try {
             String nif = this.gestTecnico.determinaEquipamentoMaisUrgente();
             if (nif != null)
-                System.out.println("O NIF do equipamento mais urgente é: " + nif);
+                System.out.println(ANSI_YELLOW + "O NIF do equipamento mais urgente é: " + nif + ANSI_RESET);
             else
-                System.out.println("Não existem equipamentos para serem reparados.");
+                System.out.println(ANSI_RED + "Não existem equipamentos para serem reparados." + ANSI_RESET);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -628,11 +628,11 @@ public class UserInterface {
 
     private void registarConclusaoDaReparacao() {
         try {
-            System.out.println("Insira 1 para serviço normal e 2 para serviço expresso");
+            System.out.println(ANSI_YELLOW + "Insira 1 para serviço normal e 2 para serviço expresso" + ANSI_RESET);
 
             int op = readOptionInt(2);
 
-            System.out.println("Insira o NIF:");
+            System.out.println(ANSI_YELLOW + "Insira o NIF:" + ANSI_RESET);
             String nif = scin.nextLine();
 
 
@@ -655,7 +655,7 @@ public class UserInterface {
 
         while(op == -1){
 
-            System.out.print("Opção: ");
+            System.out.print(ANSI_YELLOW + "Opção: " + ANSI_RESET);
             try {
                 String line = this.scin.nextLine();
                 op = Integer.parseInt(line);
@@ -664,7 +664,7 @@ public class UserInterface {
                 op = -1;
             }
             if (op<0 || op> opcoes) {
-                System.out.println("Opção Inválida!!!");
+                System.out.println(ANSI_RED + "Opção Inválida!!!" + ANSI_RESET);
                 op = -1;
             }
         }
@@ -679,7 +679,7 @@ public class UserInterface {
 
         while(op == -1){
 
-            System.out.print("Opção: ");
+            System.out.print(ANSI_YELLOW + "Opção: " + ANSI_RESET);
             try {
                 String line = this.scin.nextLine();
                 op = Float.parseFloat(line);
@@ -688,7 +688,7 @@ public class UserInterface {
                 op = -1;
             }
             if (op<0 || op> opcoes) {
-                System.out.println("Opção Inválida!!!");
+                System.out.println(ANSI_RED + "Opção Inválida!!!" + ANSI_RESET);
                 op = -1;
             }
         }
