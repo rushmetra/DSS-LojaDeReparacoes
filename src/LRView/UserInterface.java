@@ -4,6 +4,7 @@ import LRController.GestFuncionarioBalcao.IGestFuncionarioBalcao;
 import LRController.GestGestor.IGestGestor;
 import LRController.GestTecnico.IGestTecnico;
 
+import javax.management.relation.RelationServiceNotRegisteredException;
 import java.awt.image.ReplicateScaleFilter;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -355,15 +356,15 @@ public class UserInterface {
      */
     private void registarPedidoOrcamento() {
         try {
-            System.out.println("Insira nome do Cliente: ");
+            System.out.println(ANSI_YELLOW + "Insira nome do Cliente: " + ANSI_RESET);
             String nomeCliente = scin.nextLine();
-            System.out.println("Insira o contacto: ");
+            System.out.println(ANSI_YELLOW + "Insira o contacto: " + ANSI_RESET);
             String contacto = scin.nextLine();
-            System.out.println("Insira o NIF: ");
+            System.out.println(ANSI_YELLOW + "Insira o NIF: " + ANSI_RESET);
             String nif = scin.nextLine();
-            System.out.println("Insira o email: ");
+            System.out.println(ANSI_YELLOW + "Insira o email: " + ANSI_RESET);
             String email = scin.nextLine();
-            System.out.println("Insira a descricao do Pedido");
+            System.out.println(ANSI_YELLOW + "Insira a descricao do Pedido:" + ANSI_RESET);
             String descricao = scin.nextLine();
             LocalDate ldt = LocalDate.now();
             this.gestFuncionarioBalcao.registarPedidoOrcamento(nomeCliente, contacto, nif, email,descricao,ldt);
@@ -377,7 +378,7 @@ public class UserInterface {
      */
     private void registarEntregaEquipamentoPeloCliente() {
         try {
-            System.out.println("Insira o NIF: ");
+            System.out.println(ANSI_YELLOW + "Insira o NIF: " + ANSI_RESET);
             String nif = scin.nextLine();
             this.gestFuncionarioBalcao.registarEntregaEquipamentoPeloCliente(nif, username);
         } catch (NullPointerException e) {
@@ -390,18 +391,18 @@ public class UserInterface {
      */
     private void registaServicoExpresso() {
         try {
-            System.out.println("Insira o NIF:");
+            System.out.println(ANSI_YELLOW + "Insira o NIF:" + ANSI_RESET);
             String nif = scin.nextLine();
-            System.out.println("Insira o contacto: ");
+            System.out.println(ANSI_YELLOW + "Insira o contacto: " + ANSI_RESET);
             String contacto = scin.nextLine();
-            System.out.println("Insira a descricao");
+            System.out.println(ANSI_YELLOW + "Insira a descricao" + ANSI_RESET);
             String descricao = scin.nextLine();
 
             String tecnico = this.gestFuncionarioBalcao.registarServicoExpresso(nif, contacto,descricao);
 
-            if(tecnico == null) System.out.println("Não existe disponibilidade para realizar o serviço expresso");
+            if(tecnico == null) System.out.println(ANSI_RED + "Não existe disponibilidade para realizar o serviço expresso" + ANSI_RESET);
             else{
-                System.out.println("O Serviço expresso foi atribuido ao tecnico  " + tecnico);
+                System.out.println(ANSI_GREEN + "O Serviço expresso foi atribuido ao tecnico  " + tecnico + ANSI_RESET);
             }
 
 
