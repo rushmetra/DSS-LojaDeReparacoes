@@ -538,10 +538,8 @@ public class UserInterface {
      */
     private void assinalaExecucaoPassos() {
         try {
-
             boolean pausa = false;
             boolean valorSuperior = false;
-
 
             System.out.println("Insira o NIF associado à reparação:");
             String nif = scin.nextLine();
@@ -550,8 +548,9 @@ public class UserInterface {
 
            while (!pausa && !valorSuperior) {
 
-                String descricao = this.gestTecnico.proximoPassoExecutarString(nif);
-                System.out.println(descricao);
+               String descricao = this.gestTecnico.proximoPassoExecutarString(nif);
+               if (descricao.equals("Nao existem mais passos.\n")) break;
+               System.out.println(descricao);
 
                System.out.println("Insira o custo: ");
                float custo = readOptionFloat(1000);
