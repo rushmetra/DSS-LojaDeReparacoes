@@ -108,7 +108,6 @@ public class GestTecnico implements IGestTecnico{
     }
 
 
-
         public void registarConclusaoReparacao(String nif){
         PedidoOrcamento po = model.getPedidoOrcamento(nif);
         po.setConlusaoReparacao(true);
@@ -121,6 +120,8 @@ public class GestTecnico implements IGestTecnico{
         pe.setConcluido(true);
         Entrega e = model.getEntrega(nif);
         e.setProntoParaRecolha(LocalDate.now());
+        Tecnico t = this.model.getTecnico(pe.getIdTecnico());
+        t.setOcupado(false);
     }
 
 

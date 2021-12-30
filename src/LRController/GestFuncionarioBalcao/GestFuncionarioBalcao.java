@@ -60,7 +60,7 @@ public class GestFuncionarioBalcao implements IGestFuncionarioBalcao {
         String username = verificaDisponiblidadeExpresso();
 
         if(username != null){
-            PedidoExpresso pe = new PedidoExpresso(nif, contacto, username, descricao);
+            PedidoExpresso pe = new PedidoExpresso(contacto, nif, username, descricao);
             model.adicionaPedidoExpresso(pe);
         }
         return username;
