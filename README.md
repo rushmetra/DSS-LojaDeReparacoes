@@ -1,9 +1,9 @@
 # Projeto DSS 2021/2022
 ## Loja de Reparações 
 
-Nota: 16.0
+### Nota: 16.0
 
-Utilizadores:
+# Utilizadores:
 gestor
 bernardo -> 12345
 
