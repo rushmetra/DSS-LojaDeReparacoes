@@ -13,6 +13,10 @@ desde a orçamentação até à entrega do equipamento.
 
 ### Nota final: 16.0
 
+## Como usar:
+## Compilation:
+```$ javac *.java ```
+```$ java Main.c ``` 
 
 ## Utilizadores:
 
@@ -26,3 +30,6 @@ rodrigo -> 12345
 ### Técnicos:
 ze-joao -> 12345
 rui -> 12345
+
+## Menus:
+Escolher as opções, inserindo número relativo a cada uma delas.
