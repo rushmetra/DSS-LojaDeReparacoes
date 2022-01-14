@@ -15,7 +15,7 @@ Development of a Management System for Electronic Equipment Repair Centers that 
 ## How to use:
 ## Compilation:
 ```$ javac *.java ```
-## Executation:
+## Execution:
 ```$ java Main.c ``` 
 
 ## Users:
@@ -32,4 +32,4 @@ ze-joao -> 12345
 rui -> 12345
 
 ## Menus:
-Choose the option by inserting its number.
+Choose the option by inserting it's number.
