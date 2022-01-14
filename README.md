@@ -1,6 +1,5 @@
 # Desenvolvimento de Sistemas de Software: Loja de Reparações (21/22)
-Desenvolvimento de Sistema de Gestão para Centros de Reparação de equipamentos electrónicos que garante a gestão de todo o processo de reparação de equipamentos,
-desde a orçamentação até à entrega do equipamento.
+Development of a Management System for Electronic Equipment Repair Centers that ensures the management of the entire equipment repair process, from budgeting to delivery of the equipment.
 
 ## Group members:  
 
@@ -11,7 +10,7 @@ desde a orçamentação até à entrega do equipamento.
 [Rodrigo Rodrigues](https://github.com/webst2r)  
 
 
-### Nota final: 16.0
+### Final grade: 16.0
 
 ## Como usar:
 ## Compilation:
