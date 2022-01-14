@@ -12,15 +12,15 @@
 ### Nota final: 16.0
 
 
-# Utilizadores:
+## Utilizadores:
 
-## Gestor da Loja:
+### Gestor da Loja:
 bernardo -> 12345
 
-## Funcionários:
+### Funcionários:
 guizao -> 12345
 rodrigo -> 12345
 
-## Técnicos:
+### Técnicos:
 ze-joao -> 12345
 rui -> 12345
