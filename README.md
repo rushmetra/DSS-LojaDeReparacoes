@@ -13,9 +13,8 @@ Development of a Management System for Electronic Equipment Repair Centers that 
 ### Final grade: 16.0
 
 ## How to use:
-## Compilation:
-```$ javac *.java ```
-## Execution:
+## Compilation && Run:
+```$ javac *.java ```  
 ```$ java Main.c ``` 
 
 ## Users:
