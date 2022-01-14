@@ -23,11 +23,11 @@ Development of a Management System for Electronic Equipment Repair Centers that 
 bernardo -> 12345
 
 ### Counter Clerks:
-guizao -> 12345
+guizao -> 12345  
 rodrigo -> 12345
 
 ### Technicians:
-ze-joao -> 12345 
+ze-joao -> 12345  
 rui -> 12345
 
 ## How to use:
