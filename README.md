@@ -30,5 +30,5 @@ rodrigo -> 12345
 ze-joao -> 12345 
 rui -> 12345
 
-## Menus:
-Choose the option by inserting it's number.
+## How to use:
+Choose the menu option by inserting it's number.
