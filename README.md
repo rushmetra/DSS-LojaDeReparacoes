@@ -12,23 +12,24 @@ Development of a Management System for Electronic Equipment Repair Centers that 
 
 ### Final grade: 16.0
 
-## Como usar:
+## How to use:
 ## Compilation:
 ```$ javac *.java ```
+## Executation:
 ```$ java Main.c ``` 
 
-## Utilizadores:
+## Users:
 
-### Gestor da Loja:
+### Store Manager:
 bernardo -> 12345
 
-### Funcionários:
+### Counter Clerks:
 guizao -> 12345
 rodrigo -> 12345
 
-### Técnicos:
-ze-joao -> 12345
+### Technicians:
+ze-joao -> 12345 
 rui -> 12345
 
 ## Menus:
-Escolher as opções, inserindo número relativo a cada uma delas.
+Choose the option by inserting its number.
