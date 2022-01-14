@@ -4,9 +4,9 @@
 
 [Bernardo Saraiva](https://github.com/devsaraiva)  
 [Rui Moreira](https://github.com/RuiMoreiraA93232)  
-[José João Gonçalves](https://github.com/jjgonc)
-[Guilherme Monteiro](https://github.com/rushmetra)
-[Rodrigo Rodrigues](https://github.com/webst2r)
+[José João Gonçalves](https://github.com/jjgonc)  
+[Guilherme Monteiro](https://github.com/rushmetra)  
+[Rodrigo Rodrigues](https://github.com/webst2r)  
 
 
 ### Nota final: 16.0
