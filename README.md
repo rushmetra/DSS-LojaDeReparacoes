@@ -1,4 +1,6 @@
 # Desenvolvimento de Sistemas de Software: Loja de Reparações (21/22)
+Desenvolvimento de Sistema de Gestão para Centros de Reparação de equipamentos electrónicos que garante a gestão de todo o processo de reparação de equipamentos,
+desde a orçamentação até à entrega do equipamento.
 
 ## Group members:  
 
